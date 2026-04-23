@@ -4,9 +4,15 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
   // Packages loaded from node_modules on the server avoid broken vendor-chunks after
   // interrupted dev builds (OpenTelemetry, FormatJS via next-intl, etc.).
   serverExternalPackages: [
+    // firebase-admin → gRPC; bundling can yield missing vendor-chunks/@grpc*.js in dev
+    "firebase-admin",
+    "@grpc/grpc-js",
+    "@grpc/proto-loader",
+    "google-gax",
     "@opentelemetry/api",
     "intl-messageformat",
     "@formatjs/ecma402-abstract",

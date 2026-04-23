@@ -51,7 +51,7 @@ export function Regions() {
                     alt={tRegions(region)}
                     fill
                     sizes="(min-width: 1024px) 25vw, 50vw"
-                    className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.05]"
+                    className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.05]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
                   <div className="absolute inset-x-5 bottom-5">

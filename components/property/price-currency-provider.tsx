@@ -41,18 +41,46 @@ const PriceCurrencyContext = createContext<PriceCurrencyContextValue | null>(
 
 export function PriceCurrencyProvider({
   children,
-  initialRates,
+  initialRates = FX_FALLBACK_RATES,
 }: {
   children: React.ReactNode;
-  initialRates: FxRates;
+  /** SSR / first paint; live ECB rates load from /api/fx after mount. */
+  initialRates?: FxRates;
 }) {
   const [displayCurrency, setDisplayCurrencyState] =
     useState<DisplayCurrency>("EUR");
+  const [rates, setRates] = useState<FxRates>(initialRates);
 
   useEffect(() => {
     const stored = readStoredCurrency();
     if (stored) setDisplayCurrencyState(stored);
   }, []);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/fx")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data: Partial<FxRates> | null) => {
+        if (
+          cancelled ||
+          !data ||
+          typeof data.USD !== "number" ||
+          typeof data.TRY !== "number"
+        ) {
+          return;
+        }
+        setRates({
+          EUR: 1,
+          USD: data.USD,
+          TRY: data.TRY,
+          GBP: typeof data.GBP === "number" ? data.GBP : initialRates.GBP,
+        });
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [initialRates.GBP]);
 
   const setDisplayCurrency = useCallback((c: DisplayCurrency) => {
     setDisplayCurrencyState(c);
@@ -62,8 +90,6 @@ export function PriceCurrencyProvider({
       /* ignore */
     }
   }, []);
-
-  const rates = initialRates;
 
   const value = useMemo(
     () => ({ displayCurrency, setDisplayCurrency, rates }),

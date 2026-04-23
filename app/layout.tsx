@@ -12,7 +12,6 @@ const fraunces = Fraunces({
   subsets: ["latin", "latin-ext"],
   variable: "--font-fraunces",
   display: "swap",
-  axes: ["SOFT", "opsz"],
 });
 
 export const metadata: Metadata = {

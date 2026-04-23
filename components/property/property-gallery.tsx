@@ -62,7 +62,7 @@ export function PropertyGallery({
             fill
             sizes="(min-width: 1024px) 50vw, 100vw"
             priority
-            className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]"
+            className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
           />
         </button>
 
@@ -78,7 +78,7 @@ export function PropertyGallery({
               alt={`${alt} ${i + 2}`}
               fill
               sizes="(min-width: 1024px) 25vw, 50vw"
-              className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.03]"
+              className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
             />
             {i === 3 && images.length > 5 && (
               <div className="absolute inset-0 flex items-center justify-center bg-ink/60 font-display text-2xl text-ivory">
