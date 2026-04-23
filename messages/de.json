@@ -41,7 +41,9 @@
       "featured": "Nur ausgewählte",
       "clear": "Filter löschen",
       "apply": "Anwenden",
-      "any": "Beliebig"
+      "any": "Beliebig",
+      "selectedShort": "{count} ausgewählt",
+      "toolbarMore": "Mehr"
     },
     "empty": "Keine Objekte passen zu diesen Kriterien.",
     "resultsCount": "{count} Objekte",

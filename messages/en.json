@@ -41,7 +41,9 @@
       "featured": "Featured only",
       "clear": "Clear filters",
       "apply": "Apply",
-      "any": "Any"
+      "any": "Any",
+      "selectedShort": "{count} selected",
+      "toolbarMore": "More"
     },
     "empty": "No properties match these criteria.",
     "resultsCount": "{count} properties",

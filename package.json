@@ -6,7 +6,9 @@
     "node": ">=22 <23"
   },
   "scripts": {
+    "clean": "rm -rf .next",
     "dev": "WATCHPACK_POLLING=true CHOKIDAR_USEPOLLING=true next dev --hostname localhost",
+    "dev:clean": "npm run clean && WATCHPACK_POLLING=true CHOKIDAR_USEPOLLING=true next dev --hostname localhost",
     "dev:turbo": "next dev --turbo",
     "build": "next build",
     "start": "next start",

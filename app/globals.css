@@ -58,6 +58,23 @@
   .label {
     @apply mb-1.5 block text-xs font-medium uppercase tracking-[0.12em] text-ink-muted;
   }
+  /* Portfolio filter drawer: visible scrollbar (macOS overlay scrollbars hide by default). */
+  .filter-drawer-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(107, 103, 98, 0.55) transparent;
+  }
+  .filter-drawer-scroll::-webkit-scrollbar {
+    width: 10px;
+  }
+  .filter-drawer-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(107, 103, 98, 0.45);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+  .filter-drawer-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
   .chip {
     @apply inline-flex items-center gap-1.5 rounded-xs border border-ivory-300 bg-ivory-50 px-2.5 py-1 text-[11px] uppercase tracking-wider text-ink-muted;
   }

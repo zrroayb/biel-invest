@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { listProperties } from "@/lib/firestore/properties";
 import { PropertyCard } from "@/components/property/property-card";
@@ -56,22 +57,27 @@ export default async function PortfolioPage({
     <div className="pt-[72px]">
       <section className="border-b border-ivory-300 bg-ivory">
         <div className="container py-16 md:py-24">
-          <Reveal>
-            <div className="eyebrow">Bodrum · Ege</div>
-            <h1 className="mt-3 font-display text-display-lg text-ink">
-              {t("title")}
-            </h1>
-            <p className="mt-3 text-base text-ink-muted">{t("subtitle")}</p>
-          </Reveal>
+          {/* No Reveal here: above-the-fold title must be visible without scrolling / IO delay */}
+          <div className="eyebrow">Bodrum · Ege</div>
+          <h1 className="mt-3 font-display text-display-lg text-ink">
+            {t("title")}
+          </h1>
+          <p className="mt-3 text-base text-ink-muted">{t("subtitle")}</p>
         </div>
       </section>
 
       <section className="container py-10">
-        <div className="sticky top-[72px] z-20 -mx-5 mb-10 flex items-center justify-between gap-4 bg-ivory/90 px-5 py-4 backdrop-blur md:mx-0">
-          <div className="text-sm text-ink-muted">
-            {t("resultsCount", { count: items.length })}
-          </div>
-          <PropertyFilters />
+        <div className="sticky top-[72px] z-20 -mx-5 mb-8 border-b border-ivory-300/90 bg-ivory/88 px-4 py-2.5 backdrop-blur-md md:mx-0 md:px-0">
+          <Suspense
+            fallback={
+              <div className="flex animate-pulse gap-3 py-1" aria-hidden>
+                <div className="h-8 w-40 rounded-xs bg-ivory-200" />
+                <div className="h-8 flex-1 max-w-xs rounded-xs bg-ivory-200" />
+              </div>
+            }
+          >
+            <PropertyFilters resultCount={items.length} />
+          </Suspense>
         </div>
 
         {items.length === 0 ? (

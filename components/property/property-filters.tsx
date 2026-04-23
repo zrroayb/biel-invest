@@ -3,18 +3,29 @@
 import { useRouter, usePathname } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useState, useTransition } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useTransition,
+  type ReactNode,
+} from "react";
 import {
   PROPERTY_FEATURES,
   PROPERTY_REGIONS,
   PROPERTY_STATUSES,
   PROPERTY_TYPES,
 } from "@/types/property";
-import { X, Filter } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export function PropertyFilters() {
+type SortKey = "newest" | "priceAsc" | "priceDesc";
+
+export function PropertyFilters({ resultCount }: { resultCount: number }) {
   const t = useTranslations("portfolio.filters");
+  const tPortfolio = useTranslations("portfolio");
   const tType = useTranslations("property.type");
   const tStatus = useTranslations("property.status");
   const tRegions = useTranslations("regions");
@@ -24,196 +35,288 @@ export function PropertyFilters() {
   const pathname = usePathname();
   const sp = useSearchParams();
   const [, startTransition] = useTransition();
-  const [open, setOpen] = useState(false);
 
-  const [type, setType] = useState(sp.get("type") ?? "");
-  const [status, setStatus] = useState(sp.get("status") ?? "");
-  const [region, setRegion] = useState(sp.get("region") ?? "");
-  const [priceMin, setPriceMin] = useState(sp.get("priceMin") ?? "");
-  const [priceMax, setPriceMax] = useState(sp.get("priceMax") ?? "");
-  const [bedrooms, setBedrooms] = useState(sp.get("bedrooms") ?? "");
-  const [featured, setFeatured] = useState(sp.get("featured") === "1");
-  const [features, setFeatures] = useState<string[]>(
-    sp.get("features")?.split(",").filter(Boolean) ?? [],
+  const q = sp.toString();
+
+  const replaceQuery = useCallback(
+    (mutate: (p: URLSearchParams) => void) => {
+      const p = new URLSearchParams(q);
+      mutate(p);
+      const qs = p.toString();
+      startTransition(() => {
+        router.replace(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
+      });
+    },
+    [router, pathname, q, startTransition],
   );
 
-  const toggleFeature = (f: string) =>
-    setFeatures((curr) =>
-      curr.includes(f) ? curr.filter((x) => x !== f) : [...curr, f],
-    );
+  const type = sp.get("type") ?? "";
+  const status = sp.get("status") ?? "";
+  const region = sp.get("region") ?? "";
+  const bedrooms = sp.get("bedrooms") ?? "";
+  const featured = sp.get("featured") === "1";
+  const sort = (sp.get("sort") as SortKey | null) ?? "newest";
+  const features = useMemo(
+    () => sp.get("features")?.split(",").filter(Boolean) ?? [],
+    [sp],
+  );
 
-  const apply = () => {
-    const params = new URLSearchParams();
-    if (type) params.set("type", type);
-    if (status) params.set("status", status);
-    if (region) params.set("region", region);
-    if (priceMin) params.set("priceMin", priceMin);
-    if (priceMax) params.set("priceMax", priceMax);
-    if (bedrooms) params.set("bedrooms", bedrooms);
-    if (featured) params.set("featured", "1");
-    if (features.length) params.set("features", features.join(","));
-    const qs = params.toString();
+  const priceMinQ = sp.get("priceMin") ?? "";
+  const priceMaxQ = sp.get("priceMax") ?? "";
+
+  const [priceMin, setPriceMin] = useState(priceMinQ);
+  const [priceMax, setPriceMax] = useState(priceMaxQ);
+
+  useEffect(() => {
+    const p = new URLSearchParams(q);
+    setPriceMin(p.get("priceMin") ?? "");
+    setPriceMax(p.get("priceMax") ?? "");
+  }, [q]);
+
+  const toggleFeature = (f: string) =>
+    replaceQuery((p) => {
+      const cur = p.get("features")?.split(",").filter(Boolean) ?? [];
+      const next = cur.includes(f) ? cur.filter((x) => x !== f) : [...cur, f];
+      if (next.length) p.set("features", next.join(","));
+      else p.delete("features");
+    });
+
+  const applyPrice = (close: () => void) => {
+    replaceQuery((p) => {
+      if (priceMin.trim()) p.set("priceMin", priceMin.trim());
+      else p.delete("priceMin");
+      if (priceMax.trim()) p.set("priceMax", priceMax.trim());
+      else p.delete("priceMax");
+    });
+    close();
+  };
+
+  const clearAll = () =>
     startTransition(() => {
-      router.push(qs ? `${pathname}?${qs}` : pathname, { scroll: false });
-      setOpen(false);
+      router.replace(pathname, { scroll: false });
+    });
+
+  const hasFilters = Boolean(
+    type ||
+      status ||
+      region ||
+      bedrooms ||
+      featured ||
+      features.length ||
+      priceMinQ ||
+      priceMaxQ ||
+      sort !== "newest",
+  );
+
+  const moreCategories =
+    (featured ? 1 : 0) +
+    (bedrooms ? 1 : 0) +
+    (priceMinQ || priceMaxQ ? 1 : 0) +
+    (features.length > 0 ? 1 : 0);
+  const morePreview =
+    moreCategories === 0 ? t("any") : t("selectedShort", { count: moreCategories });
+  const moreDirty = moreCategories > 0;
+
+  const sortOnChange = (v: string) => {
+    replaceQuery((p) => {
+      if (v === "newest") p.delete("sort");
+      else p.set("sort", v);
     });
   };
 
-  const clear = () => {
-    setType("");
-    setStatus("");
-    setRegion("");
-    setPriceMin("");
-    setPriceMax("");
-    setBedrooms("");
-    setFeatured(false);
-    setFeatures([]);
-    startTransition(() => router.push(pathname, { scroll: false }));
-  };
-
-  const activeCount = [
-    type,
-    status,
-    region,
-    priceMin,
-    priceMax,
-    bedrooms,
-    featured ? "1" : "",
-    ...features,
-  ].filter(Boolean).length;
-
   return (
-    <>
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="btn btn-outline"
-      >
-        <Filter className="h-4 w-4" /> {t("title")}
-        {activeCount > 0 && (
-          <span className="ml-1 inline-flex h-5 min-w-5 items-center justify-center rounded-xs bg-ink px-1.5 text-[10px] text-ivory">
-            {activeCount}
-          </span>
-        )}
-      </button>
-
-      {open && (
-        <div
-          className="fixed inset-0 z-50 flex items-stretch justify-end bg-ink/30 backdrop-blur-sm"
-          role="dialog"
-          aria-modal
-          onClick={() => setOpen(false)}
-        >
-          <div
-            className="flex h-full w-full max-w-md flex-col bg-ivory shadow-lift"
-            onClick={(e) => e.stopPropagation()}
+    <div className="flex flex-col gap-2.5">
+      <div className="flex min-w-0 flex-wrap items-baseline gap-x-3 gap-y-1">
+        <h2 className="font-display text-lg font-semibold tracking-tight text-ink sm:text-xl">
+          {tPortfolio("resultsCount", { count: resultCount })}
+        </h2>
+        {hasFilters ? (
+          <button
+            type="button"
+            onClick={clearAll}
+            className="text-xs font-medium text-ink-muted underline decoration-ink-muted/40 underline-offset-2 transition-colors hover:text-ink"
           >
-            <div className="flex items-center justify-between border-b border-ivory-300 px-6 py-4">
-              <h2 className="font-display text-2xl">{t("title")}</h2>
-              <button
-                type="button"
-                onClick={() => setOpen(false)}
-                className="inline-flex h-8 w-8 items-center justify-center rounded-xs hover:bg-ivory-200"
-                aria-label="close"
-              >
-                <X className="h-4 w-4" />
-              </button>
+            {t("clear")}
+          </button>
+        ) : null}
+      </div>
+
+      <div className="flex flex-wrap items-center gap-1.5">
+        <label htmlFor="pf-sort" className="sr-only">
+          {tPortfolio("sort.label")}
+        </label>
+        <select
+          id="pf-sort"
+          value={sort}
+          onChange={(e) => sortOnChange(e.target.value)}
+          className="field h-9 max-w-[min(100%,12rem)] shrink-0 cursor-pointer py-1.5 pl-2.5 pr-8 text-xs font-medium"
+        >
+          <option value="newest">{tPortfolio("sort.newest")}</option>
+          <option value="priceAsc">{tPortfolio("sort.priceAsc")}</option>
+          <option value="priceDesc">{tPortfolio("sort.priceDesc")}</option>
+        </select>
+
+        <FilterMenu
+          label={t("type")}
+          preview={type ? tType(type) : t("any")}
+          dirty={Boolean(type)}
+        >
+          {({ close }) => (
+            <div className="flex flex-wrap gap-1.5">
+              <ChoiceChip
+                compact
+                active={!type}
+                onClick={() => {
+                  replaceQuery((p) => p.delete("type"));
+                  close();
+                }}
+                label={t("any")}
+              />
+              {PROPERTY_TYPES.map((x) => (
+                <ChoiceChip
+                  compact
+                  key={x}
+                  active={type === x}
+                  onClick={() => {
+                    replaceQuery((p) => {
+                      if (type === x) p.delete("type");
+                      else p.set("type", x);
+                    });
+                    close();
+                  }}
+                  label={tType(x)}
+                />
+              ))}
             </div>
+          )}
+        </FilterMenu>
 
-            <div className="flex-1 overflow-y-auto px-6 py-6 space-y-6">
+        <FilterMenu
+          label={t("status")}
+          preview={status ? tStatus(status) : t("any")}
+          dirty={Boolean(status)}
+        >
+          {({ close }) => (
+            <div className="flex flex-wrap gap-1.5">
+              <ChoiceChip
+                compact
+                active={!status}
+                onClick={() => {
+                  replaceQuery((p) => p.delete("status"));
+                  close();
+                }}
+                label={t("any")}
+              />
+              {PROPERTY_STATUSES.map((x) => (
+                <ChoiceChip
+                  compact
+                  key={x}
+                  active={status === x}
+                  onClick={() => {
+                    replaceQuery((p) => {
+                      if (status === x) p.delete("status");
+                      else p.set("status", x);
+                    });
+                    close();
+                  }}
+                  label={tStatus(x)}
+                />
+              ))}
+            </div>
+          )}
+        </FilterMenu>
+
+        <FilterMenu
+          label={t("region")}
+          preview={region ? tRegions(region) : t("any")}
+          dirty={Boolean(region)}
+        >
+          {({ close }) => (
+            <div className="flex flex-wrap gap-1.5">
+              <ChoiceChip
+                compact
+                active={!region}
+                onClick={() => {
+                  replaceQuery((p) => p.delete("region"));
+                  close();
+                }}
+                label={t("any")}
+              />
+              {PROPERTY_REGIONS.map((x) => (
+                <ChoiceChip
+                  compact
+                  key={x}
+                  active={region === x}
+                  onClick={() => {
+                    replaceQuery((p) => {
+                      if (region === x) p.delete("region");
+                      else p.set("region", x);
+                    });
+                    close();
+                  }}
+                  label={tRegions(x)}
+                />
+              ))}
+            </div>
+          )}
+        </FilterMenu>
+
+        <FilterMenu
+          label={t("toolbarMore")}
+          preview={morePreview}
+          dirty={moreDirty}
+          alignEnd
+        >
+          {({ close }) => (
+            <div className="space-y-4">
               <div>
-                <label className="label">{t("type")}</label>
-                <div className="flex flex-wrap gap-2">
-                  <FilterChip
-                    active={!type}
-                    onClick={() => setType("")}
+                <div className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-ink-muted">
+                  {t("featured")}
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  <ChoiceChip
+                    compact
+                    active={!featured}
+                    onClick={() => {
+                      replaceQuery((p) => p.delete("featured"));
+                    }}
                     label={t("any")}
                   />
-                  {PROPERTY_TYPES.map((x) => (
-                    <FilterChip
-                      key={x}
-                      active={type === x}
-                      onClick={() => setType(x)}
-                      label={tType(x)}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <label className="label">{t("status")}</label>
-                <div className="flex flex-wrap gap-2">
-                  <FilterChip
-                    active={!status}
-                    onClick={() => setStatus("")}
-                    label={t("any")}
-                  />
-                  {PROPERTY_STATUSES.map((x) => (
-                    <FilterChip
-                      key={x}
-                      active={status === x}
-                      onClick={() => setStatus(x)}
-                      label={tStatus(x)}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <label className="label">{t("region")}</label>
-                <div className="flex flex-wrap gap-2">
-                  <FilterChip
-                    active={!region}
-                    onClick={() => setRegion("")}
-                    label={t("any")}
-                  />
-                  {PROPERTY_REGIONS.map((x) => (
-                    <FilterChip
-                      key={x}
-                      active={region === x}
-                      onClick={() => setRegion(x)}
-                      label={tRegions(x)}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="label">{t("priceMin")}</label>
-                  <input
-                    type="number"
-                    className="field"
-                    value={priceMin}
-                    onChange={(e) => setPriceMin(e.target.value)}
-                    placeholder="€"
-                  />
-                </div>
-                <div>
-                  <label className="label">{t("priceMax")}</label>
-                  <input
-                    type="number"
-                    className="field"
-                    value={priceMax}
-                    onChange={(e) => setPriceMax(e.target.value)}
-                    placeholder="€"
+                  <ChoiceChip
+                    compact
+                    active={featured}
+                    onClick={() => {
+                      replaceQuery((p) => p.set("featured", "1"));
+                    }}
+                    label={t("featured")}
                   />
                 </div>
               </div>
 
               <div>
-                <label className="label">{t("bedrooms")}</label>
-                <div className="flex flex-wrap gap-2">
-                  <FilterChip
+                <div className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-ink-muted">
+                  {t("bedrooms")}
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  <ChoiceChip
+                    compact
                     active={!bedrooms}
-                    onClick={() => setBedrooms("")}
+                    onClick={() => {
+                      replaceQuery((p) => p.delete("bedrooms"));
+                    }}
                     label={t("any")}
                   />
                   {[1, 2, 3, 4, 5].map((x) => (
-                    <FilterChip
+                    <ChoiceChip
+                      compact
                       key={x}
                       active={bedrooms === String(x)}
-                      onClick={() => setBedrooms(String(x))}
+                      onClick={() => {
+                        replaceQuery((p) => {
+                          if (bedrooms === String(x)) p.delete("bedrooms");
+                          else p.set("bedrooms", String(x));
+                        });
+                      }}
                       label={`${x}+`}
                     />
                   ))}
@@ -221,10 +324,48 @@ export function PropertyFilters() {
               </div>
 
               <div>
-                <label className="label">{t("features")}</label>
-                <div className="flex flex-wrap gap-2">
+                <div className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-ink-muted">
+                  {t("priceMin")} · {t("priceMax")}
+                </div>
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-end">
+                  <div className="grid flex-1 grid-cols-2 gap-2">
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      className="field py-1.5 text-xs"
+                      value={priceMin}
+                      onChange={(e) => setPriceMin(e.target.value)}
+                      placeholder={t("priceMin")}
+                      aria-label={t("priceMin")}
+                    />
+                    <input
+                      type="number"
+                      inputMode="numeric"
+                      className="field py-1.5 text-xs"
+                      value={priceMax}
+                      onChange={(e) => setPriceMax(e.target.value)}
+                      placeholder={t("priceMax")}
+                      aria-label={t("priceMax")}
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => applyPrice(close)}
+                    className="btn btn-outline h-9 shrink-0 px-3 py-1.5 text-xs"
+                  >
+                    {t("apply")}
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <div className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-ink-muted">
+                  {t("features")}
+                </div>
+                <div className="flex flex-wrap gap-1.5">
                   {PROPERTY_FEATURES.map((f) => (
-                    <FilterChip
+                    <ChoiceChip
+                      compact
                       key={f}
                       active={features.includes(f)}
                       onClick={() => toggleFeature(f)}
@@ -233,59 +374,99 @@ export function PropertyFilters() {
                   ))}
                 </div>
               </div>
-
-              <label className="flex cursor-pointer items-center gap-2 text-sm">
-                <input
-                  type="checkbox"
-                  checked={featured}
-                  onChange={(e) => setFeatured(e.target.checked)}
-                  className="h-4 w-4 accent-ink"
-                />
-                {t("featured")}
-              </label>
             </div>
-
-            <div className="flex gap-3 border-t border-ivory-300 px-6 py-4">
-              <button
-                type="button"
-                onClick={clear}
-                className="btn btn-ghost flex-1"
-              >
-                {t("clear")}
-              </button>
-              <button
-                type="button"
-                onClick={apply}
-                className="btn btn-primary flex-1"
-              >
-                {t("apply")}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
+          )}
+        </FilterMenu>
+      </div>
+    </div>
   );
 }
 
-function FilterChip({
+function FilterMenu({
+  label,
+  preview,
+  dirty,
+  alignEnd,
+  children,
+}: {
+  label: string;
+  preview: string;
+  dirty?: boolean;
+  alignEnd?: boolean;
+  children: (ctx: { close: () => void }) => ReactNode;
+}) {
+  const ref = useRef<HTMLDetailsElement>(null);
+  const close = () => {
+    if (ref.current) ref.current.open = false;
+  };
+
+  return (
+    <details
+      ref={ref}
+      className={cn(
+        "group relative shrink-0",
+        alignEnd && "max-sm:ml-auto",
+      )}
+    >
+      <summary
+        title={`${label}: ${preview}`}
+        className={cn(
+          "inline-flex h-9 max-w-[min(100%,13.5rem)] cursor-pointer list-none items-center gap-1.5 rounded-xs border bg-white px-2.5 text-xs font-medium text-ink shadow-sm transition-colors hover:bg-ivory-50 [&::-webkit-details-marker]:hidden sm:max-w-[15rem]",
+          dirty ? "border-olive/50 ring-1 ring-olive/20" : "border-ink/12",
+        )}
+      >
+        <span
+          className={cn(
+            "h-1.5 w-1.5 shrink-0 rounded-full",
+            dirty ? "bg-olive" : "bg-ivory-300",
+          )}
+          aria-hidden
+        />
+        <span className="shrink-0">{label}</span>
+        <ChevronDown
+          className="h-3.5 w-3.5 shrink-0 opacity-50 transition-transform duration-200 group-open:rotate-180"
+          aria-hidden
+        />
+        <span className="min-w-0 flex-1 truncate font-normal text-ink-muted">
+          {preview}
+        </span>
+      </summary>
+      <div
+        className={cn(
+          "absolute z-50 mt-1 max-h-[min(22rem,70vh)] w-[min(19rem,calc(100vw-2rem))] overflow-y-auto overscroll-y-contain rounded-xs border border-ivory-300 bg-white p-3 shadow-lg",
+          alignEnd ? "right-0" : "left-0",
+        )}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {children({ close })}
+      </div>
+    </details>
+  );
+}
+
+function ChoiceChip({
   active,
   onClick,
   label,
+  compact,
 }: {
   active: boolean;
   onClick: () => void;
   label: string;
+  compact?: boolean;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
       className={cn(
-        "inline-flex items-center rounded-xs border px-3 py-1.5 text-xs transition-all",
+        "inline-flex max-w-full items-center rounded-xs border text-left font-medium transition-all",
+        compact
+          ? "min-h-8 px-2 py-1 text-[11px] leading-snug"
+          : "min-h-9 px-3 py-2 text-xs leading-snug sm:min-h-8 sm:py-1.5",
         active
           ? "border-ink bg-ink text-ivory"
-          : "border-ivory-300 bg-ivory-50 text-ink-muted hover:border-ink hover:text-ink",
+          : "border-ink/12 bg-white text-ink hover:border-ink/25 hover:bg-ivory-50",
       )}
     >
       {label}

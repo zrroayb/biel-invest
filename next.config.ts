@@ -4,6 +4,9 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
+  // Firebase (and other deps) pull @opentelemetry/api; bundling it as a vendor
+  // chunk can break after interrupted dev builds — load from node_modules instead.
+  serverExternalPackages: ["@opentelemetry/api"],
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
@@ -22,7 +25,7 @@ const nextConfig: NextConfig = {
     ],
   },
   experimental: {
-    optimizePackageImports: ["lucide-react", "framer-motion"],
+    optimizePackageImports: ["lucide-react"],
   },
 };
 

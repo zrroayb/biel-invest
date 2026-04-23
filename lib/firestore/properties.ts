@@ -51,21 +51,23 @@ export interface ListPropertiesParams {
 export async function listProperties(
   params: ListPropertiesParams = {},
 ): Promise<Property[]> {
-  let query: FirebaseFirestore.Query = adminDb.collection(COLLECTION);
+  const limit = params.limit ?? 120;
+  // Read a bounded window from Firestore with a single orderBy so we never
+  // need composite indexes for arbitrary filter combinations (type + region +
+  // status + orderBy was failing silently when indexes were missing).
+  const fetchCap = 500;
+  const snap = await adminDb
+    .collection(COLLECTION)
+    .orderBy("createdAt", "desc")
+    .limit(fetchCap)
+    .get();
 
-  if (params.status) query = query.where("status", "==", params.status);
-  if (params.type) query = query.where("type", "==", params.type);
-  if (params.region) query = query.where("region", "==", params.region);
-  if (params.featured) query = query.where("featured", "==", true);
-
-  if (params.sort === "priceAsc") query = query.orderBy("price", "asc");
-  else if (params.sort === "priceDesc") query = query.orderBy("price", "desc");
-  else query = query.orderBy("createdAt", "desc");
-
-  if (params.limit) query = query.limit(params.limit);
-
-  const snap = await query.get();
   let items = snap.docs.map((d) => docToProperty(d.id, d.data()));
+
+  if (params.status) items = items.filter((p) => p.status === params.status);
+  if (params.type) items = items.filter((p) => p.type === params.type);
+  if (params.region) items = items.filter((p) => p.region === params.region);
+  if (params.featured) items = items.filter((p) => p.featured);
 
   if (params.priceMin != null)
     items = items.filter((p) => p.price >= params.priceMin!);
@@ -80,7 +82,17 @@ export async function listProperties(
       params.features!.every((f) => p.features.includes(f as never)),
     );
 
-  return items;
+  if (params.sort === "priceAsc")
+    items = [...items].sort((a, b) => a.price - b.price);
+  else if (params.sort === "priceDesc")
+    items = [...items].sort((a, b) => b.price - a.price);
+  else
+    items = [...items].sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+    );
+
+  return items.slice(0, limit);
 }
 
 export async function getPropertyBySlug(

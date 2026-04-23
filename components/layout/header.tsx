@@ -43,10 +43,10 @@ export function Header() {
           : "bg-transparent",
       )}
     >
-      <div className="container flex h-[72px] items-center justify-between">
+      <div className="container relative flex h-[72px] items-center justify-between">
         <Link
           href="/"
-          className="flex items-center gap-3"
+          className="relative z-10 flex shrink-0 items-center gap-3"
           aria-label="BIEL Invest"
         >
           <Logo
@@ -82,16 +82,20 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-8 md:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className={cn(
-                "text-sm transition-colors hover:text-ink",
-                pathname === item.href
-                  ? "text-ink"
-                  : "text-ink-muted",
+                "inline-flex items-center text-sm font-medium leading-none transition-colors",
+                useLightLogo
+                  ? pathname === item.href
+                    ? "text-ivory"
+                    : "text-ivory/70 hover:text-ivory"
+                  : pathname === item.href
+                    ? "text-ink"
+                    : "text-ink-muted hover:text-ink",
               )}
             >
               {item.label}
@@ -99,19 +103,30 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="relative z-10 flex shrink-0 items-center gap-4">
           <Link
             href="/favoriler"
-            className="hidden md:inline-flex h-9 w-9 items-center justify-center rounded-xs text-ink-muted transition-colors hover:text-ink"
+            className={cn(
+              "hidden md:inline-flex h-9 w-9 items-center justify-center rounded-xs transition-colors",
+              useLightLogo
+                ? "text-ivory/70 hover:text-ivory"
+                : "text-ink-muted hover:text-ink",
+            )}
             aria-label={t("favorites")}
           >
             <Heart className="h-4 w-4" />
           </Link>
-          <LanguageSwitcher className="hidden md:block" />
+          <LanguageSwitcher
+            className="hidden md:block"
+            onDarkBackground={useLightLogo}
+          />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-xs text-ink md:hidden"
+            className={cn(
+              "inline-flex h-9 w-9 items-center justify-center rounded-xs md:hidden",
+              useLightLogo ? "text-ivory" : "text-ink",
+            )}
             aria-label="menu"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}

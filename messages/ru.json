@@ -41,7 +41,9 @@
       "featured": "Только избранные",
       "clear": "Сбросить",
       "apply": "Применить",
-      "any": "Любой"
+      "any": "Любой",
+      "selectedShort": "{count} выбрано",
+      "toolbarMore": "Ещё"
     },
     "empty": "Нет объектов по заданным критериям.",
     "resultsCount": "{count} объектов",

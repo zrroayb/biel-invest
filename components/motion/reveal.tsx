@@ -19,7 +19,7 @@ export function Reveal({
   as = "div",
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const inView = useInView(ref, { once: true });
   const MotionTag = motion[as] as typeof motion.div;
 
   return (

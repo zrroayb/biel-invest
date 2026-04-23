@@ -7,7 +7,14 @@ import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState, useRef, useEffect } from "react";
 
-export function LanguageSwitcher({ className }: { className?: string }) {
+export function LanguageSwitcher({
+  className,
+  onDarkBackground,
+}: {
+  className?: string;
+  /** Light text for transparent header over dark hero (e.g. home top) */
+  onDarkBackground?: boolean;
+}) {
   const locale = useLocale();
   const t = useTranslations("language");
   const router = useRouter();
@@ -36,7 +43,12 @@ export function LanguageSwitcher({ className }: { className?: string }) {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-1 text-xs uppercase tracking-[0.18em] text-ink-muted hover:text-ink transition-colors"
+        className={cn(
+          "inline-flex items-center gap-1 text-xs uppercase tracking-[0.18em] transition-colors",
+          onDarkBackground
+            ? "text-ivory/75 hover:text-ivory"
+            : "text-ink-muted hover:text-ink",
+        )}
         aria-haspopup="listbox"
         aria-expanded={open}
         disabled={pending}

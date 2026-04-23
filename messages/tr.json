@@ -41,7 +41,9 @@
       "featured": "Sadece öne çıkanlar",
       "clear": "Filtreleri Temizle",
       "apply": "Uygula",
-      "any": "Fark etmez"
+      "any": "Fark etmez",
+      "selectedShort": "{count} seçim",
+      "toolbarMore": "Diğer"
     },
     "empty": "Bu kriterlere uyan varlık bulunamadı.",
     "resultsCount": "{count} varlık",
