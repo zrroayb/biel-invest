@@ -18,6 +18,9 @@ export interface SiteAnalyticsEventRow {
   locale: string | null;
   userAgent: string | null;
   ip: string | null;
+  country: string | null;
+  region: string | null;
+  city: string | null;
   createdAt: Date;
 }
 
@@ -30,6 +33,9 @@ export async function appendSiteAnalyticsEvent(params: {
   locale?: string | null;
   userAgent?: string | null;
   ip?: string | null;
+  country?: string | null;
+  region?: string | null;
+  city?: string | null;
 }): Promise<void> {
   await adminDb.collection("site_analytics_events").add({
     type: params.type,
@@ -40,6 +46,9 @@ export async function appendSiteAnalyticsEvent(params: {
     locale: params.locale ?? null,
     userAgent: params.userAgent ?? null,
     ip: params.ip ?? null,
+    country: params.country ?? null,
+    region: params.region ?? null,
+    city: params.city ?? null,
     createdAt: Timestamp.now(),
   });
 }
@@ -65,6 +74,9 @@ export async function listSiteAnalyticsEvents(
       locale: (data.locale as string | null) ?? null,
       userAgent: (data.userAgent as string | null) ?? null,
       ip: (data.ip as string | null) ?? null,
+      country: (data.country as string | null) ?? null,
+      region: (data.region as string | null) ?? null,
+      city: (data.city as string | null) ?? null,
       createdAt: data.createdAt?.toDate?.() ?? new Date(0),
     };
   });

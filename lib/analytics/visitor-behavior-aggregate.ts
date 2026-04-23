@@ -2,6 +2,16 @@ import type { SiteAnalyticsEventRow } from "@/lib/firestore/site-analytics";
 
 export type DayBucket = { dayKey: string; label: string; count: number };
 
+export type GeoBucket = {
+  country: string | null;
+  region: string | null;
+  city: string | null;
+  /** Human-readable: city · region · country (omits empty parts). */
+  label: string;
+  /** Page views in this bucket (geo from edge when the view was recorded). */
+  count: number;
+};
+
 export type VisitorBehaviorDashboard = {
   windowDays: number;
   windowStart: Date;
@@ -14,12 +24,23 @@ export type VisitorBehaviorDashboard = {
   recentEvents: SiteAnalyticsEventRow[];
   viewsByDay: DayBucket[];
   topPaths: { path: string; count: number }[];
+  /** Page views grouped by inferred location (Vercel / Cloudflare headers). */
+  topGeo: GeoBucket[];
   topFavoriteProperties: {
     propertyId: string;
     label: string;
     count: number;
   }[];
 };
+
+function geoBucketLabel(
+  country: string | null,
+  region: string | null,
+  city: string | null,
+): string {
+  const parts = [city, region, country].filter(Boolean) as string[];
+  return parts.length ? parts.join(" · ") : "";
+}
 
 function dayKeyUTC(d: Date): string {
   return d.toISOString().slice(0, 10);
@@ -66,6 +87,10 @@ export function aggregateVisitorBehaviorDashboard(
     { count: number; label: string }
   >();
   const viewsPerDay = new Map<string, number>();
+  const geoCounts = new Map<
+    string,
+    { country: string | null; region: string | null; city: string | null; count: number }
+  >();
 
   for (const e of inWindow) {
     visitors.add(e.visitorId);
@@ -76,6 +101,15 @@ export function aggregateVisitorBehaviorDashboard(
         const dk = dayKeyUTC(e.createdAt);
         viewsPerDay.set(dk, (viewsPerDay.get(dk) ?? 0) + 1);
       }
+      const gk = [e.country ?? "", e.region ?? "", e.city ?? ""].join("\t");
+      const gcur = geoCounts.get(gk) ?? {
+        country: e.country,
+        region: e.region,
+        city: e.city,
+        count: 0,
+      };
+      gcur.count += 1;
+      geoCounts.set(gk, gcur);
     } else if (e.type === "favorite_add") {
       favoriteAdds += 1;
       if (e.propertyId) {
@@ -118,6 +152,17 @@ export function aggregateVisitorBehaviorDashboard(
     .sort((a, b) => b.count - a.count)
     .slice(0, 12);
 
+  const topGeo: GeoBucket[] = [...geoCounts.values()]
+    .map((v) => ({
+      country: v.country,
+      region: v.region,
+      city: v.city,
+      label: geoBucketLabel(v.country, v.region, v.city),
+      count: v.count,
+    }))
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 15);
+
   const recentEvents = inWindow.slice(0, recentLimit);
 
   return {
@@ -131,6 +176,7 @@ export function aggregateVisitorBehaviorDashboard(
     recentEvents,
     viewsByDay,
     topPaths,
+    topGeo,
     topFavoriteProperties,
   };
 }

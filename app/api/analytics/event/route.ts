@@ -42,7 +42,8 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Bad request" }, { status: 400 });
   }
 
-  const { ip, userAgent } = getRequestClientMeta(request);
+  const { ip, userAgent, country, region, city } =
+    getRequestClientMeta(request);
   const payload = parsed.data;
 
   try {
@@ -54,6 +55,9 @@ export async function POST(request: NextRequest) {
         locale: payload.locale ?? null,
         ip,
         userAgent,
+        country,
+        region,
+        city,
       });
     } else if (payload.type === "favorite_add") {
       await appendSiteAnalyticsEvent({
@@ -65,6 +69,9 @@ export async function POST(request: NextRequest) {
         locale: payload.locale ?? null,
         ip,
         userAgent,
+        country,
+        region,
+        city,
       });
     } else {
       await appendSiteAnalyticsEvent({
@@ -75,6 +82,9 @@ export async function POST(request: NextRequest) {
         locale: payload.locale ?? null,
         ip,
         userAgent,
+        country,
+        region,
+        city,
       });
     }
   } catch (err) {
