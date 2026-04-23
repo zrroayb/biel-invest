@@ -1,0 +1,28 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null &&
+             exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    match /properties/{propertyId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /inquiries/{inquiryId} {
+      // All writes funnel through the Next.js `/api/inquiries` route, which
+      // uses the Admin SDK (bypasses rules). Direct client writes are denied.
+      allow create, update, delete: if false;
+      allow read: if isAdmin();
+    }
+
+    match /admins/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false; // managed from server only
+    }
+  }
+}

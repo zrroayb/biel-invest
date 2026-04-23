@@ -1,0 +1,39 @@
+name: Deploy Firebase
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "firestore.rules"
+      - "firestore.indexes.json"
+      - "storage.rules"
+      - "functions/**"
+      - ".github/workflows/firebase-deploy.yml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: |
+            package-lock.json
+            functions/package-lock.json
+
+      - name: Install functions deps
+        working-directory: ./functions
+        run: npm ci
+
+      - name: Build functions
+        working-directory: ./functions
+        run: npm run build
+
+      - uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only firestore:rules,firestore:indexes,storage,functions --project ${{ secrets.FIREBASE_PROJECT_ID }}
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}

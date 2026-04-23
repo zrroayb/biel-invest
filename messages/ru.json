@@ -1,0 +1,262 @@
+{
+  "brand": {
+    "name": "BIEL Invest",
+    "tagline": "Избранная недвижимость Эгейского моря"
+  },
+  "nav": {
+    "home": "Главная",
+    "portfolio": "Портфолио",
+    "about": "О нас",
+    "contact": "Контакты",
+    "favorites": "Избранное",
+    "admin": "Админ"
+  },
+  "home": {
+    "heroEyebrow": "Бодрум | Ялыкавак | Тюркбюкю",
+    "heroTitle": "Избранная недвижимость в сердце Эгейского моря",
+    "heroSubtitle": "Откройте для себя наш тщательно подобранный портфель вилл, земельных участков и резиденций.",
+    "heroCtaPortfolio": "Смотреть портфолио",
+    "heroCtaContact": "Связаться",
+    "featuredTitle": "Избранные объекты",
+    "featuredSubtitle": "Наш выбор этого сезона",
+    "regionsTitle": "Районы Бодрума",
+    "regionsSubtitle": "У каждой бухты свой характер",
+    "aboutTitle": "Избранный портфель, деликатный сервис",
+    "aboutBody": "На протяжении многих лет мы соединяем самую исключительную недвижимость эгейского побережья с покупателями, ценящими конфиденциальность и детали.",
+    "aboutCta": "Подробнее о нас",
+    "seeAll": "Смотреть все"
+  },
+  "portfolio": {
+    "title": "Портфолио",
+    "subtitle": "Наши текущие объекты",
+    "filters": {
+      "title": "Фильтры",
+      "type": "Тип",
+      "region": "Район",
+      "priceMin": "Мин. цена",
+      "priceMax": "Макс. цена",
+      "bedrooms": "Спальни",
+      "features": "Удобства",
+      "status": "Статус",
+      "featured": "Только избранные",
+      "clear": "Сбросить",
+      "apply": "Применить",
+      "any": "Любой"
+    },
+    "empty": "Нет объектов по заданным критериям.",
+    "resultsCount": "{count} объектов",
+    "sort": {
+      "label": "Сортировать",
+      "newest": "Новые",
+      "priceAsc": "Цена: по возрастанию",
+      "priceDesc": "Цена: по убыванию"
+    }
+  },
+  "property": {
+    "overview": "Обзор",
+    "specs": "Характеристики",
+    "gallery": "Галерея",
+    "virtualTour": "Виртуальный тур",
+    "video": "Видео",
+    "location": "Расположение",
+    "price": "Цена",
+    "contactAgent": "Запросить информацию",
+    "whatsapp": "Написать в WhatsApp",
+    "share": "Поделиться",
+    "favorite": "В избранное",
+    "unfavorite": "Убрать из избранного",
+    "ref": "Референс",
+    "bedrooms": "Спальни",
+    "bathrooms": "Ванные",
+    "areaGross": "Брутто м²",
+    "areaNet": "Нетто м²",
+    "plotSize": "Участок м²",
+    "yearBuilt": "Год постройки",
+    "status": {
+      "satilik": "Продажа",
+      "kiralik": "Аренда",
+      "rezerve": "Зарезервировано",
+      "satildi": "Продано"
+    },
+    "type": {
+      "villa": "Вилла",
+      "arsa": "Земля",
+      "daire": "Квартира",
+      "rezidans": "Резиденция",
+      "yazlik": "Летний дом"
+    },
+    "feature": {
+      "sea_view": "Вид на море",
+      "pool": "Бассейн",
+      "private_beach": "Частный пляж",
+      "smart_home": "Умный дом",
+      "garden": "Сад",
+      "parking": "Парковка",
+      "jacuzzi": "Джакузи",
+      "gym": "Спортзал",
+      "sauna": "Сауна",
+      "fireplace": "Камин",
+      "security": "Охрана 24/7",
+      "furnished": "С мебелью",
+      "elevator": "Лифт",
+      "air_conditioning": "Кондиционер"
+    }
+  },
+  "inquiry": {
+    "title": "Запросить информацию",
+    "subtitle": "Мы свяжемся с вами в ближайшее время",
+    "name": "Имя",
+    "email": "E-mail",
+    "phone": "Телефон",
+    "message": "Сообщение",
+    "messagePlaceholder": "Хочу узнать больше об этом объекте...",
+    "submit": "Отправить",
+    "submitting": "Отправка...",
+    "success": "Ваш запрос получен. Мы скоро свяжемся.",
+    "error": "Произошла ошибка. Повторите попытку.",
+    "agree": "Я ознакомился с политикой конфиденциальности."
+  },
+  "favorites": {
+    "title": "Избранное",
+    "subtitle": "Сохранённые объекты",
+    "empty": "Вы пока не добавили объекты в избранное.",
+    "browsePortfolio": "Перейти в портфолио",
+    "clear": "Очистить"
+  },
+  "about": {
+    "title": "О нас",
+    "subtitle": "Эталон самой эксклюзивной недвижимости Бодрума",
+    "body": "Опираясь на многолетний опыт в Бодруме, мы с заботой подбираем самые исключительные объекты региона."
+  },
+  "contact": {
+    "title": "Контакты",
+    "subtitle": "Мы рады вас выслушать",
+    "form": {
+      "title": "Напишите нам"
+    },
+    "office": "Офис",
+    "phone": "Телефон",
+    "email": "E-mail",
+    "hours": "Часы работы",
+    "hoursValue": "Пн - Сб: 09:00 - 19:00"
+  },
+  "footer": {
+    "rights": "Все права защищены.",
+    "quickLinks": "Быстрые ссылки",
+    "contact": "Контакты",
+    "follow": "Мы в соцсетях",
+    "newsletter": "Подписаться",
+    "newsletterPlaceholder": "Ваш e-mail",
+    "newsletterSubmit": "Подписаться"
+  },
+  "regions": {
+    "yalikavak": "Ялыкавак",
+    "turkbuku": "Тюркбюкю",
+    "gumusluk": "Гюмюшлюк",
+    "golturkbuku": "Гёльтюркбюкю",
+    "yali": "Ялы",
+    "bodrumMerkez": "Центр Бодрума",
+    "gundogan": "Гюндоган",
+    "torba": "Торба"
+  },
+  "admin": {
+    "login": {
+      "title": "Админ-панель",
+      "subtitle": "Войдите для продолжения",
+      "email": "E-mail",
+      "password": "Пароль",
+      "submit": "Войти",
+      "error": "Ошибка входа"
+    },
+    "nav": {
+      "dashboard": "Панель",
+      "properties": "Объекты",
+      "inquiries": "Заявки",
+      "logout": "Выйти"
+    },
+    "dashboard": {
+      "title": "Обзор",
+      "totalProperties": "Всего объектов",
+      "activeProperties": "Опубликовано",
+      "inquiries": "Заявки",
+      "newInquiries": "Новые"
+    },
+    "properties": {
+      "title": "Объекты",
+      "new": "Новый объект",
+      "edit": "Редактировать",
+      "save": "Сохранить",
+      "cancel": "Отмена",
+      "delete": "Удалить",
+      "confirmDelete": "Удалить этот объект?",
+      "formTitle": {
+        "new": "Новый объект",
+        "edit": "Редактировать объект"
+      },
+      "sections": {
+        "basic": "Основное",
+        "translations": "Переводы",
+        "specs": "Характеристики",
+        "features": "Удобства",
+        "media": "Медиа",
+        "extras": "Виртуальный тур / Видео"
+      },
+      "fields": {
+        "slug": "Slug",
+        "type": "Тип",
+        "status": "Статус",
+        "region": "Район",
+        "price": "Цена (EUR)",
+        "featured": "Избранный",
+        "title": "Заголовок",
+        "description": "Описание",
+        "highlights": "Особенности (по одной на строку)",
+        "areaGross": "Брутто м²",
+        "areaNet": "Нетто м²",
+        "bedrooms": "Спальни",
+        "bathrooms": "Ванные",
+        "yearBuilt": "Год постройки",
+        "plotSize": "Участок м²",
+        "gallery": "Галерея",
+        "cover": "Обложка",
+        "virtualTourUrl": "URL виртуального тура",
+        "videoUrl": "URL видео"
+      },
+      "copyFromTr": "Копировать из TR",
+      "uploadImages": "Загрузить",
+      "setCover": "Сделать обложкой",
+      "remove": "Удалить",
+      "saved": "Сохранено"
+    },
+    "inquiries": {
+      "title": "Заявки",
+      "all": "Все",
+      "new": "Новые",
+      "read": "Прочитано",
+      "replied": "Отвечено",
+      "markRead": "Прочитано",
+      "markReplied": "Отвечено",
+      "empty": "Пока нет заявок.",
+      "for": "Объект",
+      "from": "От",
+      "received": "Получено"
+    }
+  },
+  "language": {
+    "tr": "Türkçe",
+    "en": "English",
+    "de": "Deutsch",
+    "ru": "Русский"
+  },
+  "common": {
+    "currency": "€",
+    "loading": "Загрузка...",
+    "error": "Произошла ошибка",
+    "back": "Назад",
+    "next": "Далее",
+    "close": "Закрыть",
+    "open": "Открыть",
+    "viewDetails": "Подробнее",
+    "page": "Страница"
+  }
+}

@@ -1,0 +1,262 @@
+{
+  "brand": {
+    "name": "BIEL Invest",
+    "tagline": "Ege'nin seçkin mülkleri"
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "portfolio": "Portföy",
+    "about": "Hakkımızda",
+    "contact": "İletişim",
+    "favorites": "Favoriler",
+    "admin": "Yönetim"
+  },
+  "home": {
+    "heroEyebrow": "Bodrum | Yalıkavak | Türkbükü",
+    "heroTitle": "Ege'nin kalbinde seçilmiş mülkler",
+    "heroSubtitle": "Özenle derlenmiş villa, arsa ve rezidans portföyümüzü keşfedin.",
+    "heroCtaPortfolio": "Portföyü Gör",
+    "heroCtaContact": "Bize Ulaşın",
+    "featuredTitle": "Öne Çıkan Varlıklar",
+    "featuredSubtitle": "Bu ay özenle seçtiklerimiz",
+    "regionsTitle": "Bodrum Bölgeleri",
+    "regionsSubtitle": "Her koyun kendi ruhu var",
+    "aboutTitle": "Ayrıcalıklı bir portföy, sessiz bir danışmanlık",
+    "aboutBody": "Yıllardır Ege kıyılarının en özel mülklerini, gizliliğe ve detaya önem veren alıcılarla buluşturuyoruz. Bodrum'un farklı karakterlerini tanır, portföyümüzü buna göre kurar, her adımda yanınızda oluruz.",
+    "aboutCta": "Hakkımızda daha fazlası",
+    "seeAll": "Tümünü Gör"
+  },
+  "portfolio": {
+    "title": "Portföy",
+    "subtitle": "Mevcut varlıklarımız",
+    "filters": {
+      "title": "Filtreler",
+      "type": "Tip",
+      "region": "Bölge",
+      "priceMin": "Min. Fiyat",
+      "priceMax": "Maks. Fiyat",
+      "bedrooms": "Yatak Odası",
+      "features": "Özellikler",
+      "status": "Durum",
+      "featured": "Sadece öne çıkanlar",
+      "clear": "Filtreleri Temizle",
+      "apply": "Uygula",
+      "any": "Fark etmez"
+    },
+    "empty": "Bu kriterlere uyan varlık bulunamadı.",
+    "resultsCount": "{count} varlık",
+    "sort": {
+      "label": "Sırala",
+      "newest": "En yeni",
+      "priceAsc": "Fiyat: Düşükten yükseğe",
+      "priceDesc": "Fiyat: Yüksekten düşüğe"
+    }
+  },
+  "property": {
+    "overview": "Genel Bakış",
+    "specs": "Özellikler",
+    "gallery": "Galeri",
+    "virtualTour": "Sanal Tur",
+    "video": "Video",
+    "location": "Konum",
+    "price": "Fiyat",
+    "contactAgent": "Bize Danışın",
+    "whatsapp": "WhatsApp'tan yaz",
+    "share": "Paylaş",
+    "favorite": "Favorilere ekle",
+    "unfavorite": "Favorilerden çıkar",
+    "ref": "Referans",
+    "bedrooms": "Yatak Odası",
+    "bathrooms": "Banyo",
+    "areaGross": "Brüt m²",
+    "areaNet": "Net m²",
+    "plotSize": "Arsa m²",
+    "yearBuilt": "Yapım Yılı",
+    "status": {
+      "satilik": "Satılık",
+      "kiralik": "Kiralık",
+      "rezerve": "Rezerve",
+      "satildi": "Satıldı"
+    },
+    "type": {
+      "villa": "Villa",
+      "arsa": "Arsa",
+      "daire": "Daire",
+      "rezidans": "Rezidans",
+      "yazlik": "Yazlık"
+    },
+    "feature": {
+      "sea_view": "Deniz Manzarası",
+      "pool": "Havuz",
+      "private_beach": "Özel Plaj",
+      "smart_home": "Akıllı Ev",
+      "garden": "Bahçe",
+      "parking": "Otopark",
+      "jacuzzi": "Jakuzi",
+      "gym": "Spor Salonu",
+      "sauna": "Sauna",
+      "fireplace": "Şömine",
+      "security": "24/7 Güvenlik",
+      "furnished": "Mobilyalı",
+      "elevator": "Asansör",
+      "air_conditioning": "Klima"
+    }
+  },
+  "inquiry": {
+    "title": "Bu mülk hakkında bilgi alın",
+    "subtitle": "Size en kısa sürede dönüş yapalım",
+    "name": "Ad Soyad",
+    "email": "E-posta",
+    "phone": "Telefon",
+    "message": "Mesajınız",
+    "messagePlaceholder": "Bu mülk hakkında bilgi almak istiyorum...",
+    "submit": "Gönder",
+    "submitting": "Gönderiliyor...",
+    "success": "Talebiniz alındı. En kısa sürede size döneceğiz.",
+    "error": "Bir hata oluştu. Lütfen tekrar deneyin.",
+    "agree": "KVKK metnini okudum ve kabul ediyorum."
+  },
+  "favorites": {
+    "title": "Favoriler",
+    "subtitle": "Beğendiğiniz mülkler",
+    "empty": "Henüz favori eklemediniz.",
+    "browsePortfolio": "Portföyü gezin",
+    "clear": "Tümünü temizle"
+  },
+  "about": {
+    "title": "Hakkımızda",
+    "subtitle": "Bodrum'un en seçkin mülklerinde bir referans",
+    "body": "Bodrum'da uzun yıllardır süregelen bilgi birikimimizle, bölgenin en özel mülklerini titizlikle bir araya getiriyoruz. Her varlığı şahsen inceler, alıcı ile mülk arasındaki doğru eşleşmeyi sağlarız."
+  },
+  "contact": {
+    "title": "İletişim",
+    "subtitle": "Sizi dinlemek için buradayız",
+    "form": {
+      "title": "Bize yazın"
+    },
+    "office": "Ofis",
+    "phone": "Telefon",
+    "email": "E-posta",
+    "hours": "Çalışma Saatleri",
+    "hoursValue": "Pzt - Cmt: 09:00 - 19:00"
+  },
+  "footer": {
+    "rights": "Tüm hakları saklıdır.",
+    "quickLinks": "Hızlı Linkler",
+    "contact": "İletişim",
+    "follow": "Bizi takip edin",
+    "newsletter": "Bültenimize katılın",
+    "newsletterPlaceholder": "E-posta adresiniz",
+    "newsletterSubmit": "Katıl"
+  },
+  "regions": {
+    "yalikavak": "Yalıkavak",
+    "turkbuku": "Türkbükü",
+    "gumusluk": "Gümüşlük",
+    "golturkbuku": "Göltürkbükü",
+    "yali": "Yalı",
+    "bodrumMerkez": "Bodrum Merkez",
+    "gundogan": "Gündoğan",
+    "torba": "Torba"
+  },
+  "admin": {
+    "login": {
+      "title": "Yönetim Paneli",
+      "subtitle": "Devam etmek için giriş yapın",
+      "email": "E-posta",
+      "password": "Şifre",
+      "submit": "Giriş Yap",
+      "error": "Giriş başarısız"
+    },
+    "nav": {
+      "dashboard": "Panel",
+      "properties": "Varlıklar",
+      "inquiries": "Başvurular",
+      "logout": "Çıkış"
+    },
+    "dashboard": {
+      "title": "Genel Bakış",
+      "totalProperties": "Toplam varlık",
+      "activeProperties": "Yayında",
+      "inquiries": "Başvurular",
+      "newInquiries": "Yeni"
+    },
+    "properties": {
+      "title": "Varlıklar",
+      "new": "Yeni Varlık",
+      "edit": "Düzenle",
+      "save": "Kaydet",
+      "cancel": "Vazgeç",
+      "delete": "Sil",
+      "confirmDelete": "Bu varlığı silmek istediğinize emin misiniz?",
+      "formTitle": {
+        "new": "Yeni Varlık",
+        "edit": "Varlığı Düzenle"
+      },
+      "sections": {
+        "basic": "Temel Bilgiler",
+        "translations": "Çeviriler",
+        "specs": "Teknik Özellikler",
+        "features": "Özellikler",
+        "media": "Medya",
+        "extras": "Sanal Tur / Video"
+      },
+      "fields": {
+        "slug": "Slug",
+        "type": "Tip",
+        "status": "Durum",
+        "region": "Bölge",
+        "price": "Fiyat (EUR)",
+        "featured": "Öne çıkar",
+        "title": "Başlık",
+        "description": "Açıklama",
+        "highlights": "Öne çıkan noktalar (satır başına bir)",
+        "areaGross": "Brüt m²",
+        "areaNet": "Net m²",
+        "bedrooms": "Yatak odası",
+        "bathrooms": "Banyo",
+        "yearBuilt": "Yapım yılı",
+        "plotSize": "Arsa m²",
+        "gallery": "Galeri",
+        "cover": "Kapak",
+        "virtualTourUrl": "Sanal Tur URL",
+        "videoUrl": "Video URL"
+      },
+      "copyFromTr": "TR'den kopyala",
+      "uploadImages": "Görsel yükle",
+      "setCover": "Kapak yap",
+      "remove": "Sil",
+      "saved": "Kaydedildi"
+    },
+    "inquiries": {
+      "title": "Başvurular",
+      "all": "Tümü",
+      "new": "Yeni",
+      "read": "Okundu",
+      "replied": "Cevaplandı",
+      "markRead": "Okundu yap",
+      "markReplied": "Cevaplandı yap",
+      "empty": "Henüz başvuru yok.",
+      "for": "Varlık",
+      "from": "Gönderen",
+      "received": "Tarih"
+    }
+  },
+  "language": {
+    "tr": "Türkçe",
+    "en": "English",
+    "de": "Deutsch",
+    "ru": "Русский"
+  },
+  "common": {
+    "currency": "€",
+    "loading": "Yükleniyor...",
+    "error": "Bir hata oluştu",
+    "back": "Geri",
+    "next": "İleri",
+    "close": "Kapat",
+    "open": "Aç",
+    "viewDetails": "Detayları gör",
+    "page": "Sayfa"
+  }
+}

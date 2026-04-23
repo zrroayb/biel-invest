@@ -1,0 +1,12 @@
+{
+  "//": "Spark-plan compatible deploy surface — Storage removed (requires Blaze on new projects; media uses Cloudinary), Functions removed (inquiry email lives in /api/inquiries Next.js route). Re-add those blocks after upgrading to Blaze if you want to migrate back.",
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "emulators": {
+    "auth": { "port": 9099 },
+    "firestore": { "port": 8080 },
+    "ui": { "enabled": true }
+  }
+}

@@ -1,0 +1,262 @@
+{
+  "brand": {
+    "name": "BIEL Invest",
+    "tagline": "Ausgewählte Immobilien der Ägäis"
+  },
+  "nav": {
+    "home": "Start",
+    "portfolio": "Portfolio",
+    "about": "Über uns",
+    "contact": "Kontakt",
+    "favorites": "Favoriten",
+    "admin": "Admin"
+  },
+  "home": {
+    "heroEyebrow": "Bodrum | Yalıkavak | Türkbükü",
+    "heroTitle": "Ausgewählte Immobilien im Herzen der Ägäis",
+    "heroSubtitle": "Entdecken Sie unser sorgfältig zusammengestelltes Portfolio aus Villen, Grundstücken und Residenzen.",
+    "heroCtaPortfolio": "Portfolio ansehen",
+    "heroCtaContact": "Kontakt aufnehmen",
+    "featuredTitle": "Ausgewählte Objekte",
+    "featuredSubtitle": "Unsere Highlights dieser Saison",
+    "regionsTitle": "Regionen in Bodrum",
+    "regionsSubtitle": "Jede Bucht hat ihren eigenen Charakter",
+    "aboutTitle": "Ein exklusives Portfolio, eine diskrete Beratung",
+    "aboutBody": "Seit Jahren verbinden wir die außergewöhnlichsten Immobilien der ägäischen Küste mit Käufern, die Diskretion und Detail schätzen. Wir kennen den Charakter jeder Bodrum-Region und stellen unser Portfolio entsprechend zusammen.",
+    "aboutCta": "Mehr über uns",
+    "seeAll": "Alle ansehen"
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Unsere aktuellen Objekte",
+    "filters": {
+      "title": "Filter",
+      "type": "Typ",
+      "region": "Region",
+      "priceMin": "Min. Preis",
+      "priceMax": "Max. Preis",
+      "bedrooms": "Schlafzimmer",
+      "features": "Ausstattung",
+      "status": "Status",
+      "featured": "Nur ausgewählte",
+      "clear": "Filter löschen",
+      "apply": "Anwenden",
+      "any": "Beliebig"
+    },
+    "empty": "Keine Objekte passen zu diesen Kriterien.",
+    "resultsCount": "{count} Objekte",
+    "sort": {
+      "label": "Sortieren",
+      "newest": "Neueste",
+      "priceAsc": "Preis: aufsteigend",
+      "priceDesc": "Preis: absteigend"
+    }
+  },
+  "property": {
+    "overview": "Übersicht",
+    "specs": "Eigenschaften",
+    "gallery": "Galerie",
+    "virtualTour": "Virtuelle Tour",
+    "video": "Video",
+    "location": "Lage",
+    "price": "Preis",
+    "contactAgent": "Info anfordern",
+    "whatsapp": "Per WhatsApp schreiben",
+    "share": "Teilen",
+    "favorite": "Zu Favoriten",
+    "unfavorite": "Aus Favoriten entfernen",
+    "ref": "Referenz",
+    "bedrooms": "Schlafzimmer",
+    "bathrooms": "Bäder",
+    "areaGross": "Brutto m²",
+    "areaNet": "Netto m²",
+    "plotSize": "Grundstück m²",
+    "yearBuilt": "Baujahr",
+    "status": {
+      "satilik": "Zu verkaufen",
+      "kiralik": "Zu mieten",
+      "rezerve": "Reserviert",
+      "satildi": "Verkauft"
+    },
+    "type": {
+      "villa": "Villa",
+      "arsa": "Grundstück",
+      "daire": "Wohnung",
+      "rezidans": "Residenz",
+      "yazlik": "Sommerhaus"
+    },
+    "feature": {
+      "sea_view": "Meerblick",
+      "pool": "Pool",
+      "private_beach": "Privatstrand",
+      "smart_home": "Smart Home",
+      "garden": "Garten",
+      "parking": "Parkplatz",
+      "jacuzzi": "Jacuzzi",
+      "gym": "Fitnessraum",
+      "sauna": "Sauna",
+      "fireplace": "Kamin",
+      "security": "24/7 Sicherheit",
+      "furnished": "Möbliert",
+      "elevator": "Aufzug",
+      "air_conditioning": "Klimaanlage"
+    }
+  },
+  "inquiry": {
+    "title": "Informationen anfragen",
+    "subtitle": "Wir melden uns in Kürze bei Ihnen",
+    "name": "Vollständiger Name",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "message": "Nachricht",
+    "messagePlaceholder": "Ich interessiere mich für dieses Objekt...",
+    "submit": "Senden",
+    "submitting": "Wird gesendet...",
+    "success": "Ihre Anfrage wurde empfangen. Wir melden uns bald.",
+    "error": "Etwas ist schiefgelaufen. Bitte erneut versuchen.",
+    "agree": "Ich habe die Datenschutzerklärung gelesen und akzeptiere sie."
+  },
+  "favorites": {
+    "title": "Favoriten",
+    "subtitle": "Ihre gespeicherten Objekte",
+    "empty": "Sie haben noch keine Favoriten.",
+    "browsePortfolio": "Portfolio durchsuchen",
+    "clear": "Alle löschen"
+  },
+  "about": {
+    "title": "Über uns",
+    "subtitle": "Eine Referenz für die exklusivsten Immobilien Bodrums",
+    "body": "Mit jahrelanger Erfahrung in Bodrum stellen wir die außergewöhnlichsten Objekte der Region mit größter Sorgfalt zusammen. Jede Immobilie prüfen wir persönlich und sorgen für die richtige Verbindung zwischen Käufer und Objekt."
+  },
+  "contact": {
+    "title": "Kontakt",
+    "subtitle": "Wir hören Ihnen zu",
+    "form": {
+      "title": "Schreiben Sie uns"
+    },
+    "office": "Büro",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "hours": "Öffnungszeiten",
+    "hoursValue": "Mo - Sa: 09:00 - 19:00"
+  },
+  "footer": {
+    "rights": "Alle Rechte vorbehalten.",
+    "quickLinks": "Schnellzugriff",
+    "contact": "Kontakt",
+    "follow": "Folgen Sie uns",
+    "newsletter": "Unser Newsletter",
+    "newsletterPlaceholder": "Ihre E-Mail",
+    "newsletterSubmit": "Abonnieren"
+  },
+  "regions": {
+    "yalikavak": "Yalıkavak",
+    "turkbuku": "Türkbükü",
+    "gumusluk": "Gümüşlük",
+    "golturkbuku": "Göltürkbükü",
+    "yali": "Yalı",
+    "bodrumMerkez": "Bodrum Zentrum",
+    "gundogan": "Gündoğan",
+    "torba": "Torba"
+  },
+  "admin": {
+    "login": {
+      "title": "Admin-Bereich",
+      "subtitle": "Bitte anmelden",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "submit": "Anmelden",
+      "error": "Anmeldung fehlgeschlagen"
+    },
+    "nav": {
+      "dashboard": "Übersicht",
+      "properties": "Objekte",
+      "inquiries": "Anfragen",
+      "logout": "Abmelden"
+    },
+    "dashboard": {
+      "title": "Übersicht",
+      "totalProperties": "Objekte gesamt",
+      "activeProperties": "Veröffentlicht",
+      "inquiries": "Anfragen",
+      "newInquiries": "Neu"
+    },
+    "properties": {
+      "title": "Objekte",
+      "new": "Neues Objekt",
+      "edit": "Bearbeiten",
+      "save": "Speichern",
+      "cancel": "Abbrechen",
+      "delete": "Löschen",
+      "confirmDelete": "Möchten Sie dieses Objekt wirklich löschen?",
+      "formTitle": {
+        "new": "Neues Objekt",
+        "edit": "Objekt bearbeiten"
+      },
+      "sections": {
+        "basic": "Grundlagen",
+        "translations": "Übersetzungen",
+        "specs": "Eigenschaften",
+        "features": "Ausstattung",
+        "media": "Medien",
+        "extras": "Virtuelle Tour / Video"
+      },
+      "fields": {
+        "slug": "Slug",
+        "type": "Typ",
+        "status": "Status",
+        "region": "Region",
+        "price": "Preis (EUR)",
+        "featured": "Hervorgehoben",
+        "title": "Titel",
+        "description": "Beschreibung",
+        "highlights": "Highlights (eins pro Zeile)",
+        "areaGross": "Brutto m²",
+        "areaNet": "Netto m²",
+        "bedrooms": "Schlafzimmer",
+        "bathrooms": "Bäder",
+        "yearBuilt": "Baujahr",
+        "plotSize": "Grundstück m²",
+        "gallery": "Galerie",
+        "cover": "Cover",
+        "virtualTourUrl": "Virtuelle Tour URL",
+        "videoUrl": "Video URL"
+      },
+      "copyFromTr": "Aus TR kopieren",
+      "uploadImages": "Bilder hochladen",
+      "setCover": "Als Cover",
+      "remove": "Entfernen",
+      "saved": "Gespeichert"
+    },
+    "inquiries": {
+      "title": "Anfragen",
+      "all": "Alle",
+      "new": "Neu",
+      "read": "Gelesen",
+      "replied": "Beantwortet",
+      "markRead": "Als gelesen markieren",
+      "markReplied": "Als beantwortet markieren",
+      "empty": "Noch keine Anfragen.",
+      "for": "Objekt",
+      "from": "Von",
+      "received": "Erhalten"
+    }
+  },
+  "language": {
+    "tr": "Türkçe",
+    "en": "English",
+    "de": "Deutsch",
+    "ru": "Русский"
+  },
+  "common": {
+    "currency": "€",
+    "loading": "Wird geladen...",
+    "error": "Ein Fehler ist aufgetreten",
+    "back": "Zurück",
+    "next": "Weiter",
+    "close": "Schließen",
+    "open": "Öffnen",
+    "viewDetails": "Details ansehen",
+    "page": "Seite"
+  }
+}
