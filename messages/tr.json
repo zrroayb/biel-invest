@@ -11,6 +11,18 @@
     "favorites": "Favoriler",
     "admin": "Yönetim"
   },
+  "seo": {
+    "homeTitle": "Bodrum ve Ege'de seçkin villa, arsa ve rezidanslar",
+    "homeDescription": "BIEL Invest: Bodrum, Yalıkavak ve Ege kıyılarında özenle seçilmiş satılık ve kiralık mülk portföyü. Villa, arsa, daire ve rezidans ilanları.",
+    "portfolioTitle": "Mülk portföyü — Bodrum ve çevresi",
+    "portfolioDescription": "Güncel villa, arsa, yazlık ve rezidans ilanları. Bölgelere, fiyata ve özelliklere göre filtreleyin.",
+    "aboutTitle": "Hakkımızda — BIEL Invest",
+    "aboutDescription": "Bodrum'un en seçkin mülklerinde referans danışmanlık. Portföyümüz, yaklaşımımız ve bölge bilgimiz.",
+    "contactTitle": "İletişim — BIEL Invest",
+    "contactDescription": "Bodrum'daki mülklerimiz veya özel arayışınız için bize yazın veya arayın.",
+    "favoritesTitle": "Favorilerim",
+    "favoritesDescription": "Kaydettiğiniz mülkler (kişisel liste)."
+  },
   "home": {
     "heroEyebrow": "Bodrum | Yalıkavak | Türkbükü",
     "heroTitle": "Ege'nin kalbinde seçilmiş mülkler",

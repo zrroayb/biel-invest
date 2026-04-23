@@ -1,5 +1,22 @@
+import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
 import { Reveal } from "@/components/motion/reveal";
+import { buildPublicPageMetadata } from "@/lib/seo/page-meta";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "seo" });
+  return buildPublicPageMetadata({
+    locale,
+    pathSegment: "/iletisim",
+    title: t("contactTitle"),
+    description: t("contactDescription"),
+  });
+}
 import { InquiryForm } from "@/components/property/inquiry-form";
 import { WhatsAppButton } from "@/components/property/whatsapp-button";
 import { Mail, MapPin, Phone } from "lucide-react";

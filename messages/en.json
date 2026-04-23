@@ -11,6 +11,18 @@
     "favorites": "Favorites",
     "admin": "Admin"
   },
+  "seo": {
+    "homeTitle": "Curated villas, land and residences in Bodrum & the Aegean",
+    "homeDescription": "BIEL Invest: a hand-picked portfolio of properties for sale and rent across Bodrum, Yalıkavak and the Aegean coast.",
+    "portfolioTitle": "Property portfolio — Bodrum and surrounds",
+    "portfolioDescription": "Browse villas, land, summer homes and residences. Filter by area, price and features.",
+    "aboutTitle": "About BIEL Invest",
+    "aboutDescription": "Discreet advisory on Bodrum's finest properties—how we work and what drives our portfolio.",
+    "contactTitle": "Contact BIEL Invest",
+    "contactDescription": "Reach our team about listings or a bespoke search in Bodrum and the Aegean.",
+    "favoritesTitle": "My favorites",
+    "favoritesDescription": "Properties you have saved (personal list)."
+  },
   "home": {
     "heroEyebrow": "Bodrum | Yalıkavak | Türkbükü",
     "heroTitle": "Curated properties in the heart of the Aegean",

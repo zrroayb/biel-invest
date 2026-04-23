@@ -2,6 +2,8 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getPropertyBySlug } from "@/lib/firestore/properties";
+import { buildPropertyMetadata } from "@/lib/seo/page-meta";
+import { absoluteUrl, toAbsoluteImageUrl } from "@/lib/seo/urls";
 import type { LocaleKey } from "@/types/property";
 import { PropertyGallery } from "@/components/property/property-gallery";
 import { VirtualTourModal } from "@/components/property/virtual-tour-modal";
@@ -26,15 +28,16 @@ export async function generateMetadata({
     if (!p) return {};
     const tr =
       p.translations[locale as LocaleKey] ?? p.translations.tr;
-    return {
+    const desc =
+      tr.description.trim().slice(0, 160) ||
+      `${tr.title} — Bodrum, ${p.region}`;
+    return buildPropertyMetadata({
+      locale,
+      slug,
       title: tr.title,
-      description: tr.description.slice(0, 160),
-      openGraph: {
-        title: tr.title,
-        description: tr.description.slice(0, 160),
-        images: p.media.cover ? [p.media.cover] : [],
-      },
-    };
+      description: desc,
+      coverUrl: p.media.cover,
+    });
   } catch {
     return {};
   }
@@ -49,6 +52,7 @@ export default async function PropertyDetailPage({
   setRequestLocale(locale);
   const t = await getTranslations("property");
   const tRegions = await getTranslations("regions");
+  const tNav = await getTranslations("nav");
 
   const property = await getPropertyBySlug(slug);
   if (!property) notFound();
@@ -81,22 +85,56 @@ export default async function PropertyDetailPage({
     },
   ].filter(Boolean) as { icon: typeof BedDouble; label: string; value: string | number }[];
 
+  const listingUrl = absoluteUrl(locale, `/portfoy/${slug}`);
+  const imageUrls = gallery
+    .map((u) => toAbsoluteImageUrl(u))
+    .filter((u): u is string => Boolean(u));
+
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "RealEstateListing",
-    name: tr.title,
-    description: tr.description,
-    image: gallery,
-    offers: {
-      "@type": "Offer",
-      price: property.price,
-      priceCurrency: property.currency,
-    },
-    address: {
-      "@type": "PostalAddress",
-      addressRegion: tRegions(property.region),
-      addressCountry: "TR",
-    },
+    "@graph": [
+      {
+        "@type": "RealEstateListing",
+        name: tr.title,
+        description: tr.description,
+        url: listingUrl,
+        image: imageUrls.length ? imageUrls : undefined,
+        offers: {
+          "@type": "Offer",
+          url: listingUrl,
+          price: property.price,
+          priceCurrency: property.currency,
+        },
+        address: {
+          "@type": "PostalAddress",
+          addressRegion: tRegions(property.region),
+          addressCountry: "TR",
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: tNav("home"),
+            item: absoluteUrl(locale, ""),
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: tNav("portfolio"),
+            item: absoluteUrl(locale, "/portfoy"),
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: tr.title,
+            item: listingUrl,
+          },
+        ],
+      },
+    ],
   };
 
   return (

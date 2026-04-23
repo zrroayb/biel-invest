@@ -1,12 +1,30 @@
-import { setRequestLocale } from "next-intl/server";
+import { setRequestLocale, getTranslations } from "next-intl/server";
+import type { Metadata } from "next";
 import { Hero } from "@/components/home/hero";
 import { FeaturedProperties } from "@/components/home/featured-properties";
 import { Regions } from "@/components/home/regions";
 import { AboutSnippet } from "@/components/home/about-snippet";
+import { HomeJsonLd } from "@/components/seo/home-json-ld";
 import { listProperties } from "@/lib/firestore/properties";
+import { buildPublicPageMetadata } from "@/lib/seo/page-meta";
 import type { Property } from "@/types/property";
 
 export const revalidate = 300;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "seo" });
+  return buildPublicPageMetadata({
+    locale,
+    pathSegment: "",
+    title: t("homeTitle"),
+    description: t("homeDescription"),
+  });
+}
 
 async function safeList(): Promise<Property[]> {
   try {
@@ -28,6 +46,7 @@ export default async function HomePage({
 
   return (
     <>
+      <HomeJsonLd />
       <Hero />
       <FeaturedProperties items={featured} />
       <AboutSnippet />

@@ -16,12 +16,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: path === "" ? "weekly" : "monthly",
         priority: path === "" ? 1 : 0.7,
         alternates: {
-          languages: Object.fromEntries(
-            routing.locales.map((l) => [
-              l,
-              `${base}${l === routing.defaultLocale ? "" : `/${l}`}${path}`,
-            ]),
-          ),
+          languages: {
+            ...Object.fromEntries(
+              routing.locales.map((l) => [
+                l,
+                `${base}${l === routing.defaultLocale ? "" : `/${l}`}${path}`,
+              ]),
+            ),
+            "x-default": `${base}${path}`,
+          },
         },
       });
     }
@@ -38,12 +41,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           priority: 0.8,
           lastModified: p.updatedAt,
           alternates: {
-            languages: Object.fromEntries(
-              routing.locales.map((l) => [
-                l,
-                `${base}${l === routing.defaultLocale ? "" : `/${l}`}/portfoy/${p.slug}`,
-              ]),
-            ),
+            languages: {
+              ...Object.fromEntries(
+                routing.locales.map((l) => [
+                  l,
+                  `${base}${l === routing.defaultLocale ? "" : `/${l}`}/portfoy/${p.slug}`,
+                ]),
+              ),
+              "x-default": `${base}/portfoy/${p.slug}`,
+            },
           },
         });
       }

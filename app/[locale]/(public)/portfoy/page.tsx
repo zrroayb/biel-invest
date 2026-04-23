@@ -1,5 +1,7 @@
 import { Suspense } from "react";
+import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
+import { buildPublicPageMetadata } from "@/lib/seo/page-meta";
 import { listProperties } from "@/lib/firestore/properties";
 import { PropertyCard } from "@/components/property/property-card";
 import { PropertyFilters } from "@/components/property/property-filters";
@@ -8,6 +10,21 @@ import { Reveal } from "@/components/motion/reveal";
 import type { Property } from "@/types/property";
 
 export const revalidate = 120;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "seo" });
+  return buildPublicPageMetadata({
+    locale,
+    pathSegment: "/portfoy",
+    title: t("portfolioTitle"),
+    description: t("portfolioDescription"),
+  });
+}
 
 async function safeList(params: {
   type?: string;
