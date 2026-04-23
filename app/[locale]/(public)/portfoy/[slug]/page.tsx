@@ -129,7 +129,7 @@ export default async function PropertyDetailPage({
               </h1>
             </div>
             <div className="flex items-center gap-3">
-              <FavoriteButton id={property.id} />
+              <FavoriteButton id={property.id} propertyLabel={tr.title} />
               <div className="text-right">
                 <div className="text-xs uppercase tracking-[0.18em] text-ink-muted">
                   {t("price")}

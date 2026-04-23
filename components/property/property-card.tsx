@@ -75,7 +75,11 @@ export function PropertyCard({
       </Link>
 
       <div className="absolute right-4 top-4">
-        <FavoriteButton id={property.id} variant="overlay" />
+        <FavoriteButton
+          id={property.id}
+          variant="overlay"
+          propertyLabel={translation.title}
+        />
       </div>
 
       <div className="mt-4 flex items-center justify-between gap-4">

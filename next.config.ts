@@ -4,9 +4,17 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
 const nextConfig: NextConfig = {
-  // Firebase (and other deps) pull @opentelemetry/api; bundling it as a vendor
-  // chunk can break after interrupted dev builds — load from node_modules instead.
-  serverExternalPackages: ["@opentelemetry/api"],
+  // Packages loaded from node_modules on the server avoid broken vendor-chunks after
+  // interrupted dev builds (OpenTelemetry, FormatJS via next-intl, etc.).
+  serverExternalPackages: [
+    "@opentelemetry/api",
+    "intl-messageformat",
+    "@formatjs/ecma402-abstract",
+    "@formatjs/fast-memoize",
+    "@formatjs/icu-messageformat-parser",
+    "@formatjs/icu-skeleton-parser",
+    "@formatjs/intl-localematcher",
+  ],
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [

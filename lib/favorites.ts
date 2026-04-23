@@ -20,7 +20,11 @@ function read(): string[] {
 function write(ids: string[]) {
   try {
     window.localStorage.setItem(KEY, JSON.stringify(ids));
-    window.dispatchEvent(new Event("favorites:update"));
+    // Defer so other `useFavorites` instances don't call setState while React is
+    // still inside a setState updater (toggle/remove run write() synchronously there).
+    queueMicrotask(() => {
+      window.dispatchEvent(new Event("favorites:update"));
+    });
   } catch {
     /* ignore */
   }

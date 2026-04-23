@@ -24,5 +24,11 @@ service cloud.firestore {
       allow read: if request.auth != null && request.auth.uid == uid;
       allow write: if false; // managed from server only
     }
+
+    // Public site analytics (written only via Admin SDK from /api/analytics/event)
+    match /site_analytics_events/{eventId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
   }
 }

@@ -1,21 +1,31 @@
 "use client";
 
 import { Heart } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { usePathname } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { useFavorites } from "@/lib/favorites";
+import {
+  trackFavoriteAdd,
+  trackFavoriteRemove,
+} from "@/lib/analytics/track-public-event";
 
 export function FavoriteButton({
   id,
+  propertyLabel,
   className,
   variant = "default",
 }: {
   id: string;
+  /** Shown in admin visitor log when favorited */
+  propertyLabel?: string;
   className?: string;
   variant?: "default" | "overlay";
 }) {
   const { has, toggle, ready } = useFavorites();
   const t = useTranslations("property");
+  const pathname = usePathname();
+  const locale = useLocale();
   const active = has(id);
 
   return (
@@ -24,7 +34,17 @@ export function FavoriteButton({
       onClick={(e) => {
         e.preventDefault();
         e.stopPropagation();
+        const wasActive = active;
         toggle(id);
+        if (!wasActive) {
+          void trackFavoriteAdd(id, {
+            propertyLabel,
+            path: pathname,
+            locale,
+          });
+        } else {
+          void trackFavoriteRemove(id, { path: pathname, locale });
+        }
       }}
       aria-label={active ? t("unfavorite") : t("favorite")}
       aria-pressed={active}
