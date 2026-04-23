@@ -143,9 +143,7 @@
     },
     "office": "Офис",
     "phone": "Телефон",
-    "email": "E-mail",
-    "hours": "Часы работы",
-    "hoursValue": "Пн - Сб: 09:00 - 19:00"
+    "email": "E-mail"
   },
   "footer": {
     "rights": "Все права защищены.",

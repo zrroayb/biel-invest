@@ -143,9 +143,7 @@
     },
     "office": "Ofis",
     "phone": "Telefon",
-    "email": "E-posta",
-    "hours": "Çalışma Saatleri",
-    "hoursValue": "Pzt - Cmt: 09:00 - 19:00"
+    "email": "E-posta"
   },
   "footer": {
     "rights": "Tüm hakları saklıdır.",

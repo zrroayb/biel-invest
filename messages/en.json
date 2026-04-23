@@ -143,9 +143,7 @@
     },
     "office": "Office",
     "phone": "Phone",
-    "email": "Email",
-    "hours": "Hours",
-    "hoursValue": "Mon - Sat: 09:00 - 19:00"
+    "email": "Email"
   },
   "footer": {
     "rights": "All rights reserved.",

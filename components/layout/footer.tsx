@@ -95,9 +95,6 @@ export function Footer() {
                   {phone}
                 </a>
               </li>
-              <li className="pt-2 text-xs text-ink-muted">
-                {tContact("hoursValue")}
-              </li>
             </ul>
           </div>
         </div>

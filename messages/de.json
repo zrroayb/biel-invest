@@ -143,9 +143,7 @@
     },
     "office": "Büro",
     "phone": "Telefon",
-    "email": "E-Mail",
-    "hours": "Öffnungszeiten",
-    "hoursValue": "Mo - Sa: 09:00 - 19:00"
+    "email": "E-Mail"
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten.",

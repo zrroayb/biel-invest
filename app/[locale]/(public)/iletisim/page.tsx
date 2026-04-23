@@ -67,10 +67,6 @@ export default async function ContactPage({
                   </a>
                 </div>
               </div>
-              <div className="pt-4">
-                <div className="eyebrow">{t("hours")}</div>
-                <div className="mt-1 text-base text-ink">{t("hoursValue")}</div>
-              </div>
               <div className="pt-2">
                 <WhatsAppButton />
               </div>
