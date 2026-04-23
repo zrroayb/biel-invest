@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { getPublicOriginForMetadata } from "@/lib/seo/request-origin";
 import {
-  absoluteUrl,
-  languageAlternates,
+  absoluteUrlFromOrigin,
+  languageAlternatesFromOrigin,
   openGraphLocale,
   siteBaseUrl,
   toAbsoluteImageUrl,
@@ -16,7 +17,7 @@ function defaultOgImage(): { url: string }[] | undefined {
   return [{ url: `${base}/brand/biel-invest.svg` }];
 }
 
-export function buildPublicPageMetadata({
+export async function buildPublicPageMetadata({
   locale,
   pathSegment,
   title,
@@ -26,8 +27,11 @@ export function buildPublicPageMetadata({
   pathSegment: string;
   title: string;
   description: string;
-}): Metadata {
-  const canonical = absoluteUrl(locale, pathSegment);
+}): Promise<Metadata> {
+  const origin = await getPublicOriginForMetadata();
+  const canonical = absoluteUrlFromOrigin(origin, locale, pathSegment);
+  const languages = languageAlternatesFromOrigin(origin, pathSegment);
+  languages[locale] = canonical;
   const ogImage = defaultOgImage();
 
   return {
@@ -35,7 +39,7 @@ export function buildPublicPageMetadata({
     description,
     alternates: {
       canonical,
-      languages: languageAlternates(pathSegment),
+      languages,
     },
     openGraph: {
       title,
@@ -63,7 +67,7 @@ export function buildPublicPageMetadata({
   };
 }
 
-export function buildPropertyMetadata({
+export async function buildPropertyMetadata({
   locale,
   slug,
   title,
@@ -75,9 +79,12 @@ export function buildPropertyMetadata({
   title: string;
   description: string;
   coverUrl: string | null;
-}): Metadata {
+}): Promise<Metadata> {
   const pathSegment = `/portfoy/${slug}`;
-  const canonical = absoluteUrl(locale, pathSegment);
+  const origin = await getPublicOriginForMetadata();
+  const canonical = absoluteUrlFromOrigin(origin, locale, pathSegment);
+  const languages = languageAlternatesFromOrigin(origin, pathSegment);
+  languages[locale] = canonical;
   const absImage = toAbsoluteImageUrl(coverUrl);
   const fallbackImages = defaultOgImage();
   const images = absImage
@@ -91,7 +98,7 @@ export function buildPropertyMetadata({
     description,
     alternates: {
       canonical,
-      languages: languageAlternates(pathSegment),
+      languages,
     },
     openGraph: {
       title,

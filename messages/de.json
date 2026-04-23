@@ -12,7 +12,7 @@
     "admin": "Admin"
   },
   "seo": {
-    "homeTitle": "Ausgewählte Villen, Grundstücke und Residenzen in Bodrum & der Ägäis",
+    "homeTitle": "Ausgewählte Villen und Immobilien in Bodrum & an der Ägäis — BIEL Invest",
     "homeDescription": "BIEL Invest: sorgfältig kuratierte Immobilien zum Kauf und zur Miete in Bodrum, Yalıkavak und an der ägäischen Küste.",
     "portfolioTitle": "Immobilienportfolio — Bodrum und Umgebung",
     "portfolioDescription": "Villen, Grundstücke, Ferienhäuser und Residenzen. Filtern Sie nach Lage, Preis und Ausstattung.",
@@ -26,7 +26,8 @@
   "home": {
     "heroEyebrow": "Bodrum | Yalıkavak | Türkbükü",
     "heroTitle": "Ausgewählte Immobilien im Herzen der Ägäis",
-    "heroSubtitle": "Entdecken Sie unser sorgfältig zusammengestelltes Portfolio aus Villen, Grundstücken und Residenzen.",
+    "heroImageAlt": "Ägäis-Küste und exklusive Immobilien bei Bodrum",
+    "heroSubtitle": "Im Herzen der Ägäis: unser handverlesenes Portfolio aus Villen, Grundstücken und Residenzen in Bodrum.",
     "heroCtaPortfolio": "Portfolio ansehen",
     "heroCtaContact": "Kontakt aufnehmen",
     "featuredTitle": "Ausgewählte Objekte",

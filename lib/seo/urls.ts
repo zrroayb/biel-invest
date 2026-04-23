@@ -19,6 +19,28 @@ export function absoluteUrl(locale: string, pathSegment: string): string {
   return `${siteBaseUrl()}${localizedPath(locale, pathSegment)}`;
 }
 
+/** Same as {@link absoluteUrl} but with an explicit origin (request-derived or env). */
+export function absoluteUrlFromOrigin(
+  origin: string,
+  locale: string,
+  pathSegment: string,
+): string {
+  const o = origin.replace(/\/$/, "");
+  return `${o}${localizedPath(locale, pathSegment)}`;
+}
+
+export function languageAlternatesFromOrigin(
+  origin: string,
+  pathSegment: string,
+): Record<string, string> {
+  const map: Record<string, string> = {};
+  for (const l of routing.locales) {
+    map[l] = absoluteUrlFromOrigin(origin, l, pathSegment);
+  }
+  map["x-default"] = absoluteUrlFromOrigin(origin, routing.defaultLocale, pathSegment);
+  return map;
+}
+
 /** hreflang map + x-default (default locale). */
 export function languageAlternates(pathSegment: string): Record<string, string> {
   const map: Record<string, string> = {};

@@ -12,7 +12,7 @@ export function Hero() {
     <section className="relative min-h-[92vh] w-full overflow-hidden bg-ink">
       <Image
         src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1920&q=75"
-        alt=""
+        alt={t("heroImageAlt")}
         fill
         priority
         fetchPriority="high"
