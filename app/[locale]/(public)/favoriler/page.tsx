@@ -6,10 +6,12 @@ import { Link } from "@/i18n/routing";
 import type { Property } from "@/types/property";
 import { useFavorites } from "@/lib/favorites";
 import { PropertyCard } from "@/components/property/property-card";
+import { PriceCurrencySwitcher } from "@/components/property/price-currency-switcher";
 import { Reveal } from "@/components/motion/reveal";
 
 export default function FavoritesPage() {
   const t = useTranslations("favorites");
+  const tPortfolio = useTranslations("portfolio");
   const { ids, clear, ready } = useFavorites();
   const [items, setItems] = useState<Property[]>([]);
   const [loading, setLoading] = useState(false);
@@ -45,15 +47,23 @@ export default function FavoritesPage() {
                 </h1>
                 <p className="mt-3 text-base text-ink-muted">{t("subtitle")}</p>
               </div>
-              {ids.length > 0 && (
-                <button
-                  type="button"
-                  onClick={clear}
-                  className="btn btn-ghost btn-sm"
-                >
-                  {t("clear")}
-                </button>
-              )}
+              <div className="flex flex-wrap items-center gap-3">
+                <div className="flex items-center gap-2">
+                  <span className="hidden text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted sm:inline">
+                    {tPortfolio("displayCurrency")}
+                  </span>
+                  <PriceCurrencySwitcher />
+                </div>
+                {ids.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={clear}
+                    className="btn btn-ghost btn-sm"
+                  >
+                    {t("clear")}
+                  </button>
+                )}
+              </div>
             </div>
           </Reveal>
         </div>

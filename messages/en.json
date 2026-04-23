@@ -29,6 +29,7 @@
   "portfolio": {
     "title": "Portfolio",
     "subtitle": "Our current holdings",
+    "displayCurrency": "Currency",
     "filters": {
       "title": "Filters",
       "type": "Type",
@@ -68,6 +69,10 @@
     "favorite": "Add to favorites",
     "unfavorite": "Remove from favorites",
     "ref": "Reference",
+    "priceCurrency": {
+      "ariaLabel": "Display currency",
+      "hint": "Rates are ECB-based and indicative. The listing amount is stored in the asset’s currency."
+    },
     "bedrooms": "Bedrooms",
     "bathrooms": "Bathrooms",
     "areaGross": "Gross m²",

@@ -29,6 +29,7 @@
   "portfolio": {
     "title": "Portfolio",
     "subtitle": "Unsere aktuellen Objekte",
+    "displayCurrency": "Währung",
     "filters": {
       "title": "Filter",
       "type": "Typ",
@@ -68,6 +69,10 @@
     "favorite": "Zu Favoriten",
     "unfavorite": "Aus Favoriten entfernen",
     "ref": "Referenz",
+    "priceCurrency": {
+      "ariaLabel": "Anzeigewährung",
+      "hint": "Kurse sind EZB-basiert und unverbindlich. Der erfasste Preis gilt in der Objektwährung."
+    },
     "bedrooms": "Schlafzimmer",
     "bathrooms": "Bäder",
     "areaGross": "Brutto m²",

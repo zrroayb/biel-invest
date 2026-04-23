@@ -3,12 +3,12 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getPropertyBySlug } from "@/lib/firestore/properties";
 import type { LocaleKey } from "@/types/property";
-import { formatPrice } from "@/lib/utils";
 import { PropertyGallery } from "@/components/property/property-gallery";
 import { VirtualTourModal } from "@/components/property/virtual-tour-modal";
 import { InquiryForm } from "@/components/property/inquiry-form";
 import { WhatsAppButton } from "@/components/property/whatsapp-button";
 import { FavoriteButton } from "@/components/property/favorite-button";
+import { PropertyDetailPrice } from "@/components/property/property-detail-price";
 import { Reveal } from "@/components/motion/reveal";
 import { ArrowLeft, Bath, BedDouble, Maximize, Ruler } from "lucide-react";
 import { Link } from "@/i18n/routing";
@@ -128,16 +128,12 @@ export default async function PropertyDetailPage({
                 {tr.title}
               </h1>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-start justify-end gap-3 sm:items-center">
               <FavoriteButton id={property.id} propertyLabel={tr.title} />
-              <div className="text-right">
-                <div className="text-xs uppercase tracking-[0.18em] text-ink-muted">
-                  {t("price")}
-                </div>
-                <div className="font-display text-3xl text-ink">
-                  {formatPrice(property.price, property.currency, locale)}
-                </div>
-              </div>
+              <PropertyDetailPrice
+                amount={property.price}
+                currency={property.currency}
+              />
             </div>
           </div>
         </Reveal>

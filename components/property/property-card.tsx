@@ -1,9 +1,12 @@
+"use client";
+
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import type { Property, LocaleKey } from "@/types/property";
-import { formatPrice, cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { FavoriteButton } from "./favorite-button";
+import { DisplayPrice } from "./display-price";
 
 export function PropertyCard({
   property,
@@ -93,9 +96,11 @@ export function PropertyCard({
             <span>{property.specs.areaGross} m²</span>
           )}
         </div>
-        <div className="font-display text-lg text-ink">
-          {formatPrice(property.price, property.currency, locale)}
-        </div>
+        <DisplayPrice
+          amount={property.price}
+          currency={property.currency}
+          className="font-display text-lg text-ink"
+        />
       </div>
     </article>
   );

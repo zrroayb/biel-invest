@@ -29,6 +29,7 @@
   "portfolio": {
     "title": "Portföy",
     "subtitle": "Mevcut varlıklarımız",
+    "displayCurrency": "Para birimi",
     "filters": {
       "title": "Filtreler",
       "type": "Tip",
@@ -68,6 +69,10 @@
     "favorite": "Favorilere ekle",
     "unfavorite": "Favorilerden çıkar",
     "ref": "Referans",
+    "priceCurrency": {
+      "ariaLabel": "Görüntüleme para birimi",
+      "hint": "Kurlar ECB tabanlıdır, gösterim amaçlıdır. Kayıtlı fiyat ilan para birimindedir."
+    },
     "bedrooms": "Yatak Odası",
     "bathrooms": "Banyo",
     "areaGross": "Brüt m²",

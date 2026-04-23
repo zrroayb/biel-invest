@@ -3,6 +3,7 @@ import { setRequestLocale, getTranslations } from "next-intl/server";
 import { listProperties } from "@/lib/firestore/properties";
 import { PropertyCard } from "@/components/property/property-card";
 import { PropertyFilters } from "@/components/property/property-filters";
+import { PriceCurrencySwitcher } from "@/components/property/price-currency-switcher";
 import { Reveal } from "@/components/motion/reveal";
 import type { Property } from "@/types/property";
 
@@ -68,16 +69,26 @@ export default async function PortfolioPage({
 
       <section className="container py-10">
         <div className="sticky top-[72px] z-20 -mx-5 mb-8 border-b border-ivory-300/90 bg-ivory/88 px-4 py-2.5 backdrop-blur-md md:mx-0 md:px-0">
-          <Suspense
-            fallback={
-              <div className="flex animate-pulse gap-3 py-1" aria-hidden>
-                <div className="h-8 w-40 rounded-xs bg-ivory-200" />
-                <div className="h-8 flex-1 max-w-xs rounded-xs bg-ivory-200" />
-              </div>
-            }
-          >
-            <PropertyFilters resultCount={items.length} />
-          </Suspense>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="min-w-0 flex-1">
+              <Suspense
+                fallback={
+                  <div className="flex animate-pulse gap-3 py-1" aria-hidden>
+                    <div className="h-8 w-40 rounded-xs bg-ivory-200" />
+                    <div className="h-8 max-w-xs flex-1 rounded-xs bg-ivory-200" />
+                  </div>
+                }
+              >
+                <PropertyFilters resultCount={items.length} />
+              </Suspense>
+            </div>
+            <div className="flex shrink-0 items-center gap-2 sm:pl-2">
+              <span className="hidden text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-muted md:inline">
+                {t("displayCurrency")}
+              </span>
+              <PriceCurrencySwitcher />
+            </div>
+          </div>
         </div>
 
         {items.length === 0 ? (
