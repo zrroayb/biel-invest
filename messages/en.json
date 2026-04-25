@@ -80,6 +80,7 @@
       "previous": "Previous",
       "next": "Next",
       "openZoom": "Enlarge",
+      "dialogLabel": "Photo gallery",
       "swipeHint": "Swipe or use the arrows"
     },
     "virtualTour": "Virtual Tour",

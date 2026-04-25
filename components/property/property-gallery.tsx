@@ -145,15 +145,20 @@ export function PropertyGallery({
     showLightbox &&
     createPortal(
       <div
-        className="fixed inset-0 cursor-default"
-        style={{ zIndex: LIGHTBOX_Z }}
+        className="fixed inset-0 flex cursor-default flex-col items-stretch overflow-hidden"
+        style={{ zIndex: LIGHTBOX_Z, height: "100dvh", maxHeight: "100dvh" }}
         role="dialog"
         aria-modal
-        aria-label={alt}
-        data-lightbox
+        aria-label={t("dialogLabel")}
+        aria-describedby={n > 1 ? "lightbox-swipe-hint" : undefined}
       >
+        {n > 1 ? (
+          <span id="lightbox-swipe-hint" className="sr-only">
+            {t("swipeHint")}
+          </span>
+        ) : null}
         <div
-          className="absolute inset-0 bg-gradient-to-b from-ink/92 via-ink/90 to-ink/96 backdrop-blur-2xl"
+          className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/92 via-ink/90 to-ink/96 backdrop-blur-2xl"
           style={{
             opacity: lightboxOpen ? 1 : 0,
             transition: `opacity ${transitionMs}ms ${ease}`,
@@ -161,43 +166,43 @@ export function PropertyGallery({
         />
 
         <div
-          className="absolute inset-0 flex min-h-0 flex-col overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch] [scrollbar-gutter:stable]"
+          className="relative z-10 flex h-full min-h-0 w-full min-w-0 flex-1 flex-col overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch] sm:overflow-y-hidden"
           onClick={close}
         >
           <div
-            className="mx-auto flex min-h-[min(100dvh,100%)] w-full min-w-0 max-w-6xl flex-1 flex-col px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] sm:px-6"
+            className="mx-auto flex h-full min-h-0 w-full min-w-0 max-w-6xl flex-1 flex-col overflow-hidden px-3 pt-[max(0.4rem,env(safe-area-inset-top))] pb-[max(0.35rem,env(safe-area-inset-bottom))] sm:px-5"
             onClick={(e) => e.stopPropagation()}
             style={{
               transform: lightboxOpen
                 ? "scale(1) translateY(0)"
-                : "scale(0.97) translateY(10px)",
+                : "scale(0.97) translateY(8px)",
               opacity: lightboxOpen ? 1 : 0,
               transition: `transform ${transitionMs}ms ${ease}, opacity ${transitionMs}ms ease-out`,
             }}
           >
-            <div className="flex items-center justify-between gap-3 border-b border-ivory/10 pb-3">
-              <p className="font-display text-sm tracking-wide text-ivory/90 sm:text-base">
+            <div className="flex shrink-0 items-center justify-between gap-2 border-b border-ivory/10 pb-2 sm:pb-2.5">
+              <p className="font-display text-sm text-ivory/90 sm:text-base">
                 <span className="text-ivory/50">
                   {active !== null ? active + 1 : 0}
                 </span>
-                <span className="mx-2 text-ivory/30">/</span>
+                <span className="mx-1.5 text-ivory/30">/</span>
                 {n}
               </p>
               <button
                 type="button"
                 onClick={close}
-                className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-ivory/20 bg-ink/50 text-ivory shadow-soft backdrop-blur-md transition hover:border-ivory/40 hover:bg-ivory/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-olive/80"
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-ivory/20 bg-ink/50 text-ivory shadow-soft backdrop-blur-md transition hover:border-ivory/40 hover:bg-ivory/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-olive/80 sm:h-11 sm:w-11"
                 aria-label={t("close")}
               >
                 <X className="h-5 w-5" strokeWidth={1.75} />
               </button>
             </div>
 
-            <div className="flex flex-1 flex-col items-center justify-center py-4 sm:py-6">
-              <div className="w-full max-w-5xl">
+            <div className="mt-1 flex min-h-0 w-full min-w-0 flex-1 flex-col sm:mt-1.5">
+              <div className="mx-auto w-full min-h-0 max-w-5xl flex-1">
                 <div
                   className={cn(
-                    "relative overflow-hidden rounded-sm bg-ivory-200/5 ring-1 ring-ivory/10",
+                    "relative h-full w-full min-h-0 min-w-0 overflow-hidden rounded-sm bg-ivory-200/5 ring-1 ring-ivory/10",
                     "shadow-lift",
                   )}
                 >
@@ -209,7 +214,7 @@ export function PropertyGallery({
                           e.stopPropagation();
                           prev();
                         }}
-                        className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-ivory/20 bg-ink/50 p-2.5 text-ivory shadow-soft backdrop-blur-md transition hover:bg-ivory/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-olive/80 min-[480px]:left-3 min-[480px]:p-3"
+                        className="absolute left-1.5 top-1/2 z-10 -translate-y-1/2 rounded-full border border-ivory/20 bg-ink/50 p-2 text-ivory shadow-soft backdrop-blur-md transition hover:bg-ivory/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-olive/80 min-[480px]:left-2.5 min-[480px]:p-2.5"
                         aria-label={t("previous")}
                       >
                         <ChevronLeft className="h-5 w-5 min-[480px]:h-6 min-[480px]:w-6" />
@@ -220,7 +225,7 @@ export function PropertyGallery({
                           e.stopPropagation();
                           next();
                         }}
-                        className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full border border-ivory/20 bg-ink/50 p-2.5 text-ivory shadow-soft backdrop-blur-md transition hover:bg-ivory/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-olive/80 min-[480px]:right-3 min-[480px]:p-3"
+                        className="absolute right-1.5 top-1/2 z-10 -translate-y-1/2 rounded-full border border-ivory/20 bg-ink/50 p-2 text-ivory shadow-soft backdrop-blur-md transition hover:bg-ivory/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-olive/80 min-[480px]:right-2.5 min-[480px]:p-2.5"
                         aria-label={t("next")}
                       >
                         <ChevronRight className="h-5 w-5 min-[480px]:h-6 min-[480px]:w-6" />
@@ -229,10 +234,7 @@ export function PropertyGallery({
                   )}
 
                   <div
-                    className={cn(
-                      "relative aspect-[4/3] w-full max-h-[min(78vh,860px)] sm:aspect-[16/10] sm:max-h-[min(82vh,900px)]",
-                      "touch-pan-y",
-                    )}
+                    className="absolute inset-0 touch-pan-y"
                     onPointerDown={onPanStart}
                     onPointerUp={onPanEnd}
                     onPointerCancel={() => {
@@ -246,18 +248,12 @@ export function PropertyGallery({
                         alt={`${alt} ${active + 1}`}
                         fill
                         sizes="(max-width: 1024px) 100vw, 64rem"
-                        className="object-contain select-none"
+                        className="object-contain object-center select-none"
                         draggable={false}
                       />
                     )}
                   </div>
                 </div>
-
-                {n > 1 && (
-                  <p className="mt-4 text-center text-[11px] uppercase tracking-[0.25em] text-ivory/40 sm:text-xs">
-                    {t("swipeHint")}
-                  </p>
-                )}
               </div>
             </div>
           </div>
