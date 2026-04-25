@@ -75,6 +75,13 @@
     "overview": "Genel Bakış",
     "specs": "Özellikler",
     "gallery": "Galeri",
+    "lightbox": {
+      "close": "Kapat",
+      "previous": "Önceki",
+      "next": "Sonraki",
+      "openZoom": "Büyüt",
+      "swipeHint": "Parmağınızla kaydırın veya okları kullanın"
+    },
     "virtualTour": "Sanal Tur",
     "video": "Video",
     "location": "Konum",

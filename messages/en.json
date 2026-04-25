@@ -75,6 +75,13 @@
     "overview": "Overview",
     "specs": "Specifications",
     "gallery": "Gallery",
+    "lightbox": {
+      "close": "Close",
+      "previous": "Previous",
+      "next": "Next",
+      "openZoom": "Enlarge",
+      "swipeHint": "Swipe or use the arrows"
+    },
     "virtualTour": "Virtual Tour",
     "video": "Video",
     "location": "Location",
