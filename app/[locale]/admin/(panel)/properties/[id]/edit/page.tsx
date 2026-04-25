@@ -1,5 +1,9 @@
 import { notFound } from "next/navigation";
 import { getPropertyById } from "@/lib/firestore/properties";
+import {
+  getMergedPropertyTaxonomy,
+  getRegionAndFeatureIdLists,
+} from "@/lib/firestore/property-taxonomy";
 import { PropertyForm } from "../../_components/property-form";
 import type { PropertyInput } from "@/types/property";
 
@@ -13,6 +17,9 @@ export default async function EditPropertyPage({
   const { id } = await params;
   const property = await getPropertyById(id);
   if (!property) notFound();
+
+  const tax = await getMergedPropertyTaxonomy();
+  const { regionIds, featureIds } = getRegionAndFeatureIdLists(tax);
 
   const initial: PropertyInput = {
     slug: property.slug,
@@ -29,5 +36,12 @@ export default async function EditPropertyPage({
     featured: property.featured,
   };
 
-  return <PropertyForm id={id} initial={initial} />;
+  return (
+    <PropertyForm
+      id={id}
+      initial={initial}
+      regionIds={regionIds}
+      featureIds={featureIds}
+    />
+  );
 }

@@ -248,7 +248,7 @@ export function SiteContentForm({
               type="button"
               onClick={() => setEditLocale(loc)}
               className={cn(
-                "rounded-full border px-4 py-2 text-sm font-medium transition-all",
+                "min-h-10 rounded-full border px-4 py-2 text-sm font-medium transition-all active:scale-[0.98]",
                 editLocale === loc
                   ? "border-olive bg-olive text-ivory shadow-sm"
                   : "border-ivory-300 bg-ivory text-ink-muted hover:border-olive/40 hover:text-ink",
@@ -261,14 +261,14 @@ export function SiteContentForm({
       </div>
 
       <div className="border-b border-ivory-300">
-        <div className="-mb-px flex gap-1 overflow-x-auto pb-px">
+        <div className="-mb-px flex snap-x snap-mandatory gap-1 overflow-x-auto pb-px [scrollbar-width:thin]">
           {tabs.map(({ id, label, icon: Icon }) => (
             <button
               key={id}
               type="button"
               onClick={() => setTab(id)}
               className={cn(
-                "flex shrink-0 items-center gap-2 whitespace-nowrap rounded-t-lg border border-b-0 px-3 py-2.5 text-sm transition-colors",
+                "flex min-h-11 snap-start shrink-0 items-center gap-2 whitespace-nowrap rounded-t-lg border border-b-0 px-3 py-2.5 text-sm transition-colors",
                 tab === id
                   ? "border-ivory-300 bg-ivory text-ink shadow-sm"
                   : "border-transparent text-ink-muted hover:bg-ivory-200/80",
@@ -1270,7 +1270,7 @@ export function SiteContentForm({
       )}
 
       <div
-        className="fixed bottom-0 right-0 z-20 border-t border-ivory-300 bg-ivory/95 py-3 pl-4 pr-6 shadow-[0_-4px_24px_rgba(0,0,0,0.06)] backdrop-blur-md md:left-[260px]"
+        className="fixed inset-x-0 bottom-0 z-20 border-t border-ivory-300 bg-ivory/95 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] shadow-[0_-4px_24px_rgba(0,0,0,0.06)] backdrop-blur-md md:left-[260px]"
       >
         <div className="mx-auto flex max-w-4xl flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0 text-xs text-ink-muted">

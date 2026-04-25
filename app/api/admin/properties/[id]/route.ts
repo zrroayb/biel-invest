@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminSession } from "@/lib/auth/session";
-import { propertyInputSchema } from "@/lib/validators";
+import { buildPropertyInputSchema } from "@/lib/validators";
+import {
+  getMergedPropertyTaxonomy,
+  getRegionAndFeatureIdLists,
+} from "@/lib/firestore/property-taxonomy";
 import {
   deleteProperty,
   getPropertyById,
@@ -33,7 +37,10 @@ export async function PUT(
   }
   const { id } = await ctx.params;
   const body = await request.json();
-  const parsed = propertyInputSchema.safeParse(body);
+  const tax = await getMergedPropertyTaxonomy();
+  const parsed = buildPropertyInputSchema(
+    getRegionAndFeatureIdLists(tax),
+  ).safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
       { error: "Invalid payload", issues: parsed.error.flatten() },

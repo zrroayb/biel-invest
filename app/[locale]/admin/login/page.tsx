@@ -46,45 +46,59 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-ivory px-6">
+    <div
+      className="flex min-h-dvh min-h-[-webkit-fill-available] w-full items-center justify-center bg-ivory px-4 py-10 [padding-bottom:max(2.5rem,env(safe-area-inset-bottom))] [padding-top:max(1.5rem,env(safe-area-inset-top))] pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] sm:px-6"
+      data-admin-panel
+    >
       <div className="w-full max-w-sm">
-        <div className="mb-10 flex flex-col items-center text-center">
-          <Logo variant="dark" className="h-32 w-32" />
-          <div className="mt-4 text-xs uppercase tracking-[0.24em] text-ink-muted">
+        <div className="mb-8 flex flex-col items-center text-center sm:mb-10">
+          <Logo variant="dark" className="h-24 w-24 sm:h-32 sm:w-32" />
+          <p className="mt-4 text-xs uppercase tracking-[0.24em] text-ink-muted">
             {t("title")}
-          </div>
+          </p>
         </div>
-        <form onSubmit={handle} className="space-y-4">
+        <form onSubmit={handle} className="space-y-5">
           <div>
-            <label className="label">{t("email")}</label>
+            <label className="label" htmlFor="admin-login-email">
+              {t("email")}
+            </label>
             <input
+              id="admin-login-email"
               type="email"
+              inputMode="email"
+              autoComplete="email"
               required
               autoFocus
-              className="field"
+              className="field text-base"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div>
-            <label className="label">{t("password")}</label>
+            <label className="label" htmlFor="admin-login-password">
+              {t("password")}
+            </label>
             <input
+              id="admin-login-password"
               type="password"
+              autoComplete="current-password"
               required
-              className="field"
+              className="field text-base"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           {error && (
-            <div className="text-xs text-red-700">{error}</div>
+            <div className="rounded-sm border border-red-200 bg-red-50 px-3 py-2.5 text-sm text-red-800">
+              {error}
+            </div>
           )}
           <button
             type="submit"
             disabled={loading}
-            className="btn btn-primary w-full"
+            className="btn btn-primary w-full text-base"
           >
-            {loading ? "..." : t("submit")}
+            {loading ? "…" : t("submit")}
           </button>
         </form>
       </div>

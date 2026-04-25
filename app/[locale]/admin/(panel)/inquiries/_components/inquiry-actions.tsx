@@ -28,13 +28,13 @@ export function InquiryActions({
   };
 
   return (
-    <div className="flex gap-2">
+    <div className="flex w-full flex-wrap gap-2 sm:w-auto sm:justify-end">
       {status !== "read" && (
         <button
           type="button"
           onClick={() => update("read")}
           disabled={pending}
-          className="btn btn-ghost btn-sm"
+          className="btn btn-ghost btn-sm min-h-10 flex-1 sm:flex-initial"
         >
           {t("markRead")}
         </button>
@@ -44,7 +44,7 @@ export function InquiryActions({
           type="button"
           onClick={() => update("replied")}
           disabled={pending}
-          className="btn btn-outline btn-sm"
+          className="btn btn-outline btn-sm min-h-10 flex-1 sm:flex-initial"
         >
           {t("markReplied")}
         </button>

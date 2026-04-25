@@ -8,6 +8,7 @@ import { deepMerge } from "@/lib/merge-messages";
 import { loadMessageFileForLocale } from "@/lib/messages/public-defaults";
 import { adminDb } from "@/lib/firebase/admin";
 import { getSiteContentOverridesAll } from "@/lib/firestore/site-content-helpers";
+import { getTaxonomyMessageLayerForLocale } from "@/lib/property-taxonomy/merge-into-messages";
 import { PUBLIC_MESSAGES_CACHE_TAG } from "@/lib/cache-tags";
 import { LOCALES } from "@/types/property";
 
@@ -41,10 +42,20 @@ const fetchMergedForLocale = async (locale: string) => {
     ] as Record<string, unknown> | undefined;
     const raw = await getPublicSiteCopyRaw();
     const fromLegacy = raw[locale as LocaleKeyStr];
-    return deepMerge(
+    const merged = deepMerge(
       deepMerge(base, fromSite ?? {}),
       fromLegacy ?? {},
     ) as Record<string, unknown>;
+    const tax = (await getTaxonomyMessageLayerForLocale(locale)) as {
+      regions: Record<string, string>;
+      property: { feature: Record<string, string> };
+    };
+    const prop = (merged.property as Record<string, unknown>) ?? {};
+    return {
+      ...merged,
+      regions: tax.regions,
+      property: { ...prop, feature: tax.property.feature },
+    } as Record<string, unknown>;
   } catch (err) {
     console.error("[i18n merge] failed, using file defaults only", err);
     return loadMessageFileForLocale(locale);
@@ -53,7 +64,7 @@ const fetchMergedForLocale = async (locale: string) => {
 
 const fetchMergedForLocaleWithCache = unstable_cache(
   async (locale: string) => fetchMergedForLocale(locale),
-  [PUBLIC_MESSAGES_CACHE_TAG, "locale", "v2"],
+  [PUBLIC_MESSAGES_CACHE_TAG, "locale", "v3-taxonomy"],
   { revalidate: 60, tags: [PUBLIC_MESSAGES_CACHE_TAG] },
 );
 

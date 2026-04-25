@@ -393,9 +393,9 @@ export async function BehaviorBiDashboard({
   }));
 
   return (
-    <div className="space-y-10 pb-4">
+    <div className="space-y-8 pb-2 sm:space-y-10 sm:pb-4">
       {/* Hero */}
-      <section className="relative overflow-hidden rounded-sm border border-ivory-300 bg-gradient-to-br from-ink via-ink to-[#2a3a42] px-6 py-8 text-ivory shadow-lift sm:px-10 sm:py-10">
+      <section className="relative overflow-hidden rounded-lg border border-ivory-300 bg-gradient-to-br from-ink via-ink to-[#2a3a42] px-4 py-7 text-ivory shadow-lift sm:rounded-sm sm:px-10 sm:py-10">
         <div
           className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-olive/25 blur-3xl"
           aria-hidden
@@ -431,8 +431,8 @@ export async function BehaviorBiDashboard({
       </section>
 
       {/* KPI grid */}
-      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <div className="group relative overflow-hidden rounded-sm border border-ivory-300/90 bg-white p-6 shadow-soft transition-shadow hover:shadow-lift">
+      <section className="grid gap-3 sm:gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="group relative overflow-hidden rounded-lg border border-ivory-300/90 bg-white p-4 shadow-soft transition-shadow sm:rounded-sm sm:p-6 hover:shadow-lift">
           <div className="flex items-start justify-between gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-sm bg-olive/10 text-olive">
               <Users className="h-5 w-5" />
@@ -454,7 +454,7 @@ export async function BehaviorBiDashboard({
           </p>
         </div>
 
-        <div className="group relative overflow-hidden rounded-sm border border-ivory-300/90 bg-white p-6 shadow-soft transition-shadow hover:shadow-lift">
+        <div className="group relative overflow-hidden rounded-lg border border-ivory-300/90 bg-white p-4 shadow-soft transition-shadow sm:rounded-sm sm:p-6 hover:shadow-lift">
           <div className="flex items-start justify-between gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-sm bg-olive/10 text-olive">
               <Eye className="h-5 w-5" />
@@ -470,7 +470,7 @@ export async function BehaviorBiDashboard({
           <p className="mt-1 text-xs text-ink-muted">{t("kpiPageViewsHint")}</p>
         </div>
 
-        <div className="group relative overflow-hidden rounded-sm border border-ivory-300/90 bg-white p-6 shadow-soft transition-shadow hover:shadow-lift">
+        <div className="group relative overflow-hidden rounded-lg border border-ivory-300/90 bg-white p-4 shadow-soft transition-shadow sm:rounded-sm sm:p-6 hover:shadow-lift">
           <div className="flex h-11 w-11 items-center justify-center rounded-sm bg-emerald-500/10 text-emerald-700">
             <Heart className="h-5 w-5" />
           </div>
@@ -489,7 +489,7 @@ export async function BehaviorBiDashboard({
           </p>
         </div>
 
-        <div className="group relative overflow-hidden rounded-sm border border-ivory-300/90 bg-white p-6 shadow-soft transition-shadow hover:shadow-lift">
+        <div className="group relative overflow-hidden rounded-lg border border-ivory-300/90 bg-white p-4 shadow-soft transition-shadow sm:rounded-sm sm:p-6 hover:shadow-lift">
           <div className="flex h-11 w-11 items-center justify-center rounded-sm bg-ink/5 text-ink-muted">
             <HeartCrack className="h-5 w-5" />
           </div>

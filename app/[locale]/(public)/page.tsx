@@ -5,6 +5,8 @@ import { FeaturedProperties } from "@/components/home/featured-properties";
 import { Regions } from "@/components/home/regions";
 import { AboutSnippet } from "@/components/home/about-snippet";
 import { HomeJsonLd } from "@/components/seo/home-json-ld";
+import { getMergedPropertyTaxonomy } from "@/lib/firestore/property-taxonomy";
+import { regionTileImage } from "@/lib/property-taxonomy/region-fallback-images";
 import { listProperties } from "@/lib/firestore/properties";
 import { buildPublicPageMetadata } from "@/lib/seo/page-meta";
 import type { Property } from "@/types/property";
@@ -43,6 +45,11 @@ export default async function HomePage({
   setRequestLocale(locale);
 
   const featured = await safeList();
+  const tax = await getMergedPropertyTaxonomy();
+  const regionTiles = tax.regions.map((r) => ({
+    id: r.id,
+    imageUrl: regionTileImage(r),
+  }));
 
   return (
     <>
@@ -50,7 +57,7 @@ export default async function HomePage({
       <Hero />
       <FeaturedProperties items={featured} />
       <AboutSnippet />
-      <Regions />
+      <Regions tiles={regionTiles} />
     </>
   );
 }

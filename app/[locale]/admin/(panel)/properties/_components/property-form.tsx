@@ -5,8 +5,6 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "@/i18n/navigation";
 import {
   LOCALES,
-  PROPERTY_FEATURES,
-  PROPERTY_REGIONS,
   PROPERTY_STATUSES,
   PROPERTY_TYPES,
   emptyPropertyInput,
@@ -19,12 +17,29 @@ import Image from "next/image";
 
 type FormValues = PropertyInput;
 
+function normalizeForm(
+  v: FormValues,
+  regionIds: string[],
+  featureIds: string[],
+): FormValues {
+  const next = { ...v, specs: { ...v.specs }, translations: { ...v.translations } };
+  if (!regionIds.includes(next.region) && regionIds[0]) {
+    next.region = regionIds[0]!;
+  }
+  next.features = next.features.filter((f) => featureIds.includes(f));
+  return next;
+}
+
 export function PropertyForm({
   id,
   initial,
+  regionIds,
+  featureIds,
 }: {
   id?: string;
   initial?: FormValues;
+  regionIds: string[];
+  featureIds: string[];
 }) {
   const t = useTranslations("admin.properties");
   const tFields = useTranslations("admin.properties.fields");
@@ -35,8 +50,12 @@ export function PropertyForm({
   const tLang = useTranslations("language");
 
   const router = useRouter();
-  const [values, setValues] = useState<FormValues>(
-    initial ?? emptyPropertyInput(),
+  const [values, setValues] = useState<FormValues>(() =>
+    normalizeForm(
+      initial ?? emptyPropertyInput(),
+      regionIds,
+      featureIds,
+    ),
   );
   const [activeLocale, setActiveLocale] = useState<LocaleKey>("tr");
   const [saving, setSaving] = useState(false);
@@ -62,7 +81,11 @@ export function PropertyForm({
       },
     }));
 
-  const toggleFeature = (f: (typeof PROPERTY_FEATURES)[number]) =>
+  const regionOptions = regionIds.includes(values.region)
+    ? regionIds
+    : [values.region, ...regionIds];
+
+  const toggleFeature = (f: string) =>
     setValues((v) => ({
       ...v,
       features: v.features.includes(f)
@@ -165,17 +188,17 @@ export function PropertyForm({
   };
 
   return (
-    <div className="space-y-10">
-      <div className="flex items-center justify-between">
-        <h1 className="font-display text-3xl text-ink">
+    <div className="space-y-8 sm:space-y-10">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h1 className="font-display text-2xl text-ink sm:text-3xl">
           {id ? t("formTitle.edit") : t("formTitle.new")}
         </h1>
-        <div className="flex items-center gap-2">
+        <div className="flex w-full flex-wrap items-stretch gap-2 sm:w-auto sm:items-center sm:justify-end">
           {id && (
             <button
               type="button"
               onClick={del}
-              className="btn btn-ghost text-red-700 hover:bg-red-50"
+              className="btn btn-ghost min-h-11 text-red-700 hover:bg-red-50"
             >
               <Trash2 className="h-4 w-4" /> {t("delete")}
             </button>
@@ -183,7 +206,7 @@ export function PropertyForm({
           <button
             type="button"
             onClick={() => router.push("/admin/properties")}
-            className="btn btn-ghost"
+            className="btn btn-ghost min-h-11 flex-1 sm:flex-initial"
           >
             {t("cancel")}
           </button>
@@ -191,9 +214,9 @@ export function PropertyForm({
             type="button"
             onClick={save}
             disabled={saving}
-            className="btn btn-primary"
+            className="btn btn-primary min-h-11 flex-1 sm:min-w-[7rem] sm:flex-initial"
           >
-            {saving ? "..." : t("save")}
+            {saving ? "…" : t("save")}
           </button>
         </div>
       </div>
@@ -255,7 +278,7 @@ export function PropertyForm({
                 set("region", e.target.value as FormValues["region"])
               }
             >
-              {PROPERTY_REGIONS.map((x) => (
+              {regionOptions.map((x) => (
                 <option key={x} value={x}>
                   {tRegion(x)}
                 </option>
@@ -410,7 +433,7 @@ export function PropertyForm({
 
       <Section title={t("sections.features")}>
         <div className="flex flex-wrap gap-2">
-          {PROPERTY_FEATURES.map((f) => (
+          {featureIds.map((f) => (
             <button
               key={f}
               type="button"

@@ -79,7 +79,7 @@ export async function listProperties(
     );
   if (params.features && params.features.length > 0)
     items = items.filter((p) =>
-      params.features!.every((f) => p.features.includes(f as never)),
+      params.features!.every((f) => p.features.includes(f)),
     );
 
   if (params.sort === "priceAsc")

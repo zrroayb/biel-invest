@@ -25,7 +25,8 @@ export const PROPERTY_REGIONS = [
   "gundogan",
   "torba",
 ] as const;
-export type PropertyRegion = (typeof PROPERTY_REGIONS)[number];
+/** Ids for defaults / seed; runtime list comes from `config/property_taxonomy` in Firestore. */
+export type PropertyRegion = string;
 
 export const PROPERTY_FEATURES = [
   "sea_view",
@@ -43,7 +44,7 @@ export const PROPERTY_FEATURES = [
   "elevator",
   "air_conditioning",
 ] as const;
-export type PropertyFeature = (typeof PROPERTY_FEATURES)[number];
+export type PropertyFeature = string;
 
 export const LOCALES = ["tr", "en", "de", "ru"] as const;
 export type LocaleKey = (typeof LOCALES)[number];

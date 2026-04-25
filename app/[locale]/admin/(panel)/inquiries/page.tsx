@@ -28,23 +28,26 @@ export default async function AdminInquiriesPage({
 
   return (
     <div>
-      <h1 className="font-display text-3xl text-ink">{t("title")}</h1>
+      <h1 className="font-display text-2xl text-ink sm:text-3xl">{t("title")}</h1>
 
-      <div className="mt-8 flex gap-1 rounded-xs border border-ivory-300 bg-ivory-50 p-1">
+      <div className="mt-6 sm:mt-8">
+        <div className="-mx-1 flex snap-x snap-mandatory gap-1 overflow-x-auto pb-1 pl-1 pr-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:rounded-xs sm:border sm:border-ivory-300 sm:bg-ivory-50 sm:p-1">
         {tabs.map((tab) => (
           <Link
             key={tab.id}
             href={tab.id === "all" ? "/admin/inquiries" : `/admin/inquiries?status=${tab.id}`}
             className={cn(
-              "flex-1 rounded-xs px-3 py-2 text-center text-xs uppercase tracking-[0.14em] transition-colors",
+              "min-h-11 shrink-0 snap-center rounded-sm px-4 py-2.5 text-center text-xs font-medium uppercase tracking-[0.1em] transition-colors sm:min-w-0 sm:flex-1 sm:rounded-xs sm:py-2",
               activeStatus === tab.id
-                ? "bg-ink text-ivory"
-                : "text-ink-muted hover:text-ink",
+                ? "bg-ink text-ivory sm:shadow-sm"
+                : "border border-ivory-200 bg-ivory-100 text-ink-muted sm:border-0 sm:bg-transparent",
+              "active:scale-[0.98]",
             )}
           >
             {tab.label}
           </Link>
         ))}
+        </div>
       </div>
 
       <div className="mt-8 space-y-3">
@@ -57,15 +60,15 @@ export default async function AdminInquiriesPage({
           <article
             key={i.id}
             className={cn(
-              "rounded-xs border bg-ivory-50 p-5",
+              "rounded-lg border bg-ivory-50 p-4 sm:rounded-xs sm:p-5",
               i.status === "new"
                 ? "border-olive/40"
                 : "border-ivory-300",
             )}
           >
-            <div className="flex flex-wrap items-start justify-between gap-3">
-              <div>
-                <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-start sm:justify-between">
+              <div className="min-w-0">
+                <div className="flex flex-wrap items-center gap-2">
                   <div className="font-medium text-ink">{i.name}</div>
                   <span className="chip">{i.status}</span>
                   <span className="chip uppercase">{i.locale}</span>

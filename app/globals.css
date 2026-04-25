@@ -78,6 +78,16 @@
   .chip {
     @apply inline-flex items-center gap-1.5 rounded-xs border border-ivory-300 bg-ivory-50 px-2.5 py-1 text-[11px] uppercase tracking-wider text-ink-muted;
   }
+  /* Admin panel: 44px min touch (WCAG 2.5.5) without changing public site inputs */
+  [data-admin-panel] .field {
+    @apply min-h-11;
+  }
+  [data-admin-panel] .btn:not(.btn-sm) {
+    @apply min-h-11;
+  }
+  [data-admin-panel] .label {
+    @apply mb-2;
+  }
 }
 
 @layer utilities {

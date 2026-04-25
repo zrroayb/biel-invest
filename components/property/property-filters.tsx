@@ -12,18 +12,21 @@ import {
   useTransition,
   type ReactNode,
 } from "react";
-import {
-  PROPERTY_FEATURES,
-  PROPERTY_REGIONS,
-  PROPERTY_STATUSES,
-  PROPERTY_TYPES,
-} from "@/types/property";
+import { PROPERTY_STATUSES, PROPERTY_TYPES } from "@/types/property";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type SortKey = "newest" | "priceAsc" | "priceDesc";
 
-export function PropertyFilters({ resultCount }: { resultCount: number }) {
+export function PropertyFilters({
+  resultCount,
+  regionIds,
+  featureIds,
+}: {
+  resultCount: number;
+  regionIds: string[];
+  featureIds: string[];
+}) {
   const t = useTranslations("portfolio.filters");
   const tPortfolio = useTranslations("portfolio");
   const tType = useTranslations("property.type");
@@ -242,7 +245,7 @@ export function PropertyFilters({ resultCount }: { resultCount: number }) {
                 }}
                 label={t("any")}
               />
-              {PROPERTY_REGIONS.map((x) => (
+              {regionIds.map((x) => (
                 <ChoiceChip
                   compact
                   key={x}
@@ -363,7 +366,7 @@ export function PropertyFilters({ resultCount }: { resultCount: number }) {
                   {t("features")}
                 </div>
                 <div className="flex flex-wrap gap-1.5">
-                  {PROPERTY_FEATURES.map((f) => (
+                  {featureIds.map((f) => (
                     <ChoiceChip
                       compact
                       key={f}

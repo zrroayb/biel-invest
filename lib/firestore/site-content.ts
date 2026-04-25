@@ -45,8 +45,17 @@ export async function getSiteContentForEditor(): Promise<{
   } else if (u && typeof (u as { toDate: () => Date }).toDate === "function") {
     updatedAt = (u as { toDate: () => Date }).toDate().toISOString();
   }
+  // Firestore Timestamp is not JSON-serializable to Client Components — never merge it into `content`
+  const rawForMerge = raw
+    ? (() => {
+        const { updatedAt: _drop, ...rest } = raw as Record<string, unknown> & {
+          updatedAt?: unknown;
+        };
+        return rest;
+      })()
+    : null;
   return {
-    content: mergeSiteContent(def, raw),
+    content: mergeSiteContent(def, rawForMerge),
     updatedAt,
   };
 }

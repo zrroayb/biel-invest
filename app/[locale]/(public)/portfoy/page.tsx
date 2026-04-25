@@ -7,6 +7,10 @@ import { PropertyCard } from "@/components/property/property-card";
 import { PropertyFilters } from "@/components/property/property-filters";
 import { PriceCurrencySwitcher } from "@/components/property/price-currency-switcher";
 import { Reveal } from "@/components/motion/reveal";
+import {
+  getMergedPropertyTaxonomy,
+  getRegionAndFeatureIdLists,
+} from "@/lib/firestore/property-taxonomy";
 import type { Property } from "@/types/property";
 
 export const revalidate = 120;
@@ -56,6 +60,9 @@ export default async function PortfolioPage({
   const sp = await searchParams;
   const t = await getTranslations("portfolio");
 
+  const tax = await getMergedPropertyTaxonomy();
+  const { regionIds, featureIds } = getRegionAndFeatureIdLists(tax);
+
   const items = await safeList({
     type: typeof sp.type === "string" ? sp.type : undefined,
     status: typeof sp.status === "string" ? sp.status : undefined,
@@ -96,7 +103,11 @@ export default async function PortfolioPage({
                   </div>
                 }
               >
-                <PropertyFilters resultCount={items.length} />
+                <PropertyFilters
+                  resultCount={items.length}
+                  regionIds={regionIds}
+                  featureIds={featureIds}
+                />
               </Suspense>
             </div>
             <div className="flex shrink-0 items-center gap-2 sm:pl-2">
