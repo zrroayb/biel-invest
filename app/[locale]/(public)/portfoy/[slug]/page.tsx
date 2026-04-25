@@ -12,7 +12,7 @@ import { WhatsAppButton } from "@/components/property/whatsapp-button";
 import { FavoriteButton } from "@/components/property/favorite-button";
 import { PropertyDetailPrice } from "@/components/property/property-detail-price";
 import { Reveal } from "@/components/motion/reveal";
-import { ArrowLeft, Bath, BedDouble, Maximize, Ruler } from "lucide-react";
+import { ArrowLeft, Bath, BedDouble, Maximize, Ruler, Sofa } from "lucide-react";
 import { Link } from "@/i18n/navigation";
 
 export const revalidate = 120;
@@ -67,6 +67,11 @@ export default async function PropertyDetailPage({
       icon: BedDouble,
       label: t("bedrooms"),
       value: property.specs.bedrooms,
+    },
+    property.specs.livingRooms != null && {
+      icon: Sofa,
+      label: t("livingRooms"),
+      value: property.specs.livingRooms,
     },
     property.specs.bathrooms != null && {
       icon: Bath,

@@ -378,6 +378,17 @@ export function PropertyForm({
               }
             />
           </Field>
+          <Field label={tFields("livingRooms")}>
+            <input
+              type="number"
+              className="field"
+              min={0}
+              value={values.specs.livingRooms ?? ""}
+              onChange={(e) =>
+                setSpec("livingRooms", e.target.value === "" ? null : Number(e.target.value))
+              }
+            />
+          </Field>
           <Field label={tFields("bathrooms")}>
             <input
               type="number"

@@ -98,6 +98,7 @@
       "hint": "Rates are ECB-based and indicative. The listing amount is stored in the asset’s currency."
     },
     "bedrooms": "Bedrooms",
+    "livingRooms": "Living rooms",
     "bathrooms": "Bathrooms",
     "areaGross": "Gross m²",
     "areaNet": "Net m²",
@@ -460,6 +461,7 @@
         "areaGross": "Gross m²",
         "areaNet": "Net m²",
         "bedrooms": "Bedrooms",
+        "livingRooms": "Living rooms",
         "bathrooms": "Bathrooms",
         "yearBuilt": "Year built",
         "plotSize": "Plot m²",

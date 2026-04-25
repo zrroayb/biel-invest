@@ -93,6 +93,11 @@ export function PropertyCard({
               {property.specs.bedrooms} {t("bedrooms").toLowerCase()}
             </span>
           )}
+          {property.specs.livingRooms != null && (
+            <span>
+              {property.specs.livingRooms} {t("livingRooms").toLowerCase()}
+            </span>
+          )}
           {property.specs.areaGross != null && (
             <span>{property.specs.areaGross} m²</span>
           )}

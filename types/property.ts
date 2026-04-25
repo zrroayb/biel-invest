@@ -53,6 +53,7 @@ export interface PropertySpecs {
   areaGross?: number | null;
   areaNet?: number | null;
   bedrooms?: number | null;
+  livingRooms?: number | null;
   bathrooms?: number | null;
   yearBuilt?: number | null;
   plotSize?: number | null;

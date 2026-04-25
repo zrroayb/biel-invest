@@ -98,6 +98,7 @@
       "hint": "Kurlar ECB tabanlıdır, gösterim amaçlıdır. Kayıtlı fiyat ilan para birimindedir."
     },
     "bedrooms": "Yatak Odası",
+    "livingRooms": "Oturma odası",
     "bathrooms": "Banyo",
     "areaGross": "Brüt m²",
     "areaNet": "Net m²",
@@ -460,6 +461,7 @@
         "areaGross": "Brüt m²",
         "areaNet": "Net m²",
         "bedrooms": "Yatak odası",
+        "livingRooms": "Oturma odası",
         "bathrooms": "Banyo",
         "yearBuilt": "Yapım yılı",
         "plotSize": "Arsa m²",

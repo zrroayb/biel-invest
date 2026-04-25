@@ -18,6 +18,7 @@ const specsSchema = z.object({
   areaGross: z.number().nonnegative().nullable().optional(),
   areaNet: z.number().nonnegative().nullable().optional(),
   bedrooms: z.number().int().nonnegative().nullable().optional(),
+  livingRooms: z.number().int().nonnegative().nullable().optional(),
   bathrooms: z.number().int().nonnegative().nullable().optional(),
   yearBuilt: z.number().int().min(1800).max(2100).nullable().optional(),
   plotSize: z.number().nonnegative().nullable().optional(),

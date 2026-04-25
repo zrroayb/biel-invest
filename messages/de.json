@@ -98,6 +98,7 @@
       "hint": "Kurse sind EZB-basiert und unverbindlich. Der erfasste Preis gilt in der Objektwährung."
     },
     "bedrooms": "Schlafzimmer",
+    "livingRooms": "Wohnzimmer",
     "bathrooms": "Bäder",
     "areaGross": "Brutto m²",
     "areaNet": "Netto m²",
@@ -460,6 +461,7 @@
         "areaGross": "Brutto m²",
         "areaNet": "Netto m²",
         "bedrooms": "Schlafzimmer",
+        "livingRooms": "Wohnzimmer",
         "bathrooms": "Bäder",
         "yearBuilt": "Baujahr",
         "plotSize": "Grundstück m²",
