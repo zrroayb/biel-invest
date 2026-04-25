@@ -2,7 +2,7 @@
 
 import { Heart } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { usePathname } from "@/i18n/routing";
+import { usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import { useFavorites } from "@/lib/favorites";
 import {

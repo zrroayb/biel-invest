@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import { usePathname } from "@/i18n/routing";
+import { usePathname } from "@/i18n/navigation";
 import { useEffect, useRef } from "react";
 import { trackPageView } from "@/lib/analytics/track-public-event";
 

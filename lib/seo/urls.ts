@@ -66,3 +66,16 @@ export function toAbsoluteImageUrl(url: string | null | undefined): string | und
   const base = siteBaseUrl();
   return `${base}${url.startsWith("/") ? url : `/${url}`}`;
 }
+
+/**
+ * True if non-empty and safe to pass to `next/image` or `<img src>`: `http(s):`
+ * or a same-site path like `/foo.jpg` (public/). Rejects `""`, `//`, protocol-relative
+ * without host, and bare filenames that resolve to 404 on the app origin.
+ */
+export function isLoadableImageUrl(url: string | null | undefined): boolean {
+  const s = url?.trim();
+  if (!s) return false;
+  if (s.startsWith("https://") || s.startsWith("http://")) return true;
+  if (s.startsWith("/") && !s.startsWith("//")) return true;
+  return false;
+}

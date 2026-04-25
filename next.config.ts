@@ -6,7 +6,10 @@ const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   // Packages loaded from node_modules on the server avoid broken vendor-chunks after
-  // interrupted dev builds (OpenTelemetry, FormatJS via next-intl, etc.).
+  // interrupted dev builds (OpenTelemetry, FormatJS, etc.). Do **not** add `next-intl` /
+  // `use-intl` here — it can break the server bundle (missing vendor-chunks/next-intl.js).
+  // If the browser floods 404s for `/_next/static/**` JS chunks, stop dev and run:
+  // `npm run dev:clean` (deletes `.next` then starts dev).
   serverExternalPackages: [
     // firebase-admin → gRPC; bundling can yield missing vendor-chunks/@grpc*.js in dev
     "firebase-admin",

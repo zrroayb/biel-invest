@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { Reveal } from "@/components/motion/reveal";
 import { PROPERTY_REGIONS } from "@/types/property";

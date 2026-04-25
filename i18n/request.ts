@@ -1,4 +1,6 @@
 import { getRequestConfig } from "next-intl/server";
+import type { AbstractIntlMessages } from "next-intl";
+import { getMergedMessagesForLocaleCached } from "@/lib/firestore/public-site-copy";
 import { routing } from "./routing";
 
 export default getRequestConfig(async ({ requestLocale }) => {
@@ -8,8 +10,10 @@ export default getRequestConfig(async ({ requestLocale }) => {
     locale = routing.defaultLocale;
   }
 
+  const messages = await getMergedMessagesForLocaleCached(locale);
+
   return {
     locale,
-    messages: (await import(`../messages/${locale}.json`)).default,
+    messages: messages as unknown as AbstractIntlMessages,
   };
 });

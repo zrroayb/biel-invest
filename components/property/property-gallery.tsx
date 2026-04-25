@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import { isLoadableImageUrl } from "@/lib/seo/urls";
 import { cn } from "@/lib/utils";
 
 export function PropertyGallery({
@@ -12,20 +13,21 @@ export function PropertyGallery({
   images: string[];
   alt: string;
 }) {
+  const valid = images.filter(isLoadableImageUrl);
+  const n = valid.length;
+
   const [active, setActive] = useState<number | null>(null);
 
   const open = useCallback((i: number) => setActive(i), []);
   const close = useCallback(() => setActive(null), []);
   const next = useCallback(
-    () => setActive((a) => (a === null ? null : (a + 1) % images.length)),
-    [images.length],
+    () => setActive((a) => (a === null || n === 0 ? null : (a + 1) % n)),
+    [n],
   );
   const prev = useCallback(
     () =>
-      setActive((a) =>
-        a === null ? null : (a - 1 + images.length) % images.length,
-      ),
-    [images.length],
+      setActive((a) => (a === null || n === 0 ? null : (a - 1 + n) % n)),
+    [n],
   );
 
   useEffect(() => {
@@ -43,10 +45,10 @@ export function PropertyGallery({
     };
   }, [active, close, next, prev]);
 
-  if (images.length === 0) return null;
+  if (n === 0) return null;
 
-  const hero = images[0];
-  const secondary = images.slice(1, 5);
+  const hero = valid[0];
+  const secondary = valid.slice(1, 5);
 
   return (
     <>
@@ -80,9 +82,9 @@ export function PropertyGallery({
               sizes="(min-width: 1024px) 25vw, 50vw"
               className="object-cover transition-transform duration-1000 ease-out group-hover:scale-[1.03]"
             />
-            {i === 3 && images.length > 5 && (
+            {i === 3 && n > 5 && (
               <div className="absolute inset-0 flex items-center justify-center bg-ink/60 font-display text-2xl text-ivory">
-                +{images.length - 5}
+                +{n - 5}
               </div>
             )}
           </button>
@@ -133,7 +135,7 @@ export function PropertyGallery({
             onClick={(e) => e.stopPropagation()}
           >
             <Image
-              src={images[active]}
+              src={valid[active]!}
               alt={`${alt} ${active + 1}`}
               fill
               sizes="90vw"
@@ -141,7 +143,7 @@ export function PropertyGallery({
             />
           </div>
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-xs uppercase tracking-[0.2em] text-ivory/70">
-            {active + 1} / {images.length}
+            {active + 1} / {n}
           </div>
         </div>
       )}

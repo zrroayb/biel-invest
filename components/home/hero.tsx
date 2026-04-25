@@ -2,21 +2,29 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { Link } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
+import { isLoadableImageUrl } from "@/lib/seo/urls";
 import { ArrowRight } from "lucide-react";
+
+/** Matches default in `messages/*.json` when CMS / Firestore has an empty or bad URL. */
+const FALLBACK_HERO_BACKGROUND =
+  "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1920&q=75";
 
 export function Hero() {
   const t = useTranslations("home");
+  const bg = t("heroBackgroundUrl");
+  const src = isLoadableImageUrl(bg) ? bg : FALLBACK_HERO_BACKGROUND;
 
   return (
     <section className="relative min-h-[92vh] w-full overflow-hidden bg-ink">
       <Image
-        src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1920&q=75"
+        src={src}
         alt={t("heroImageAlt")}
         fill
         priority
         fetchPriority="high"
         sizes="100vw"
+        unoptimized
         className="object-cover opacity-80"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-ink/50 via-ink/20 to-ink/70" />
@@ -52,7 +60,7 @@ export function Hero() {
 
       <div className="pointer-events-none absolute bottom-8 right-8 z-10 hidden font-display text-ivory/50 md:block">
         <div className="text-[10px] uppercase tracking-[0.32em]">
-          Ege · 37.0344°N 27.4305°E
+          {t("heroDecorLine")}
         </div>
       </div>
     </section>

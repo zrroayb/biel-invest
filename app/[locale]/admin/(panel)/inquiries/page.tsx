@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
 import { listInquiries } from "@/lib/firestore/inquiries";
 import type { InquiryStatus } from "@/types/inquiry";
 import { InquiryActions } from "./_components/inquiry-actions";

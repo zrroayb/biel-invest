@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
 import type { VisitorBehaviorDashboard } from "@/lib/analytics/visitor-behavior-aggregate";
 import type { SiteAnalyticsEventRow } from "@/lib/firestore/site-analytics";
 import { cn } from "@/lib/utils";

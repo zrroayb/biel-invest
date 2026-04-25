@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { Link, usePathname } from "@/i18n/routing";
+import { Link, usePathname } from "@/i18n/navigation";
 import { Menu, X, Heart } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LanguageSwitcher } from "./language-switcher";
@@ -10,6 +10,7 @@ import { Logo } from "./logo";
 
 export function Header() {
   const t = useTranslations("nav");
+  const tBrand = useTranslations("brand");
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -77,7 +78,7 @@ export function Header() {
                 useLightLogo ? "text-ivory/60" : "text-ink-muted",
               )}
             >
-              Bodrum · Aegean
+              {tBrand("headerMotto")}
             </span>
           </span>
         </Link>

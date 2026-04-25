@@ -2,8 +2,9 @@
 
 import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
-import { Link } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
 import type { Property, LocaleKey } from "@/types/property";
+import { isLoadableImageUrl } from "@/lib/seo/urls";
 import { cn } from "@/lib/utils";
 import { FavoriteButton } from "./favorite-button";
 import { DisplayPrice } from "./display-price";
@@ -43,7 +44,7 @@ export function PropertyCard({
             imgAspect,
           )}
         >
-          {property.media.cover ? (
+          {property.media.cover && isLoadableImageUrl(property.media.cover) ? (
             <Image
               src={property.media.cover}
               alt={translation.title}

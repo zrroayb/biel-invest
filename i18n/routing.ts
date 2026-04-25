@@ -1,6 +1,11 @@
 import { defineRouting } from "next-intl/routing";
-import { createNavigation } from "next-intl/navigation";
 
+/**
+ * Intentionally **no** `createNavigation` here — that pulls in
+ * `next-intl` server getConfig, which in turn loads `i18n/request` and
+ * would drag Firebase (Admin SDK) into the Edge **middleware** bundle.
+ * Import navigation helpers from `@/i18n/navigation` instead.
+ */
 export const routing = defineRouting({
   locales: ["tr", "en", "de", "ru"],
   defaultLocale: "tr",
@@ -10,6 +15,3 @@ export const routing = defineRouting({
 });
 
 export type Locale = (typeof routing.locales)[number];
-
-export const { Link, redirect, usePathname, useRouter, getPathname } =
-  createNavigation(routing);

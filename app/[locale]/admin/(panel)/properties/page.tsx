@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
 import { listProperties } from "@/lib/firestore/properties";
 import { formatPrice } from "@/lib/utils";
 import { Plus } from "lucide-react";

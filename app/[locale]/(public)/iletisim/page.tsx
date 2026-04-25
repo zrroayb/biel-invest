@@ -38,7 +38,7 @@ export default async function ContactPage({
       <section className="border-b border-ivory-300 bg-ivory">
         <div className="container py-16 md:py-24">
           <Reveal>
-            <div className="eyebrow">Bodrum · Ege</div>
+            <div className="eyebrow">{t("heroEyebrow")}</div>
             <h1 className="mt-3 font-display text-display-lg text-ink">
               {t("title")}
             </h1>
@@ -56,7 +56,7 @@ export default async function ContactPage({
                 <div>
                   <div className="eyebrow">{t("office")}</div>
                   <div className="mt-1 text-base text-ink">
-                    Bodrum, Muğla, Türkiye
+                    {t("addressLine")}
                   </div>
                 </div>
               </div>

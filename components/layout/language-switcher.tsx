@@ -1,7 +1,8 @@
 "use client";
 
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter, usePathname, routing } from "@/i18n/routing";
+import { routing } from "@/i18n/routing";
+import { useRouter, usePathname } from "@/i18n/navigation";
 import { useTransition } from "react";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";

@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
 import { Instagram, Mail, Phone } from "lucide-react";
 import { Logo } from "./logo";
 
@@ -103,7 +103,7 @@ export function Footer() {
           <p>
             © {new Date().getFullYear()} {tBrand("name")}. {t("rights")}
           </p>
-          <p className="uppercase tracking-[0.2em]">Bodrum · Ege</p>
+          <p className="uppercase tracking-[0.2em]">{t("locationLine")}</p>
         </div>
       </div>
     </footer>

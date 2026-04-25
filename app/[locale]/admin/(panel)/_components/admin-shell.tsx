@@ -1,10 +1,16 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Link, usePathname, useRouter } from "@/i18n/routing";
+import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase/client";
-import { LayoutDashboard, Home, MessageSquare, LogOut } from "lucide-react";
+import {
+  FileText,
+  LayoutDashboard,
+  Home,
+  MessageSquare,
+  LogOut,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/layout/logo";
 
@@ -29,6 +35,7 @@ export function AdminShell({
 
   const items = [
     { href: "/admin", icon: LayoutDashboard, label: t("dashboard") },
+    { href: "/admin/content", icon: FileText, label: t("siteContent") },
     { href: "/admin/properties", icon: Home, label: t("properties") },
     { href: "/admin/inquiries", icon: MessageSquare, label: t("inquiries") },
   ];

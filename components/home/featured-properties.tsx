@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
 import { ArrowRight } from "lucide-react";
 import type { Property } from "@/types/property";
 import { PropertyCard } from "@/components/property/property-card";

@@ -13,7 +13,7 @@ import { FavoriteButton } from "@/components/property/favorite-button";
 import { PropertyDetailPrice } from "@/components/property/property-detail-price";
 import { Reveal } from "@/components/motion/reveal";
 import { ArrowLeft, Bath, BedDouble, Maximize, Ruler } from "lucide-react";
-import { Link } from "@/i18n/routing";
+import { Link } from "@/i18n/navigation";
 
 export const revalidate = 120;
 
