@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { useNextDataCache } from "@/lib/cache-policy";
-import { isFirebaseAdminConfigured } from "@/lib/firebase/admin-env";
+import {
+  firebaseAdminEnvPresence,
+  isFirebaseAdminConfigured,
+} from "@/lib/firebase/admin-env";
 
 export const dynamic = "force-dynamic";
 
@@ -17,6 +20,10 @@ export async function GET(request: Request) {
       nextRuntime: process.env.NEXT_RUNTIME ?? null,
       cfPages: process.env.CF_PAGES === "1",
       nextDataCache: useNextDataCache(),
+      envPresence: {
+        NEXT_PUBLIC_SITE_URL: Boolean(process.env.NEXT_PUBLIC_SITE_URL?.trim()),
+        ...firebaseAdminEnvPresence(),
+      },
     };
 
     if (deep && isFirebaseAdminConfigured()) {
