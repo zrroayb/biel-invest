@@ -9,6 +9,7 @@ import { getMergedPropertyTaxonomy } from "@/lib/firestore/property-taxonomy";
 import { regionTileImage } from "@/lib/property-taxonomy/region-fallback-images";
 import { listProperties } from "@/lib/firestore/properties";
 import { buildPublicPageMetadata } from "@/lib/seo/page-meta";
+import { logError, logInfo } from "@/lib/log/server";
 import type { Property } from "@/types/property";
 
 export const revalidate = 300;
@@ -31,7 +32,8 @@ export async function generateMetadata({
 async function safeList(): Promise<Property[]> {
   try {
     return await listProperties({ featured: true, limit: 6 });
-  } catch {
+  } catch (err) {
+    logError("home", "featured_list_failed", {}, err);
     return [];
   }
 }
@@ -43,9 +45,15 @@ export default async function HomePage({
 }) {
   const { locale } = await params;
   setRequestLocale(locale);
+  logInfo("home", "render_start", { locale });
 
   const featured = await safeList();
   const tax = await getMergedPropertyTaxonomy();
+  logInfo("home", "render_data", {
+    locale,
+    featuredCount: featured.length,
+    regionTiles: tax.regions.length,
+  });
   const regionTiles = tax.regions.map((r) => ({
     id: r.id,
     imageUrl: regionTileImage(r),

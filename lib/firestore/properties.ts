@@ -1,5 +1,6 @@
 import "server-only";
-import { adminDb } from "@/lib/firebase/admin";
+import { adminDb, isFirebaseAdminConfigured } from "@/lib/firebase/admin";
+import { logError, logInfo, logWarn } from "@/lib/log/server";
 import type { Property, PropertyInput } from "@/types/property";
 import { Timestamp } from "firebase-admin/firestore";
 
@@ -52,17 +53,24 @@ export async function listProperties(
   params: ListPropertiesParams = {},
 ): Promise<Property[]> {
   const limit = params.limit ?? 120;
-  // Read a bounded window from Firestore with a single orderBy so we never
-  // need composite indexes for arbitrary filter combinations (type + region +
-  // status + orderBy was failing silently when indexes were missing).
-  const fetchCap = 500;
-  const snap = await adminDb
-    .collection(COLLECTION)
-    .orderBy("createdAt", "desc")
-    .limit(fetchCap)
-    .get();
+  if (!isFirebaseAdminConfigured()) {
+    logWarn("properties", "list_skipped_no_env", { limit });
+    return [];
+  }
+  try {
+    logInfo("properties", "list_start", {
+      limit,
+      featured: Boolean(params.featured),
+      region: params.region ?? null,
+    });
+    const fetchCap = 500;
+    const snap = await adminDb
+      .collection(COLLECTION)
+      .orderBy("createdAt", "desc")
+      .limit(fetchCap)
+      .get();
 
-  let items = snap.docs.map((d) => docToProperty(d.id, d.data()));
+    let items = snap.docs.map((d) => docToProperty(d.id, d.data()));
 
   if (params.status) items = items.filter((p) => p.status === params.status);
   if (params.type) items = items.filter((p) => p.type === params.type);
@@ -92,20 +100,40 @@ export async function listProperties(
         new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
     );
 
-  return items.slice(0, limit);
+    const out = items.slice(0, limit);
+    logInfo("properties", "list_ok", { returned: out.length, fetched: items.length });
+    return out;
+  } catch (err) {
+    logError("properties", "list_failed", { limit }, err);
+    throw err;
+  }
 }
 
 export async function getPropertyBySlug(
   slug: string,
 ): Promise<Property | null> {
-  const snap = await adminDb
-    .collection(COLLECTION)
-    .where("slug", "==", slug)
-    .limit(1)
-    .get();
-  if (snap.empty) return null;
-  const doc = snap.docs[0];
-  return docToProperty(doc.id, doc.data());
+  if (!isFirebaseAdminConfigured()) {
+    logWarn("properties", "get_by_slug_skipped_no_env", { slug });
+    return null;
+  }
+  try {
+    logInfo("properties", "get_by_slug_start", { slug });
+    const snap = await adminDb
+      .collection(COLLECTION)
+      .where("slug", "==", slug)
+      .limit(1)
+      .get();
+    if (snap.empty) {
+      logInfo("properties", "get_by_slug_not_found", { slug });
+      return null;
+    }
+    const doc = snap.docs[0];
+    logInfo("properties", "get_by_slug_ok", { slug, id: doc.id });
+    return docToProperty(doc.id, doc.data());
+  } catch (err) {
+    logError("properties", "get_by_slug_failed", { slug }, err);
+    throw err;
+  }
 }
 
 export async function getPropertyById(

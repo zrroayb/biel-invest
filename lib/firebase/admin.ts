@@ -9,8 +9,10 @@ import {
 import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
 import { getStorage } from "firebase-admin/storage";
+import { logError, logInfo } from "@/lib/log/server";
 
 let cachedApp: App | null = null;
+let initLogged = false;
 
 /** True when service-account env vars are set (build + runtime). */
 export function isFirebaseAdminConfigured(): boolean {
@@ -34,22 +36,36 @@ function getAdminApp(): App {
   const rawPrivateKey = process.env.FIREBASE_ADMIN_PRIVATE_KEY;
 
   if (!projectId || !clientEmail || !rawPrivateKey) {
+    logError("firebase-admin", "init_missing_env", {
+      hasProjectId: Boolean(projectId),
+      hasClientEmail: Boolean(clientEmail),
+      hasPrivateKey: Boolean(rawPrivateKey),
+    });
     throw new Error(
       "Firebase Admin is not configured. Set FIREBASE_ADMIN_PROJECT_ID, FIREBASE_ADMIN_CLIENT_EMAIL, FIREBASE_ADMIN_PRIVATE_KEY.",
     );
   }
 
-  const serviceAccount: ServiceAccount = {
-    projectId,
-    clientEmail,
-    privateKey: rawPrivateKey.replace(/\\n/g, "\n"),
-  };
+  try {
+    const serviceAccount: ServiceAccount = {
+      projectId,
+      clientEmail,
+      privateKey: rawPrivateKey.replace(/\\n/g, "\n"),
+    };
 
-  cachedApp = initializeApp({
-    credential: cert(serviceAccount),
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  });
-  return cachedApp;
+    cachedApp = initializeApp({
+      credential: cert(serviceAccount),
+      storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    });
+    if (!initLogged) {
+      initLogged = true;
+      logInfo("firebase-admin", "init_ok", { projectId });
+    }
+    return cachedApp;
+  } catch (err) {
+    logError("firebase-admin", "init_failed", { projectId }, err);
+    throw err;
+  }
 }
 
 export const adminApp = {

@@ -9,6 +9,7 @@ import {
   mergeSiteContent,
 } from "@/lib/site-content/defaults";
 import { adminDb, isFirebaseAdminConfigured } from "@/lib/firebase/admin";
+import { logError, logInfo, logWarn } from "@/lib/log/server";
 import type { SiteContentV1 } from "@/types/site-content";
 
 const DOC = "config/site_content" as const;
@@ -25,12 +26,17 @@ export async function getRawSiteContentDoc(): Promise<unknown> {
 
 export async function getMergedSiteContent(): Promise<SiteContentV1> {
   const def = await buildDefaultSiteContentFromMessages();
-  if (!isFirebaseAdminConfigured()) return def;
+  if (!isFirebaseAdminConfigured()) {
+    logWarn("site-content", "skip_firestore_no_env");
+    return def;
+  }
   try {
+    logInfo("site-content", "firestore_read_start", { doc: DOC });
     const raw = await getRawSiteContentDoc();
+    logInfo("site-content", "firestore_read_ok", { hasOverrides: raw != null });
     return mergeSiteContent(def, raw);
   } catch (err) {
-    console.error("[site-content] Firestore read failed, using defaults", err);
+    logError("site-content", "firestore_read_failed_using_defaults", {}, err);
     return def;
   }
 }

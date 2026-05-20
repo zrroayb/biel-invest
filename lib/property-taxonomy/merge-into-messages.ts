@@ -3,6 +3,7 @@ import "server-only";
 import { buildDefaultPropertyTaxonomy } from "@/lib/property-taxonomy/defaults";
 import { getMergedPropertyTaxonomy } from "@/lib/firestore/property-taxonomy";
 import { labelOrFallback } from "@/types/property-taxonomy";
+import { logError } from "@/lib/log/server";
 import type { PropertyTaxonomyV1 } from "@/types/property-taxonomy";
 
 /**
@@ -31,7 +32,7 @@ export async function getTaxonomyMessageLayerForLocale(
     const tax = await getMergedPropertyTaxonomy();
     return taxonomyToLayer(tax, locale);
   } catch (err) {
-    console.error("[taxonomy layer] failed, using message defaults", err);
+    logError("taxonomy-layer", "failed_using_message_defaults", { locale }, err);
     const tax = await buildDefaultPropertyTaxonomy();
     return taxonomyToLayer(tax, locale);
   }

@@ -13,6 +13,7 @@ import { FavoriteButton } from "@/components/property/favorite-button";
 import { PropertyDetailPrice } from "@/components/property/property-detail-price";
 import { Reveal } from "@/components/motion/reveal";
 import { ArrowLeft, Bath, BedDouble, Maximize, Ruler, Sofa } from "lucide-react";
+import { logError, logInfo } from "@/lib/log/server";
 import { Link } from "@/i18n/navigation";
 
 export const revalidate = 120;
@@ -50,6 +51,7 @@ export default async function PropertyDetailPage({
 }) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
+  logInfo("property-detail", "render_start", { locale, slug });
   const t = await getTranslations("property");
   const tRegions = await getTranslations("regions");
   const tNav = await getTranslations("nav");
@@ -58,9 +60,13 @@ export default async function PropertyDetailPage({
   try {
     property = await getPropertyBySlug(slug);
   } catch (err) {
-    console.error("[property] Firestore read failed", err);
+    logError("property-detail", "firestore_read_failed", { slug }, err);
   }
-  if (!property) notFound();
+  if (!property) {
+    logInfo("property-detail", "not_found", { slug });
+    notFound();
+  }
+  logInfo("property-detail", "render_ok", { slug, id: property.id });
 
   const tr = property.translations[locale as LocaleKey] ?? property.translations.tr;
   const gallery = property.media.cover

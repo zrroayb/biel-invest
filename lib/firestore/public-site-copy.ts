@@ -9,6 +9,7 @@ import { loadMessageFileForLocale } from "@/lib/messages/public-defaults";
 import { adminDb, isFirebaseAdminConfigured } from "@/lib/firebase/admin";
 import { getSiteContentOverridesAll } from "@/lib/firestore/site-content-helpers";
 import { getTaxonomyMessageLayerForLocale } from "@/lib/property-taxonomy/merge-into-messages";
+import { logError, logInfo, logWarn } from "@/lib/log/server";
 import { PUBLIC_MESSAGES_CACHE_TAG } from "@/lib/cache-tags";
 import { LOCALES } from "@/types/property";
 
@@ -57,13 +58,18 @@ const fetchMergedForLocale = async (locale: string) => {
       property: { feature: Record<string, string> };
     };
     const prop = (merged.property as Record<string, unknown>) ?? {};
-    return {
+    const out = {
       ...merged,
       regions: tax.regions,
       property: { ...prop, feature: tax.property.feature },
     } as Record<string, unknown>;
+    logInfo("i18n-merge", "ok", {
+      locale,
+      regionKeys: Object.keys(tax.regions).length,
+    });
+    return out;
   } catch (err) {
-    console.error("[i18n merge] failed, using file defaults only", err);
+    logError("i18n-merge", "failed_using_file_defaults", { locale }, err);
     return loadMessageFileForLocale(locale);
   }
 };

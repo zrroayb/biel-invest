@@ -5,6 +5,7 @@ import { revalidateTag } from "next/cache";
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { z } from "zod";
 import { adminDb, isFirebaseAdminConfigured } from "@/lib/firebase/admin";
+import { logError, logInfo, logWarn } from "@/lib/log/server";
 import { buildDefaultPropertyTaxonomy } from "@/lib/property-taxonomy/defaults";
 import { PUBLIC_MESSAGES_CACHE_TAG } from "@/lib/cache-tags";
 import {
@@ -59,15 +60,32 @@ function docToTaxonomy(
 
 const fetchMergedTaxonomy = async (): Promise<PropertyTaxonomyV1> => {
   const fallback = await buildDefaultPropertyTaxonomy();
-  if (!isFirebaseAdminConfigured()) return fallback;
+  if (!isFirebaseAdminConfigured()) {
+    logWarn("taxonomy", "skip_firestore_no_env", {
+      regionCount: fallback.regions.length,
+      featureCount: fallback.features.length,
+    });
+    return fallback;
+  }
   try {
+    logInfo("taxonomy", "firestore_read_start", { doc: DOC_PATH });
     const snap = await adminDb.doc(DOC_PATH).get();
-    if (!snap.exists) return fallback;
+    if (!snap.exists) {
+      logInfo("taxonomy", "firestore_doc_missing", { doc: DOC_PATH });
+      return fallback;
+    }
     const parsed = docToTaxonomy(snap.data()!);
-    if (!parsed) return fallback;
+    if (!parsed) {
+      logWarn("taxonomy", "firestore_doc_invalid", { doc: DOC_PATH });
+      return fallback;
+    }
+    logInfo("taxonomy", "firestore_read_ok", {
+      regionCount: parsed.regions.length,
+      featureCount: parsed.features.length,
+    });
     return parsed;
   } catch (err) {
-    console.error("[taxonomy] Firestore read failed, using defaults", err);
+    logError("taxonomy", "firestore_read_failed_using_defaults", {}, err);
     return fallback;
   }
 };

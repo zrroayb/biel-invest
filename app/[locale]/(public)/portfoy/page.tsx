@@ -11,6 +11,7 @@ import {
   getMergedPropertyTaxonomy,
   getRegionAndFeatureIdLists,
 } from "@/lib/firestore/property-taxonomy";
+import { logError, logInfo } from "@/lib/log/server";
 import type { Property } from "@/types/property";
 
 export const revalidate = 120;
@@ -43,7 +44,8 @@ async function safeList(params: {
 }): Promise<Property[]> {
   try {
     return await listProperties({ ...params, limit: 120 });
-  } catch {
+  } catch (err) {
+    logError("portfolio", "list_failed", { region: params.region ?? null }, err);
     return [];
   }
 }
@@ -59,6 +61,8 @@ export default async function PortfolioPage({
   setRequestLocale(locale);
   const sp = await searchParams;
   const t = await getTranslations("portfolio");
+
+  logInfo("portfolio", "render_start", { locale });
 
   const tax = await getMergedPropertyTaxonomy();
   const { regionIds, featureIds } = getRegionAndFeatureIdLists(tax);
@@ -76,6 +80,13 @@ export default async function PortfolioPage({
         : undefined,
     featured: sp.featured === "1",
     sort: (sp.sort as "newest" | "priceAsc" | "priceDesc") ?? "newest",
+  });
+
+  logInfo("portfolio", "render_data", {
+    locale,
+    itemCount: items.length,
+    regionIds: regionIds.length,
+    featureIds: featureIds.length,
   });
 
   return (
