@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
 
@@ -11,8 +12,10 @@ const nextConfig: NextConfig = {
   // If the browser floods 404s for `/_next/static/**` JS chunks, stop dev and run:
   // `npm run dev:clean` (deletes `.next` then starts dev).
   serverExternalPackages: [
-    // firebase-admin → gRPC; bundling can yield missing vendor-chunks/@grpc*.js in dev
+    // firebase-admin → jwks-rsa → jose; must stay external for OpenNext / Workers bundle
     "firebase-admin",
+    "jwks-rsa",
+    "jose",
     "@grpc/grpc-js",
     "@grpc/proto-loader",
     "google-gax",
@@ -47,3 +50,5 @@ const nextConfig: NextConfig = {
 };
 
 export default withNextIntl(nextConfig);
+
+initOpenNextCloudflareForDev();

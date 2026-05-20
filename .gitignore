@@ -1,5 +1,8 @@
 node_modules
 .next
+.open-next
+.dev.vars
+.wrangler
 out
 dist
 .env

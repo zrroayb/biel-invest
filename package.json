@@ -11,6 +11,9 @@
     "dev:clean": "npm run clean && WATCHPACK_POLLING=true CHOKIDAR_USEPOLLING=true next dev --hostname localhost",
     "dev:turbo": "next dev --turbo",
     "build": "next build",
+    "cf:build": "WRANGLER_BUILD_PLATFORM=node WRANGLER_BUILD_CONDITIONS= opennextjs-cloudflare build",
+    "cf:preview": "npm run cf:build && opennextjs-cloudflare preview",
+    "cf:deploy": "npm run cf:build && opennextjs-cloudflare deploy",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
@@ -25,6 +28,7 @@
     "clsx": "2.1.1",
     "firebase": "11.1.0",
     "firebase-admin": "13.0.2",
+    "jose": "^4.15.9",
     "lucide-react": "0.468.0",
     "next": "^15.1.11",
     "next-intl": "3.26.3",
@@ -36,6 +40,7 @@
     "zod": "3.24.1"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.19.11",
     "@types/node": "22.10.2",
     "@types/react": "19.0.2",
     "@types/react-dom": "19.0.2",
@@ -47,6 +52,7 @@
     "tailwindcss": "3.4.17",
     "tailwindcss-animate": "1.0.7",
     "tsx": "4.19.2",
-    "typescript": "5.7.2"
+    "typescript": "5.7.2",
+    "wrangler": "^4.93.0"
   }
 }
