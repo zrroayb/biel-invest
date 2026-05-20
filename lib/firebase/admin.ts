@@ -12,6 +12,15 @@ import { getStorage } from "firebase-admin/storage";
 
 let cachedApp: App | null = null;
 
+/** True when service-account env vars are set (build + runtime). */
+export function isFirebaseAdminConfigured(): boolean {
+  return Boolean(
+    process.env.FIREBASE_ADMIN_PROJECT_ID?.trim() &&
+      process.env.FIREBASE_ADMIN_CLIENT_EMAIL?.trim() &&
+      process.env.FIREBASE_ADMIN_PRIVATE_KEY?.trim(),
+  );
+}
+
 function getAdminApp(): App {
   if (cachedApp) return cachedApp;
   const existing = getApps()[0];

@@ -54,7 +54,12 @@ export default async function PropertyDetailPage({
   const tRegions = await getTranslations("regions");
   const tNav = await getTranslations("nav");
 
-  const property = await getPropertyBySlug(slug);
+  let property: Awaited<ReturnType<typeof getPropertyBySlug>> = null;
+  try {
+    property = await getPropertyBySlug(slug);
+  } catch (err) {
+    console.error("[property] Firestore read failed", err);
+  }
   if (!property) notFound();
 
   const tr = property.translations[locale as LocaleKey] ?? property.translations.tr;

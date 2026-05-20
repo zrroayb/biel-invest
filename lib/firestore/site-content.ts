@@ -8,7 +8,7 @@ import {
   buildDefaultSiteContentFromMessages,
   mergeSiteContent,
 } from "@/lib/site-content/defaults";
-import { adminDb } from "@/lib/firebase/admin";
+import { adminDb, isFirebaseAdminConfigured } from "@/lib/firebase/admin";
 import type { SiteContentV1 } from "@/types/site-content";
 
 const DOC = "config/site_content" as const;
@@ -25,8 +25,14 @@ export async function getRawSiteContentDoc(): Promise<unknown> {
 
 export async function getMergedSiteContent(): Promise<SiteContentV1> {
   const def = await buildDefaultSiteContentFromMessages();
-  const raw = await getRawSiteContentDoc();
-  return mergeSiteContent(def, raw);
+  if (!isFirebaseAdminConfigured()) return def;
+  try {
+    const raw = await getRawSiteContentDoc();
+    return mergeSiteContent(def, raw);
+  } catch (err) {
+    console.error("[site-content] Firestore read failed, using defaults", err);
+    return def;
+  }
 }
 
 export async function getSiteContentForEditor(): Promise<{

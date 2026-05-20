@@ -6,7 +6,7 @@ import { FieldValue, Timestamp } from "firebase-admin/firestore";
 
 import { deepMerge } from "@/lib/merge-messages";
 import { loadMessageFileForLocale } from "@/lib/messages/public-defaults";
-import { adminDb } from "@/lib/firebase/admin";
+import { adminDb, isFirebaseAdminConfigured } from "@/lib/firebase/admin";
 import { getSiteContentOverridesAll } from "@/lib/firestore/site-content-helpers";
 import { getTaxonomyMessageLayerForLocale } from "@/lib/property-taxonomy/merge-into-messages";
 import { PUBLIC_MESSAGES_CACHE_TAG } from "@/lib/cache-tags";
@@ -29,9 +29,15 @@ function docRef() {
 }
 
 export async function getPublicSiteCopyRaw(): Promise<PublicSiteCopyDocument> {
-  const snap = await docRef().get();
-  if (!snap.exists) return {};
-  return (snap.data() as PublicSiteCopyDocument) ?? {};
+  if (!isFirebaseAdminConfigured()) return {};
+  try {
+    const snap = await docRef().get();
+    if (!snap.exists) return {};
+    return (snap.data() as PublicSiteCopyDocument) ?? {};
+  } catch (err) {
+    console.error("[public_site_copy] Firestore read failed", err);
+    return {};
+  }
 }
 
 const fetchMergedForLocale = async (locale: string) => {

@@ -4,7 +4,7 @@ import { unstable_cache } from "next/cache";
 import { revalidateTag } from "next/cache";
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { z } from "zod";
-import { adminDb } from "@/lib/firebase/admin";
+import { adminDb, isFirebaseAdminConfigured } from "@/lib/firebase/admin";
 import { buildDefaultPropertyTaxonomy } from "@/lib/property-taxonomy/defaults";
 import { PUBLIC_MESSAGES_CACHE_TAG } from "@/lib/cache-tags";
 import {
@@ -58,12 +58,18 @@ function docToTaxonomy(
 }
 
 const fetchMergedTaxonomy = async (): Promise<PropertyTaxonomyV1> => {
-  const snap = await adminDb.doc(DOC_PATH).get();
   const fallback = await buildDefaultPropertyTaxonomy();
-  if (!snap.exists) return fallback;
-  const parsed = docToTaxonomy(snap.data()!);
-  if (!parsed) return fallback;
-  return parsed;
+  if (!isFirebaseAdminConfigured()) return fallback;
+  try {
+    const snap = await adminDb.doc(DOC_PATH).get();
+    if (!snap.exists) return fallback;
+    const parsed = docToTaxonomy(snap.data()!);
+    if (!parsed) return fallback;
+    return parsed;
+  } catch (err) {
+    console.error("[taxonomy] Firestore read failed, using defaults", err);
+    return fallback;
+  }
 };
 
 export const getMergedPropertyTaxonomy = unstable_cache(
