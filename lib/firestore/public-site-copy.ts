@@ -6,7 +6,8 @@ import { FieldValue, Timestamp } from "firebase-admin/firestore";
 
 import { deepMerge } from "@/lib/merge-messages";
 import { loadMessageFileForLocale } from "@/lib/messages/public-defaults";
-import { adminDb, isFirebaseAdminConfigured } from "@/lib/firebase/admin";
+import { adminDb } from "@/lib/firebase/admin";
+import { isFirebaseAdminConfigured } from "@/lib/firebase/admin-env";
 import { getSiteContentOverridesAll } from "@/lib/firestore/site-content-helpers";
 import { getTaxonomyMessageLayerForLocale } from "@/lib/property-taxonomy/merge-into-messages";
 import { logError, logInfo, logWarn } from "@/lib/log/server";

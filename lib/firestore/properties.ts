@@ -1,5 +1,6 @@
 import "server-only";
-import { adminDb, isFirebaseAdminConfigured } from "@/lib/firebase/admin";
+import { adminDb } from "@/lib/firebase/admin";
+import { isFirebaseAdminConfigured } from "@/lib/firebase/admin-env";
 import { logError, logInfo, logWarn } from "@/lib/log/server";
 import type { Property, PropertyInput } from "@/types/property";
 import { Timestamp } from "firebase-admin/firestore";

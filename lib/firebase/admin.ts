@@ -1,30 +1,36 @@
 import "server-only";
-import {
-  cert,
-  getApps,
-  initializeApp,
-  type App,
-  type ServiceAccount,
-} from "firebase-admin/app";
-import { getAuth } from "firebase-admin/auth";
-import { getFirestore } from "firebase-admin/firestore";
-import { getStorage } from "firebase-admin/storage";
+
+import type { App, ServiceAccount } from "firebase-admin/app";
+import type { Auth } from "firebase-admin/auth";
+import type { Firestore } from "firebase-admin/firestore";
+import type { Storage } from "firebase-admin/storage";
 import { logError, logInfo } from "@/lib/log/server";
+
+export { isFirebaseAdminConfigured } from "./admin-env";
 
 let cachedApp: App | null = null;
 let initLogged = false;
 
-/** True when service-account env vars are set (build + runtime). */
-export function isFirebaseAdminConfigured(): boolean {
-  return Boolean(
-    process.env.FIREBASE_ADMIN_PROJECT_ID?.trim() &&
-      process.env.FIREBASE_ADMIN_CLIENT_EMAIL?.trim() &&
-      process.env.FIREBASE_ADMIN_PRIVATE_KEY?.trim(),
-  );
+/** Lazy require so Workers do not load firebase-admin until first use. */
+function firebaseAppModule() {
+  return require("firebase-admin/app") as typeof import("firebase-admin/app");
+}
+
+function firebaseAuthModule() {
+  return require("firebase-admin/auth") as typeof import("firebase-admin/auth");
+}
+
+function firebaseFirestoreModule() {
+  return require("firebase-admin/firestore") as typeof import("firebase-admin/firestore");
+}
+
+function firebaseStorageModule() {
+  return require("firebase-admin/storage") as typeof import("firebase-admin/storage");
 }
 
 function getAdminApp(): App {
   if (cachedApp) return cachedApp;
+  const { cert, getApps, initializeApp } = firebaseAppModule();
   const existing = getApps()[0];
   if (existing) {
     cachedApp = existing;
@@ -78,17 +84,19 @@ export const adminAuth = new Proxy(
   {},
   {
     get(_t, prop) {
+      const { getAuth } = firebaseAuthModule();
       const real = getAuth(getAdminApp()) as unknown as Record<string, unknown>;
       const value = real[prop as string];
       return typeof value === "function" ? value.bind(real) : value;
     },
   },
-) as ReturnType<typeof getAuth>;
+) as Auth;
 
 export const adminDb = new Proxy(
   {},
   {
     get(_t, prop) {
+      const { getFirestore } = firebaseFirestoreModule();
       const real = getFirestore(getAdminApp()) as unknown as Record<
         string,
         unknown
@@ -97,18 +105,16 @@ export const adminDb = new Proxy(
       return typeof value === "function" ? value.bind(real) : value;
     },
   },
-) as ReturnType<typeof getFirestore>;
+) as Firestore;
 
 /**
- * @deprecated Firebase Storage requires Blaze on new projects. This project
- * now uses Cloudinary for media (see `app/api/admin/upload/route.ts`). The
- * export is kept for backwards compatibility; calling it will throw unless
- * you've upgraded to Blaze and re-enabled Storage.
+ * @deprecated Firebase Storage requires Blaze on new projects.
  */
 export const adminStorage = new Proxy(
   {},
   {
     get(_t, prop) {
+      const { getStorage } = firebaseStorageModule();
       const real = getStorage(getAdminApp()) as unknown as Record<
         string,
         unknown
@@ -117,4 +123,4 @@ export const adminStorage = new Proxy(
       return typeof value === "function" ? value.bind(real) : value;
     },
   },
-) as ReturnType<typeof getStorage>;
+) as Storage;

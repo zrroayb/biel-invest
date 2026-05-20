@@ -8,7 +8,8 @@ import {
   buildDefaultSiteContentFromMessages,
   mergeSiteContent,
 } from "@/lib/site-content/defaults";
-import { adminDb, isFirebaseAdminConfigured } from "@/lib/firebase/admin";
+import { adminDb } from "@/lib/firebase/admin";
+import { isFirebaseAdminConfigured } from "@/lib/firebase/admin-env";
 import { logError, logInfo, logWarn } from "@/lib/log/server";
 import type { SiteContentV1 } from "@/types/site-content";
 
