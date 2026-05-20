@@ -1,7 +1,7 @@
 import "server-only";
 
-import { unstable_cache } from "next/cache";
-import { revalidateTag } from "next/cache";
+import { unstable_cache, revalidateTag } from "next/cache";
+import { useNextDataCache } from "@/lib/cache-policy";
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
 
 import { deepMerge } from "@/lib/merge-messages";
@@ -86,6 +86,7 @@ const fetchMergedForLocaleWithCache = unstable_cache(
  * `public_site_copy`). Use `revalidateTag(PUBLIC_MESSAGES_CACHE_TAG)`.
  */
 export function getMergedMessagesForLocaleCached(locale: string) {
+  if (!useNextDataCache()) return fetchMergedForLocale(locale);
   return fetchMergedForLocaleWithCache(locale);
 }
 

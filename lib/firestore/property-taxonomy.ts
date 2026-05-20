@@ -1,7 +1,7 @@
 import "server-only";
 
-import { unstable_cache } from "next/cache";
-import { revalidateTag } from "next/cache";
+import { unstable_cache, revalidateTag } from "next/cache";
+import { useNextDataCache } from "@/lib/cache-policy";
 import { FieldValue, Timestamp } from "firebase-admin/firestore";
 import { z } from "zod";
 import { adminDb } from "@/lib/firebase/admin";
@@ -91,11 +91,16 @@ const fetchMergedTaxonomy = async (): Promise<PropertyTaxonomyV1> => {
   }
 };
 
-export const getMergedPropertyTaxonomy = unstable_cache(
+const getMergedPropertyTaxonomyCached = unstable_cache(
   async () => fetchMergedTaxonomy(),
   [PUBLIC_MESSAGES_CACHE_TAG, "property-taxonomy", "v1"],
   { revalidate: 60, tags: [PUBLIC_MESSAGES_CACHE_TAG] },
 );
+
+export function getMergedPropertyTaxonomy(): Promise<PropertyTaxonomyV1> {
+  if (!useNextDataCache()) return fetchMergedTaxonomy();
+  return getMergedPropertyTaxonomyCached();
+}
 
 export function getRegionAndFeatureIdLists(
   tax: PropertyTaxonomyV1,

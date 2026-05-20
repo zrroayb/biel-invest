@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
+import { useNextDataCache } from "@/lib/cache-policy";
 import { isFirebaseAdminConfigured } from "@/lib/firebase/admin-env";
 
 export const dynamic = "force-dynamic";
 
-/** Public diagnostics (no secrets). Does not import firebase-admin. */
-export async function GET() {
+/** Public diagnostics (no secrets). Does not import firebase-admin unless `?deep=1`. */
+export async function GET(request: Request) {
   try {
-    const body = {
+    const deep = new URL(request.url).searchParams.get("deep") === "1";
+    const body: Record<string, unknown> = {
       ok: true,
       ts: new Date().toISOString(),
       firebaseConfigured: isFirebaseAdminConfigured(),
@@ -14,7 +16,21 @@ export async function GET() {
       node: process.version,
       nextRuntime: process.env.NEXT_RUNTIME ?? null,
       cfPages: process.env.CF_PAGES === "1",
+      nextDataCache: useNextDataCache(),
     };
+
+    if (deep && isFirebaseAdminConfigured()) {
+      try {
+        const { adminDb } = await import("@/lib/firebase/admin");
+        const snap = await adminDb.doc("config/property_taxonomy").get();
+        body.firestoreOk = true;
+        body.firestoreDocExists = snap.exists;
+      } catch (err) {
+        body.firestoreOk = false;
+        body.firestoreError =
+          err instanceof Error ? err.message : String(err);
+      }
+    }
     console.log(`[bodrum] ${JSON.stringify({ level: "info", scope: "health", event: "ping", ...body })}`);
     return NextResponse.json(body);
   } catch (err) {
