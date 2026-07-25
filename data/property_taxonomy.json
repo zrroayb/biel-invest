@@ -1,0 +1,772 @@
+{
+  "version": 1,
+  "regions": [
+    {
+      "id": "yalikavak",
+      "labels": {
+        "tr": "Yalıkavak",
+        "en": "Yalıkavak",
+        "de": "Yalıkavak",
+        "ru": "Yalıkavak"
+      }
+    },
+    {
+      "id": "turkbuku",
+      "labels": {
+        "tr": "Türkbükü",
+        "en": "Türkbükü",
+        "de": "Türkbükü",
+        "ru": "Türkbükü"
+      }
+    },
+    {
+      "id": "gumusluk",
+      "labels": {
+        "tr": "Gümüşlük",
+        "en": "Gümüşlük",
+        "de": "Gümüşlük",
+        "ru": "Gümüşlük"
+      }
+    },
+    {
+      "id": "golturkbuku",
+      "labels": {
+        "tr": "Göltürkbükü",
+        "en": "Göltürkbükü",
+        "de": "Göltürkbükü",
+        "ru": "Göltürkbükü"
+      }
+    },
+    {
+      "id": "yali",
+      "labels": {
+        "tr": "Yalı",
+        "en": "Yalı",
+        "de": "Yalı",
+        "ru": "Yalı"
+      }
+    },
+    {
+      "id": "bodrum_merkez",
+      "labels": {
+        "tr": "Bodrum Merkez",
+        "en": "Bodrum Merkez",
+        "de": "Bodrum Merkez",
+        "ru": "Bodrum Merkez"
+      }
+    },
+    {
+      "id": "gundogan",
+      "labels": {
+        "tr": "Gündoğan",
+        "en": "Gündoğan",
+        "de": "Gündoğan",
+        "ru": "Gündoğan"
+      }
+    },
+    {
+      "id": "torba",
+      "labels": {
+        "tr": "Torba",
+        "en": "Torba",
+        "de": "Torba",
+        "ru": "Torba"
+      }
+    },
+    {
+      "id": "kemikler",
+      "labels": {
+        "tr": "Kemikler",
+        "en": "Kemikler",
+        "de": "Kemikler",
+        "ru": "Kemikler"
+      }
+    },
+    {
+      "id": "turgutreis",
+      "labels": {
+        "tr": "Turgutreis",
+        "en": "Turgutreis",
+        "de": "Turgutreis",
+        "ru": "Turgutreis"
+      }
+    },
+    {
+      "id": "gulluk",
+      "labels": {
+        "tr": "Güllük",
+        "en": "Güllük",
+        "de": "Güllük",
+        "ru": "Güllük"
+      }
+    },
+    {
+      "id": "bogazici",
+      "labels": {
+        "tr": "Boğaziçi",
+        "en": "Boğaziçi",
+        "de": "Boğaziçi",
+        "ru": "Boğaziçi"
+      }
+    },
+    {
+      "id": "konacik",
+      "labels": {
+        "tr": "Konacık",
+        "en": "Konacık",
+        "de": "Konacık",
+        "ru": "Konacık"
+      }
+    },
+    {
+      "id": "gumbet",
+      "labels": {
+        "tr": "Gümbet",
+        "en": "Gümbet",
+        "de": "Gümbet",
+        "ru": "Gümbet"
+      }
+    },
+    {
+      "id": "guvercinlik",
+      "labels": {
+        "tr": "Güvercinlik",
+        "en": "Güvercinlik",
+        "de": "Güvercinlik",
+        "ru": "Güvercinlik"
+      }
+    },
+    {
+      "id": "mumcular",
+      "labels": {
+        "tr": "Mumcular",
+        "en": "Mumcular",
+        "de": "Mumcular",
+        "ru": "Mumcular"
+      }
+    },
+    {
+      "id": "dorttepe",
+      "labels": {
+        "tr": "Dörttepe",
+        "en": "Dörttepe",
+        "de": "Dörttepe",
+        "ru": "Dörttepe"
+      }
+    },
+    {
+      "id": "gokturk",
+      "labels": {
+        "tr": "Göktürk",
+        "en": "Göktürk",
+        "de": "Göktürk",
+        "ru": "Göktürk"
+      }
+    },
+    {
+      "id": "kadikoy",
+      "labels": {
+        "tr": "Kadıköy",
+        "en": "Kadıköy",
+        "de": "Kadıköy",
+        "ru": "Kadıköy"
+      }
+    },
+    {
+      "id": "uskudar",
+      "labels": {
+        "tr": "Üsküdar",
+        "en": "Üsküdar",
+        "de": "Üsküdar",
+        "ru": "Üsküdar"
+      }
+    },
+    {
+      "id": "esenyurt",
+      "labels": {
+        "tr": "Esenyurt",
+        "en": "Esenyurt",
+        "de": "Esenyurt",
+        "ru": "Esenyurt"
+      }
+    },
+    {
+      "id": "kartal",
+      "labels": {
+        "tr": "Kartal",
+        "en": "Kartal",
+        "de": "Kartal",
+        "ru": "Kartal"
+      }
+    },
+    {
+      "id": "bahcesehir",
+      "labels": {
+        "tr": "Bahçeşehir",
+        "en": "Bahçeşehir",
+        "de": "Bahçeşehir",
+        "ru": "Bahçeşehir"
+      }
+    },
+    {
+      "id": "beylikduzu",
+      "labels": {
+        "tr": "Beylikdüzü",
+        "en": "Beylikdüzü",
+        "de": "Beylikdüzü",
+        "ru": "Beylikdüzü"
+      }
+    },
+    {
+      "id": "zeytinburnu",
+      "labels": {
+        "tr": "Zeytinburnu",
+        "en": "Zeytinburnu",
+        "de": "Zeytinburnu",
+        "ru": "Zeytinburnu"
+      }
+    },
+    {
+      "id": "pendik",
+      "labels": {
+        "tr": "Pendik",
+        "en": "Pendik",
+        "de": "Pendik",
+        "ru": "Pendik"
+      }
+    },
+    {
+      "id": "atasehir",
+      "labels": {
+        "tr": "Ataşehir",
+        "en": "Ataşehir",
+        "de": "Ataşehir",
+        "ru": "Ataşehir"
+      }
+    },
+    {
+      "id": "karpaz",
+      "labels": {
+        "tr": "Karpaz",
+        "en": "Karpaz",
+        "de": "Karpaz",
+        "ru": "Karpaz"
+      }
+    },
+    {
+      "id": "lefke",
+      "labels": {
+        "tr": "Lefke",
+        "en": "Lefke",
+        "de": "Lefke",
+        "ru": "Lefke"
+      }
+    },
+    {
+      "id": "besiktas",
+      "labels": {
+        "tr": "Beşiktaş",
+        "en": "Beşiktaş",
+        "de": "Beşiktaş",
+        "ru": "Beşiktaş"
+      }
+    },
+    {
+      "id": "k_cekmece",
+      "labels": {
+        "tr": "K.Çekmece",
+        "en": "K.Çekmece",
+        "de": "K.Çekmece",
+        "ru": "K.Çekmece"
+      }
+    },
+    {
+      "id": "basaksehir",
+      "labels": {
+        "tr": "Başakşehir",
+        "en": "Başakşehir",
+        "de": "Başakşehir",
+        "ru": "Başakşehir"
+      }
+    },
+    {
+      "id": "esentepe",
+      "labels": {
+        "tr": "Esentepe",
+        "en": "Esentepe",
+        "de": "Esentepe",
+        "ru": "Esentepe"
+      }
+    },
+    {
+      "id": "avcilar",
+      "labels": {
+        "tr": "Avcılar",
+        "en": "Avcılar",
+        "de": "Avcılar",
+        "ru": "Avcılar"
+      }
+    },
+    {
+      "id": "bahceli",
+      "labels": {
+        "tr": "Bahçeli",
+        "en": "Bahçeli",
+        "de": "Bahçeli",
+        "ru": "Bahçeli"
+      }
+    },
+    {
+      "id": "b_cekmece",
+      "labels": {
+        "tr": "B.Çekmece",
+        "en": "B.Çekmece",
+        "de": "B.Çekmece",
+        "ru": "B.Çekmece"
+      }
+    },
+    {
+      "id": "sisli",
+      "labels": {
+        "tr": "Şişli",
+        "en": "Şişli",
+        "de": "Şişli",
+        "ru": "Şişli"
+      }
+    },
+    {
+      "id": "bakirkoy",
+      "labels": {
+        "tr": "Bakırköy",
+        "en": "Bakırköy",
+        "de": "Bakırköy",
+        "ru": "Bakırköy"
+      }
+    },
+    {
+      "id": "kagithane",
+      "labels": {
+        "tr": "Kağıthane",
+        "en": "Kağıthane",
+        "de": "Kağıthane",
+        "ru": "Kağıthane"
+      }
+    },
+    {
+      "id": "bahcelievler",
+      "labels": {
+        "tr": "Bahçelievler",
+        "en": "Bahçelievler",
+        "de": "Bahçelievler",
+        "ru": "Bahçelievler"
+      }
+    },
+    {
+      "id": "golkoy",
+      "labels": {
+        "tr": "Gölköy",
+        "en": "Gölköy",
+        "de": "Gölköy",
+        "ru": "Gölköy"
+      }
+    },
+    {
+      "id": "kizilagac",
+      "labels": {
+        "tr": "Kızılağaç",
+        "en": "Kızılağaç",
+        "de": "Kızılağaç",
+        "ru": "Kızılağaç"
+      }
+    },
+    {
+      "id": "bitez",
+      "labels": {
+        "tr": "Bitez",
+        "en": "Bitez",
+        "de": "Bitez",
+        "ru": "Bitez"
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "nature_view",
+      "labels": {
+        "tr": "Doğa manzarası",
+        "en": "Nature view",
+        "de": "Naturblick",
+        "ru": "Вид на природу"
+      }
+    },
+    {
+      "id": "private_pool",
+      "labels": {
+        "tr": "Özel havuz",
+        "en": "Private pool",
+        "de": "Privatpool",
+        "ru": "Собственный бассейн"
+      }
+    },
+    {
+      "id": "separate_entrance_parking",
+      "labels": {
+        "tr": "Müstakil girişli otopark",
+        "en": "Parking with private entrance",
+        "de": "Parkplatz mit separatem Eingang",
+        "ru": "Парковка с отдельным въездом"
+      }
+    },
+    {
+      "id": "fireplace",
+      "labels": {
+        "tr": "Şömine",
+        "en": "Fireplace",
+        "de": "Kamin",
+        "ru": "Камин"
+      }
+    },
+    {
+      "id": "security",
+      "labels": {
+        "tr": "Güvenlik",
+        "en": "Security",
+        "de": "Sicherheit",
+        "ru": "Охрана"
+      }
+    },
+    {
+      "id": "children_pool",
+      "labels": {
+        "tr": "Çocuk havuzu",
+        "en": "Children's pool",
+        "de": "Kinderbecken",
+        "ru": "Детский бассейн"
+      }
+    },
+    {
+      "id": "tv_system",
+      "labels": {
+        "tr": "TV sistemi",
+        "en": "TV system",
+        "de": "TV-System",
+        "ru": "ТВ-система"
+      }
+    },
+    {
+      "id": "internet_system",
+      "labels": {
+        "tr": "İnternet altyapısı",
+        "en": "Internet infrastructure",
+        "de": "Internet-Infrastruktur",
+        "ru": "Интернет-инфраструктура"
+      }
+    },
+    {
+      "id": "walking_path",
+      "labels": {
+        "tr": "Yürüyüş yolu",
+        "en": "Walking path",
+        "de": "Spazierweg",
+        "ru": "Пешеходная дорожка"
+      }
+    },
+    {
+      "id": "gazebo",
+      "labels": {
+        "tr": "Kameriye",
+        "en": "Gazebo",
+        "de": "Pavillon",
+        "ru": "Беседка"
+      }
+    },
+    {
+      "id": "bbq_area",
+      "labels": {
+        "tr": "Barbekü alanı",
+        "en": "BBQ area",
+        "de": "Grillbereich",
+        "ru": "Зона барбекю"
+      }
+    },
+    {
+      "id": "fitness_center",
+      "labels": {
+        "tr": "Fitness merkezi",
+        "en": "Fitness center",
+        "de": "Fitnesscenter",
+        "ru": "Фитнес-центр"
+      }
+    },
+    {
+      "id": "open_parking",
+      "labels": {
+        "tr": "Açık otopark",
+        "en": "Open parking",
+        "de": "Freies Parken",
+        "ru": "Открытая парковка"
+      }
+    },
+    {
+      "id": "generator",
+      "labels": {
+        "tr": "Jeneratör",
+        "en": "Generator",
+        "de": "Generator",
+        "ru": "Генератор"
+      }
+    },
+    {
+      "id": "garden",
+      "labels": {
+        "tr": "Bahçe",
+        "en": "Garden",
+        "de": "Garten",
+        "ru": "Сад"
+      }
+    },
+    {
+      "id": "camera_system",
+      "labels": {
+        "tr": "Kamera sistemi",
+        "en": "CCTV system",
+        "de": "Kamerasystem",
+        "ru": "Система видеонаблюдения"
+      }
+    },
+    {
+      "id": "children_playground",
+      "labels": {
+        "tr": "Çocuk oyun alanı",
+        "en": "Children's playground",
+        "de": "Kinderspielplatz",
+        "ru": "Детская площадка"
+      }
+    },
+    {
+      "id": "tennis_court",
+      "labels": {
+        "tr": "Tenis kortu",
+        "en": "Tennis court",
+        "de": "Tennisplatz",
+        "ru": "Теннисный корт"
+      }
+    },
+    {
+      "id": "football_basketball_field",
+      "labels": {
+        "tr": "Futbol/basketbol sahası",
+        "en": "Football/basketball court",
+        "de": "Fußball-/Basketballplatz",
+        "ru": "Футбольная/баскетбольная площадка"
+      }
+    },
+    {
+      "id": "restorant_bar",
+      "labels": {
+        "tr": "Restoran & bar",
+        "en": "Restaurant & bar",
+        "de": "Restaurant & Bar",
+        "ru": "Ресторан и бар"
+      }
+    },
+    {
+      "id": "market",
+      "labels": {
+        "tr": "Market",
+        "en": "Market",
+        "de": "Markt",
+        "ru": "Магазин"
+      }
+    },
+    {
+      "id": "sea_view",
+      "labels": {
+        "tr": "Deniz manzarası",
+        "en": "Sea view",
+        "de": "Meerblick",
+        "ru": "Вид на море"
+      }
+    },
+    {
+      "id": "underfloor_heating",
+      "labels": {
+        "tr": "Yerden ısıtma",
+        "en": "Underfloor heating",
+        "de": "Fußbodenheizung",
+        "ru": "Тёплый пол"
+      }
+    },
+    {
+      "id": "vrf_system",
+      "labels": {
+        "tr": "VRF klima sistemi",
+        "en": "VRF climate system",
+        "de": "VRF-Klimasystem",
+        "ru": "VRF-климат-система"
+      }
+    },
+    {
+      "id": "smart_home_system",
+      "labels": {
+        "tr": "Akıllı ev sistemi",
+        "en": "Smart home system",
+        "de": "Smart-Home-System",
+        "ru": "Система умного дома"
+      }
+    },
+    {
+      "id": "water_tank",
+      "labels": {
+        "tr": "Su deposu",
+        "en": "Water tank",
+        "de": "Wassertank",
+        "ru": "Резервуар для воды"
+      }
+    },
+    {
+      "id": "shuttle_buggy_service",
+      "labels": {
+        "tr": "Buggy/servis",
+        "en": "Buggy/shuttle service",
+        "de": "Buggy-/Shuttle-Service",
+        "ru": "Багги/трансфер"
+      }
+    },
+    {
+      "id": "private_plaj",
+      "labels": {
+        "tr": "Özel plaj",
+        "en": "Private beach",
+        "de": "Privatstrand",
+        "ru": "Частный пляж"
+      }
+    },
+    {
+      "id": "complex_boutique",
+      "labels": {
+        "tr": "Butik site",
+        "en": "Boutique complex",
+        "de": "Boutique-Anlage",
+        "ru": "Бутик-комплекс"
+      }
+    },
+    {
+      "id": "gol",
+      "labels": {
+        "tr": "Göl",
+        "en": "Lake",
+        "de": "See",
+        "ru": "Озеро"
+      }
+    },
+    {
+      "id": "sauna",
+      "labels": {
+        "tr": "Sauna",
+        "en": "Sauna",
+        "de": "Sauna",
+        "ru": "Сауна"
+      }
+    },
+    {
+      "id": "jacuzzi",
+      "labels": {
+        "tr": "Jakuzi",
+        "en": "Jacuzzi",
+        "de": "Whirlpool",
+        "ru": "Джакузи"
+      }
+    },
+    {
+      "id": "spa",
+      "labels": {
+        "tr": "Spa",
+        "en": "Spa",
+        "de": "Spa",
+        "ru": "Спа"
+      }
+    },
+    {
+      "id": "steam_room",
+      "labels": {
+        "tr": "Buhar odası",
+        "en": "Steam room",
+        "de": "Dampfbad",
+        "ru": "Парная"
+      }
+    },
+    {
+      "id": "indoor_parking",
+      "labels": {
+        "tr": "Kapalı otopark",
+        "en": "Indoor parking",
+        "de": "Tiefgarage",
+        "ru": "Крытая парковка"
+      }
+    },
+    {
+      "id": "turkish_bath",
+      "labels": {
+        "tr": "Türk hamamı",
+        "en": "Turkish bath (hammam)",
+        "de": "Türkisches Bad (Hamam)",
+        "ru": "Турецкая баня (хаммам)"
+      }
+    },
+    {
+      "id": "game_room",
+      "labels": {
+        "tr": "Oyun odası",
+        "en": "Game room",
+        "de": "Spielzimmer",
+        "ru": "Игровая комната"
+      }
+    },
+    {
+      "id": "indoor_pool",
+      "labels": {
+        "tr": "Kapalı havuz",
+        "en": "Indoor pool",
+        "de": "Hallenbad",
+        "ru": "Крытый бассейн"
+      }
+    },
+    {
+      "id": "shared_pool",
+      "labels": {
+        "tr": "Ortak havuz",
+        "en": "Shared pool",
+        "de": "Gemeinschaftspool",
+        "ru": "Общий бассейн"
+      }
+    },
+    {
+      "id": "laundry_room",
+      "labels": {
+        "tr": "Çamaşır odası",
+        "en": "Laundry room",
+        "de": "Waschraum",
+        "ru": "Прачечная"
+      }
+    },
+    {
+      "id": "massage_room",
+      "labels": {
+        "tr": "Masaj odası",
+        "en": "Massage room",
+        "de": "Massageraum",
+        "ru": "Массажный кабинет"
+      }
+    },
+    {
+      "id": "cinema",
+      "labels": {
+        "tr": "Sinema",
+        "en": "Cinema",
+        "de": "Kino",
+        "ru": "Кинозал"
+      }
+    }
+  ]
+}

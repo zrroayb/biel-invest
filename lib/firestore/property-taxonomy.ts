@@ -14,6 +14,7 @@ import {
   REGION_ID_RE,
   type PropertyTaxonomyV1,
 } from "@/types/property-taxonomy";
+import LOCAL_TAXONOMY from "@/data/property_taxonomy.json";
 
 const DOC_PATH = "config/property_taxonomy" as const;
 
@@ -62,6 +63,14 @@ function docToTaxonomy(
 const fetchMergedTaxonomy = async (): Promise<PropertyTaxonomyV1> => {
   const fallback = await buildDefaultPropertyTaxonomy();
   if (!isFirebaseAdminConfigured()) {
+    const local = LOCAL_TAXONOMY as PropertyTaxonomyV1;
+    if (local?.regions?.length && local?.features?.length) {
+      logInfo("taxonomy", "from_local_repo", {
+        regionCount: local.regions.length,
+        featureCount: local.features.length,
+      });
+      return local;
+    }
     logWarn("taxonomy", "skip_firestore_no_env", {
       regionCount: fallback.regions.length,
       featureCount: fallback.features.length,

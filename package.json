@@ -21,7 +21,8 @@
     "create-admin": "tsx scripts/create-admin.ts",
     "firebase:deploy:rules": "firebase deploy --only firestore:rules,firestore:indexes",
     "firebase:deploy": "firebase deploy --only firestore:rules,firestore:indexes",
-    "emulators": "firebase emulators:start"
+    "emulators": "firebase emulators:start",
+    "import:bielinvest": "tsx scripts/import-bielinvest.ts"
   },
   "dependencies": {
     "cloudinary": "^2.9.0",

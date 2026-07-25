@@ -3,6 +3,10 @@ import { adminDb } from "@/lib/firebase/admin";
 import { isFirebaseAdminConfigured } from "@/lib/firebase/admin-env";
 import { logError, logInfo, logWarn } from "@/lib/log/server";
 import type { Property, PropertyInput } from "@/types/property";
+import {
+  listLocalProperties,
+  getLocalPropertyBySlug,
+} from "@/lib/local-data/properties";
 import { Timestamp } from "firebase-admin/firestore";
 
 const COLLECTION = "properties";
@@ -55,8 +59,8 @@ export async function listProperties(
 ): Promise<Property[]> {
   const limit = params.limit ?? 120;
   if (!isFirebaseAdminConfigured()) {
-    logWarn("properties", "list_skipped_no_env", { limit });
-    return [];
+    logInfo("properties", "list_from_local_repo", { limit });
+    return listLocalProperties(params);
   }
   try {
     logInfo("properties", "list_start", {
@@ -114,8 +118,8 @@ export async function getPropertyBySlug(
   slug: string,
 ): Promise<Property | null> {
   if (!isFirebaseAdminConfigured()) {
-    logWarn("properties", "get_by_slug_skipped_no_env", { slug });
-    return null;
+    logInfo("properties", "get_by_slug_from_local_repo", { slug });
+    return getLocalPropertyBySlug(slug);
   }
   try {
     logInfo("properties", "get_by_slug_start", { slug });
