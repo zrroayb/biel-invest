@@ -14,7 +14,18 @@ export default function middleware(request: NextRequest) {
     const isLoginRoute = subPath.startsWith("login");
     const session = request.cookies.get("__session")?.value;
 
-    if (!session && !isLoginRoute) {
+    // Yerel/demo modu: Firebase yapılandırılmadıysa VE production değilsek admin
+    // panele giriş olmadan izin ver (repo verisini önizlemek için). Canlıda
+    // (production) bu bypass devre dışıdır; müşteri verisi asla açığa çıkmaz.
+    const firebaseConfigured = Boolean(
+      process.env.FIREBASE_ADMIN_PROJECT_ID &&
+        process.env.FIREBASE_ADMIN_CLIENT_EMAIL &&
+        process.env.FIREBASE_ADMIN_PRIVATE_KEY,
+    );
+    const localPreview =
+      !firebaseConfigured && process.env.NODE_ENV !== "production";
+
+    if (!session && !isLoginRoute && !localPreview) {
       const locale = adminMatch[1] ?? routing.defaultLocale;
       const loginUrl = new URL(
         locale === routing.defaultLocale
