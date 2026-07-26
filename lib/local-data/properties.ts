@@ -5,6 +5,7 @@ import "server-only";
  */
 import type { Property } from "@/types/property";
 import type { ListPropertiesParams } from "@/lib/firestore/properties";
+import { areaForRegion } from "@/lib/property-taxonomy/region-areas";
 import LOCAL from "@/data/properties.local.json";
 
 const ALL = LOCAL as unknown as Property[];
@@ -15,6 +16,8 @@ export function listLocalProperties(params: ListPropertiesParams = {}): Property
   if (params.status) items = items.filter((p) => p.status === params.status);
   if (params.type) items = items.filter((p) => p.type === params.type);
   if (params.region) items = items.filter((p) => p.region === params.region);
+  if (params.area)
+    items = items.filter((p) => areaForRegion(p.region) === params.area);
   if (params.featured) items = items.filter((p) => p.featured);
   if (params.priceMin != null)
     items = items.filter((p) => p.price >= params.priceMin!);

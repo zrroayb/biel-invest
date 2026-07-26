@@ -5,8 +5,12 @@ import { FeaturedProperties } from "@/components/home/featured-properties";
 import { Regions } from "@/components/home/regions";
 import { AboutSnippet } from "@/components/home/about-snippet";
 import { HomeJsonLd } from "@/components/seo/home-json-ld";
-import { getMergedPropertyTaxonomy } from "@/lib/firestore/property-taxonomy";
 import { regionTileImage } from "@/lib/property-taxonomy/region-fallback-images";
+import {
+  listAreas,
+  areaForRegion,
+  areaLabel,
+} from "@/lib/property-taxonomy/region-areas";
 import { listProperties } from "@/lib/firestore/properties";
 import { buildPublicPageMetadata } from "@/lib/seo/page-meta";
 import { logError, logInfo } from "@/lib/log/server";
@@ -48,16 +52,44 @@ export default async function HomePage({
   logInfo("home", "render_start", { locale });
 
   const featured = await safeList();
-  const tax = await getMergedPropertyTaxonomy();
+
+  // Bölgeleri alanlara (Bodrum / İstanbul / Kuzey Kıbrıs) göre gruplayıp
+  // her alan için temsili kapak görseli ve ilan sayısı ile kare üret.
+  let all: Property[] = [];
+  try {
+    all = await listProperties({ limit: 1000 });
+  } catch {
+    all = [];
+  }
+  const PROP_WORD: Record<string, string> = {
+    tr: "mülk",
+    en: "properties",
+    de: "Immobilien",
+    ru: "объектов",
+  };
+  const word = PROP_WORD[locale] ?? PROP_WORD.tr;
+  const areaTiles = listAreas()
+    .map((area) => {
+      const inArea = all.filter((p) => areaForRegion(p.region) === area.id);
+      if (inArea.length === 0) return null;
+      const cover =
+        inArea.find((p) => p.featured && p.media.cover)?.media.cover ??
+        inArea.find((p) => p.media.cover)?.media.cover ??
+        regionTileImage({ id: area.id, labels: {} });
+      return {
+        id: area.id,
+        imageUrl: cover,
+        title: areaLabel(area, locale),
+        subtitle: `${inArea.length} ${word}`,
+      };
+    })
+    .filter((t): t is NonNullable<typeof t> => t !== null);
+
   logInfo("home", "render_data", {
     locale,
     featuredCount: featured.length,
-    regionTiles: tax.regions.length,
+    areaTiles: areaTiles.length,
   });
-  const regionTiles = tax.regions.map((r) => ({
-    id: r.id,
-    imageUrl: regionTileImage(r),
-  }));
 
   return (
     <>
@@ -65,7 +97,7 @@ export default async function HomePage({
       <Hero />
       <FeaturedProperties items={featured} />
       <AboutSnippet />
-      <Regions tiles={regionTiles} />
+      <Regions tiles={areaTiles} />
     </>
   );
 }

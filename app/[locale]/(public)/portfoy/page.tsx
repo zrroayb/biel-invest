@@ -35,6 +35,7 @@ async function safeList(params: {
   type?: string;
   status?: string;
   region?: string;
+  area?: string;
   priceMin?: number;
   priceMax?: number;
   bedrooms?: number;
@@ -71,6 +72,7 @@ export default async function PortfolioPage({
     type: typeof sp.type === "string" ? sp.type : undefined,
     status: typeof sp.status === "string" ? sp.status : undefined,
     region: typeof sp.region === "string" ? sp.region : undefined,
+    area: typeof sp.area === "string" ? sp.area : undefined,
     priceMin: sp.priceMin ? Number(sp.priceMin) : undefined,
     priceMax: sp.priceMax ? Number(sp.priceMax) : undefined,
     bedrooms: sp.bedrooms ? Number(sp.bedrooms) : undefined,
@@ -94,7 +96,7 @@ export default async function PortfolioPage({
       <section className="border-b border-ivory-300 bg-ivory">
         <div className="container py-16 md:py-24">
           {/* No Reveal here: above-the-fold title must be visible without scrolling / IO delay */}
-          <div className="eyebrow">Bodrum · Ege</div>
+          <div className="eyebrow">Bodrum · İstanbul · Kuzey Kıbrıs</div>
           <h1 className="mt-3 font-display text-display-lg text-ink">
             {t("title")}
           </h1>

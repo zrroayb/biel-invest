@@ -1,0 +1,76 @@
+{
+  "areas": [
+    {
+      "id": "bodrum",
+      "labels": {
+        "tr": "Bodrum",
+        "en": "Bodrum",
+        "de": "Bodrum",
+        "ru": "Бодрум"
+      }
+    },
+    {
+      "id": "istanbul",
+      "labels": {
+        "tr": "İstanbul",
+        "en": "Istanbul",
+        "de": "Istanbul",
+        "ru": "Стамбул"
+      }
+    },
+    {
+      "id": "kuzey_kibris",
+      "labels": {
+        "tr": "Kuzey Kıbrıs",
+        "en": "Northern Cyprus",
+        "de": "Nordzypern",
+        "ru": "Северный Кипр"
+      }
+    }
+  ],
+  "regionToArea": {
+    "yalikavak": "bodrum",
+    "turkbuku": "bodrum",
+    "gumusluk": "bodrum",
+    "golturkbuku": "bodrum",
+    "yali": "bodrum",
+    "bodrum_merkez": "bodrum",
+    "gundogan": "bodrum",
+    "torba": "bodrum",
+    "kemikler": "bodrum",
+    "turgutreis": "bodrum",
+    "gulluk": "bodrum",
+    "bogazici": "bodrum",
+    "konacik": "bodrum",
+    "gumbet": "bodrum",
+    "guvercinlik": "bodrum",
+    "mumcular": "bodrum",
+    "dorttepe": "bodrum",
+    "gokturk": "istanbul",
+    "kadikoy": "istanbul",
+    "uskudar": "istanbul",
+    "esenyurt": "istanbul",
+    "kartal": "istanbul",
+    "bahcesehir": "istanbul",
+    "beylikduzu": "istanbul",
+    "zeytinburnu": "istanbul",
+    "pendik": "istanbul",
+    "atasehir": "istanbul",
+    "karpaz": "kuzey_kibris",
+    "lefke": "kuzey_kibris",
+    "besiktas": "istanbul",
+    "k_cekmece": "istanbul",
+    "basaksehir": "istanbul",
+    "esentepe": "kuzey_kibris",
+    "avcilar": "istanbul",
+    "bahceli": "kuzey_kibris",
+    "b_cekmece": "istanbul",
+    "sisli": "istanbul",
+    "bakirkoy": "istanbul",
+    "kagithane": "istanbul",
+    "bahcelievler": "istanbul",
+    "golkoy": "bodrum",
+    "kizilagac": "bodrum",
+    "bitez": "bodrum"
+  }
+}

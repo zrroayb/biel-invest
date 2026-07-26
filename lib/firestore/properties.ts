@@ -7,6 +7,7 @@ import {
   listLocalProperties,
   getLocalPropertyBySlug,
 } from "@/lib/local-data/properties";
+import { areaForRegion } from "@/lib/property-taxonomy/region-areas";
 import { Timestamp } from "firebase-admin/firestore";
 
 const COLLECTION = "properties";
@@ -44,6 +45,7 @@ function docToProperty(
 export interface ListPropertiesParams {
   type?: string;
   region?: string;
+  area?: string;
   status?: string;
   priceMin?: number;
   priceMax?: number;
@@ -80,6 +82,8 @@ export async function listProperties(
   if (params.status) items = items.filter((p) => p.status === params.status);
   if (params.type) items = items.filter((p) => p.type === params.type);
   if (params.region) items = items.filter((p) => p.region === params.region);
+  if (params.area)
+    items = items.filter((p) => areaForRegion(p.region) === params.area);
   if (params.featured) items = items.filter((p) => p.featured);
 
   if (params.priceMin != null)
