@@ -8,6 +8,13 @@ import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState, useRef, useEffect } from "react";
 
+const FLAGS: Record<string, string> = {
+  tr: "🇹🇷",
+  en: "🇬🇧",
+  de: "🇩🇪",
+  ru: "🇷🇺",
+};
+
 export function LanguageSwitcher({
   className,
   onDarkBackground,
@@ -45,15 +52,19 @@ export function LanguageSwitcher({
         type="button"
         onClick={() => setOpen((v) => !v)}
         className={cn(
-          "inline-flex items-center gap-1 text-xs uppercase tracking-[0.18em] transition-colors",
+          "inline-flex items-center gap-1.5 rounded-xs border px-2.5 py-1.5 text-xs uppercase tracking-[0.18em] transition-colors",
           onDarkBackground
-            ? "text-ivory/75 hover:text-ivory"
-            : "text-ink-muted hover:text-ink",
+            ? "border-ivory/30 text-ivory/85 hover:border-ivory/60 hover:text-ivory"
+            : "border-ivory-300 text-ink-muted hover:border-ink hover:text-ink",
         )}
         aria-haspopup="listbox"
         aria-expanded={open}
+        aria-label={t(locale)}
         disabled={pending}
       >
+        <span className="text-base leading-none" aria-hidden>
+          {FLAGS[locale] ?? "🌐"}
+        </span>
         {locale}
         <ChevronDown className="h-3 w-3" aria-hidden />
       </button>
@@ -68,13 +79,16 @@ export function LanguageSwitcher({
                 type="button"
                 onClick={() => change(l)}
                 className={cn(
-                  "flex w-full items-center justify-between px-3 py-2 text-left text-xs transition-colors hover:bg-ivory-200",
+                  "flex w-full items-center gap-2.5 px-3 py-2.5 text-left text-xs transition-colors hover:bg-ivory-200",
                   l === locale
                     ? "text-ink font-medium"
                     : "text-ink-muted",
                 )}
               >
-                {t(l)}
+                <span className="text-base leading-none" aria-hidden>
+                  {FLAGS[l] ?? "🌐"}
+                </span>
+                <span className="flex-1">{t(l)}</span>
                 <span className="text-[10px] uppercase opacity-60">{l}</span>
               </button>
             </li>
