@@ -40,7 +40,7 @@ export function Footer() {
                 <Phone className="h-4 w-4" />
               </a>
               <a
-                href="https://instagram.com"
+                href="https://instagram.com/bielinvest.tr"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex h-9 w-9 items-center justify-center rounded-xs border border-ivory-300 text-ink-muted transition-colors hover:border-ink hover:text-ink"
