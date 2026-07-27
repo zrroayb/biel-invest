@@ -8,12 +8,21 @@ import {
   getLocalPropertyBySlug,
 } from "@/lib/local-data/properties";
 import { areaForRegion } from "@/lib/property-taxonomy/region-areas";
-import { Timestamp } from "firebase-admin/firestore";
 
 const COLLECTION = "properties";
 
+/**
+ * Lazy: firebase-admin'i modül yükleme anında import ETME. ESM importu Cloudflare
+ * Workers'da protobufjs codegen'i (new Function) tetikleyip "Code generation from
+ * strings disallowed" hatası veriyor. require() ile ilk kullanımda (yalnızca
+ * Firebase yapılandırılmışsa) yüklenir.
+ */
+function fsAdmin() {
+  return require("firebase-admin/firestore") as typeof import("firebase-admin/firestore");
+}
+
 function toIso(value: unknown): string {
-  if (value instanceof Timestamp) return value.toDate().toISOString();
+  if (value instanceof fsAdmin().Timestamp) return value.toDate().toISOString();
   if (value instanceof Date) return value.toISOString();
   if (typeof value === "string") return value;
   return new Date().toISOString();
@@ -156,7 +165,7 @@ export async function getPropertyById(
 export async function createProperty(
   input: PropertyInput,
 ): Promise<Property> {
-  const now = Timestamp.now();
+  const now = fsAdmin().Timestamp.now();
   const docRef = await adminDb.collection(COLLECTION).add({
     ...input,
     createdAt: now,
@@ -173,7 +182,7 @@ export async function updateProperty(
   const ref = adminDb.collection(COLLECTION).doc(id);
   await ref.update({
     ...input,
-    updatedAt: Timestamp.now(),
+    updatedAt: fsAdmin().Timestamp.now(),
   });
   const doc = await ref.get();
   return docToProperty(doc.id, doc.data()!);

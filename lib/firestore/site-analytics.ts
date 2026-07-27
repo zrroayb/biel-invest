@@ -1,6 +1,9 @@
 import "server-only";
 
-import { Timestamp } from "firebase-admin/firestore";
+/** Lazy firebase-admin (Workers: eager import protobufjs eval hatası — bkz. properties.ts). */
+function fsAdmin() {
+  return require("firebase-admin/firestore") as typeof import("firebase-admin/firestore");
+}
 import { adminDb } from "@/lib/firebase/admin";
 
 export type SiteAnalyticsType =
@@ -49,7 +52,7 @@ export async function appendSiteAnalyticsEvent(params: {
     country: params.country ?? null,
     region: params.region ?? null,
     city: params.city ?? null,
-    createdAt: Timestamp.now(),
+    createdAt: fsAdmin().Timestamp.now(),
   });
 }
 

@@ -1,14 +1,18 @@
 import "server-only";
 import { adminDb } from "@/lib/firebase/admin";
 import { isFirebaseAdminConfigured } from "@/lib/firebase/admin-env";
-import { Timestamp } from "firebase-admin/firestore";
 import type { Inquiry, InquiryInput, InquiryStatus } from "@/types/inquiry";
 import { listLocalInquiries } from "@/lib/local-data/inquiries";
 
 const COLLECTION = "inquiries";
 
+/** Lazy firebase-admin (Workers'da eager import protobufjs eval'i patlatır — bkz. properties.ts). */
+function fsAdmin() {
+  return require("firebase-admin/firestore") as typeof import("firebase-admin/firestore");
+}
+
 function toIso(value: unknown): string {
-  if (value instanceof Timestamp) return value.toDate().toISOString();
+  if (value instanceof fsAdmin().Timestamp) return value.toDate().toISOString();
   if (value instanceof Date) return value.toISOString();
   if (typeof value === "string") return value;
   return new Date().toISOString();
@@ -57,7 +61,7 @@ export async function createInquiry(input: InquiryInput): Promise<Inquiry> {
     phone: input.phone ?? null,
     source: "form",
     status: "new",
-    createdAt: Timestamp.now(),
+    createdAt: fsAdmin().Timestamp.now(),
   });
   const doc = await ref.get();
   return docToInquiry(doc.id, doc.data()!);

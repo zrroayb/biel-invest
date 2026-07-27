@@ -2,7 +2,10 @@ import "server-only";
 
 import { unstable_cache, revalidateTag } from "next/cache";
 import { useNextDataCache } from "@/lib/cache-policy";
-import { FieldValue, Timestamp } from "firebase-admin/firestore";
+/** Lazy firebase-admin (Workers'da eager import protobufjs eval'i patlatır — bkz. properties.ts). */
+function fsAdmin() {
+  return require("firebase-admin/firestore") as typeof import("firebase-admin/firestore");
+}
 import { z } from "zod";
 import { adminDb } from "@/lib/firebase/admin";
 import { isFirebaseAdminConfigured } from "@/lib/firebase/admin-env";
@@ -45,7 +48,7 @@ const taxonomyPutSchema = z.object({
 });
 
 function toIso(v: unknown): string | null {
-  if (v instanceof Timestamp) return v.toDate().toISOString();
+  if (v instanceof fsAdmin().Timestamp) return v.toDate().toISOString();
   if (v instanceof Date) return v.toISOString();
   if (typeof v === "string") return v;
   return null;
@@ -170,7 +173,7 @@ export async function savePropertyTaxonomy(
   await adminDb.doc(DOC_PATH).set(
     {
       ...cleaned,
-      updatedAt: FieldValue.serverTimestamp(),
+      updatedAt: fsAdmin().FieldValue.serverTimestamp(),
     },
     { merge: false },
   );

@@ -2,7 +2,11 @@ import "server-only";
 
 import { unstable_cache, revalidateTag } from "next/cache";
 import { useNextDataCache } from "@/lib/cache-policy";
-import { FieldValue, Timestamp } from "firebase-admin/firestore";
+import type { FieldValue, Timestamp } from "firebase-admin/firestore";
+/** Lazy firebase-admin (Workers: eager import protobufjs eval hatası — bkz. properties.ts). */
+function fsAdmin() {
+  return require("firebase-admin/firestore") as typeof import("firebase-admin/firestore");
+}
 
 import { deepMerge } from "@/lib/merge-messages";
 import { loadMessageFileForLocale } from "@/lib/messages/public-defaults";
@@ -99,7 +103,7 @@ export async function savePublicSiteCopy(
       en: data.en,
       de: data.de,
       ru: data.ru,
-      updatedAt: FieldValue.serverTimestamp(),
+      updatedAt: fsAdmin().FieldValue.serverTimestamp(),
     },
     { merge: true },
   );

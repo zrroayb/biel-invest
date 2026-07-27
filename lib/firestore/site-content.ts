@@ -1,6 +1,10 @@
 import "server-only";
 
-import { FieldValue, Timestamp } from "firebase-admin/firestore";
+import type { FieldValue, Timestamp } from "firebase-admin/firestore";
+/** Lazy firebase-admin (Workers: eager import protobufjs eval hatası — bkz. properties.ts). */
+function fsAdmin() {
+  return require("firebase-admin/firestore") as typeof import("firebase-admin/firestore");
+}
 import { revalidateTag } from "next/cache";
 
 import { PUBLIC_MESSAGES_CACHE_TAG } from "@/lib/cache-tags";
@@ -53,7 +57,7 @@ export async function getSiteContentForEditor(): Promise<{
   const raw = rawSnap.exists ? rawSnap.data() : null;
   const u = raw && "updatedAt" in raw ? (raw as { updatedAt?: Timestamp }).updatedAt : undefined;
   let updatedAt: string | null = null;
-  if (u instanceof Timestamp) {
+  if (u instanceof fsAdmin().Timestamp) {
     updatedAt = u.toDate().toISOString();
   } else if (u && typeof (u as { toDate: () => Date }).toDate === "function") {
     updatedAt = (u as { toDate: () => Date }).toDate().toISOString();
@@ -80,7 +84,7 @@ export async function saveSiteContent(
     {
       ...data,
       version: 1,
-      updatedAt: FieldValue.serverTimestamp(),
+      updatedAt: fsAdmin().FieldValue.serverTimestamp(),
     } as SiteContentV1 & { updatedAt: FieldValue },
     { merge: true },
   );
