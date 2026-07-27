@@ -7,7 +7,7 @@ import { absoluteUrl, toAbsoluteImageUrl } from "@/lib/seo/urls";
 import type { LocaleKey } from "@/types/property";
 import { PropertyGallery } from "@/components/property/property-gallery";
 import { VirtualTourModal } from "@/components/property/virtual-tour-modal";
-import { InquiryForm } from "@/components/property/inquiry-form";
+import { CONTACT_PHONE, CONTACT_PHONE_TEL } from "@/lib/site-contact";
 import { WhatsAppButton } from "@/components/property/whatsapp-button";
 import { FavoriteButton } from "@/components/property/favorite-button";
 import { PropertyDetailPrice } from "@/components/property/property-detail-price";
@@ -289,12 +289,19 @@ export default async function PropertyDetailPage({
           <aside className="lg:col-span-5 xl:col-span-4">
             <div className="lg:sticky lg:top-24">
               <div className="rounded-xs border border-ivory-300 bg-ivory-50 p-6">
-                <InquiryForm
-                  propertyId={property.id}
-                  propertySlug={property.slug}
-                  defaultMessage={`${tr.title} — ${t("contactAgent")}`}
-                />
-                <div className="mt-4 border-t border-ivory-300 pt-4">
+                <div className="font-display text-xl text-ink">
+                  {t("contactAgent")}
+                </div>
+                <p className="mt-1 text-sm text-ink-muted">
+                  {t("ref")}: {property.id}
+                </p>
+                <a
+                  href={`tel:${CONTACT_PHONE_TEL}`}
+                  className="mt-5 flex w-full items-center justify-center gap-2 rounded-xs bg-ink px-6 py-3 text-sm font-medium text-ivory transition-colors hover:bg-ink/90"
+                >
+                  {CONTACT_PHONE}
+                </a>
+                <div className="mt-3">
                   <WhatsAppButton
                     message={`${tr.title} · ${t("ref")}: ${property.id}`}
                     className="w-full"

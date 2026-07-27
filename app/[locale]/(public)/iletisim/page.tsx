@@ -17,9 +17,14 @@ export async function generateMetadata({
     description: t("contactDescription"),
   });
 }
-import { InquiryForm } from "@/components/property/inquiry-form";
 import { WhatsAppButton } from "@/components/property/whatsapp-button";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { MapPin, Phone } from "lucide-react";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE,
+  CONTACT_PHONE_TEL,
+} from "@/lib/site-contact";
+import { Mail } from "lucide-react";
 
 export default async function ContactPage({
   params,
@@ -30,8 +35,8 @@ export default async function ContactPage({
   setRequestLocale(locale);
   const t = await getTranslations("contact");
 
-  const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "info@example.com";
-  const phone = process.env.NEXT_PUBLIC_CONTACT_PHONE ?? "+90 252 000 00 00";
+  const email = CONTACT_EMAIL;
+  const phone = CONTACT_PHONE;
 
   return (
     <div className="pt-[72px]">
@@ -65,25 +70,27 @@ export default async function ContactPage({
                 <div>
                   <div className="eyebrow">{t("phone")}</div>
                   <a
-                    href={`tel:${phone.replace(/\s/g, "")}`}
+                    href={`tel:${CONTACT_PHONE_TEL}`}
                     className="mt-1 block text-base text-ink link-underline"
                   >
                     {phone}
                   </a>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
-                <Mail className="mt-1 h-5 w-5 text-olive" />
-                <div>
-                  <div className="eyebrow">{t("email")}</div>
-                  <a
-                    href={`mailto:${email}`}
-                    className="mt-1 block text-base text-ink link-underline"
-                  >
-                    {email}
-                  </a>
+              {email && (
+                <div className="flex items-start gap-4">
+                  <Mail className="mt-1 h-5 w-5 text-olive" />
+                  <div>
+                    <div className="eyebrow">{t("email")}</div>
+                    <a
+                      href={`mailto:${email}`}
+                      className="mt-1 block text-base text-ink link-underline"
+                    >
+                      {email}
+                    </a>
+                  </div>
                 </div>
-              </div>
+              )}
               <div className="pt-2">
                 <WhatsAppButton />
               </div>
@@ -95,8 +102,15 @@ export default async function ContactPage({
               <h2 className="font-display text-2xl text-ink">
                 {t("form.title")}
               </h2>
-              <div className="mt-6">
-                <InquiryForm compact />
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <a
+                  href={`tel:${CONTACT_PHONE_TEL}`}
+                  className="inline-flex items-center justify-center gap-2 rounded-xs bg-ink px-6 py-3 text-sm font-medium text-ivory transition-colors hover:bg-ink/90"
+                >
+                  <Phone className="h-4 w-4" />
+                  {phone}
+                </a>
+                <WhatsAppButton />
               </div>
             </div>
           </Reveal>

@@ -2,6 +2,7 @@
 
 import { MessageCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { CONTACT_WHATSAPP } from "@/lib/site-contact";
 
 export function WhatsAppButton({
   message,
@@ -11,8 +12,7 @@ export function WhatsAppButton({
   className?: string;
 }) {
   const t = useTranslations("property");
-  const number =
-    process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") ?? "";
+  const number = CONTACT_WHATSAPP;
   const text = message ? encodeURIComponent(message) : "";
   const href = `https://wa.me/${number}${text ? `?text=${text}` : ""}`;
 

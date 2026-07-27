@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Instagram, Mail, Phone } from "lucide-react";
 import { Logo } from "./logo";
+import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_TEL } from "@/lib/site-contact";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -9,8 +10,8 @@ export function Footer() {
   const tNav = useTranslations("nav");
   const tContact = useTranslations("contact");
 
-  const email = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "info@example.com";
-  const phone = process.env.NEXT_PUBLIC_CONTACT_PHONE ?? "+90 252 000 00 00";
+  const email = CONTACT_EMAIL;
+  const phone = CONTACT_PHONE;
 
   return (
     <footer className="mt-32 border-t border-ivory-300 bg-ivory">
@@ -22,15 +23,17 @@ export function Footer() {
               {tBrand("tagline")}
             </p>
             <div className="mt-8 flex items-center gap-3">
+              {email && (
+                <a
+                  href={`mailto:${email}`}
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-xs border border-ivory-300 text-ink-muted transition-colors hover:border-ink hover:text-ink"
+                  aria-label="email"
+                >
+                  <Mail className="h-4 w-4" />
+                </a>
+              )}
               <a
-                href={`mailto:${email}`}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-xs border border-ivory-300 text-ink-muted transition-colors hover:border-ink hover:text-ink"
-                aria-label="email"
-              >
-                <Mail className="h-4 w-4" />
-              </a>
-              <a
-                href={`tel:${phone.replace(/\s/g, "")}`}
+                href={`tel:${CONTACT_PHONE_TEL}`}
                 className="inline-flex h-9 w-9 items-center justify-center rounded-xs border border-ivory-300 text-ink-muted transition-colors hover:border-ink hover:text-ink"
                 aria-label="phone"
               >
@@ -79,17 +82,16 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-ink">
               <li className="text-ink-muted">{tContact("office")}</li>
               <li>Bodrum, Muğla, Türkiye</li>
+              {email && (
+                <li>
+                  <a href={`mailto:${email}`} className="link-underline">
+                    {email}
+                  </a>
+                </li>
+              )}
               <li>
                 <a
-                  href={`mailto:${email}`}
-                  className="link-underline"
-                >
-                  {email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`tel:${phone.replace(/\s/g, "")}`}
+                  href={`tel:${CONTACT_PHONE_TEL}`}
                   className="link-underline"
                 >
                   {phone}
