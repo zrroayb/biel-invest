@@ -2,7 +2,7 @@
   "brand": {
     "name": "BIEL Invest",
     "tagline": "Distinguished properties of the Aegean",
-    "headerMotto": "Bodrum · Aegean"
+    "headerMotto": "Bodrum · Istanbul · Cyprus"
   },
   "nav": {
     "home": "Home",
@@ -172,7 +172,7 @@
   "contact": {
     "title": "Contact",
     "subtitle": "We are here to listen",
-    "heroEyebrow": "Bodrum · Aegean",
+    "heroEyebrow": "Bodrum · Istanbul · Cyprus",
     "addressLine": "Bodrum, Muğla, Türkiye",
     "form": {
       "title": "Write to us"
@@ -183,7 +183,7 @@
   },
   "footer": {
     "rights": "All rights reserved.",
-    "locationLine": "Bodrum · Aegean",
+    "locationLine": "Bodrum · Istanbul · Cyprus",
     "quickLinks": "Quick Links",
     "contact": "Contact",
     "follow": "Follow us",

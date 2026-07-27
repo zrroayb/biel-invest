@@ -2,7 +2,7 @@
   "brand": {
     "name": "BIEL Invest",
     "tagline": "Ausgewählte Immobilien der Ägäis",
-    "headerMotto": "Bodrum · Ägäis"
+    "headerMotto": "Bodrum · Istanbul · Zypern"
   },
   "nav": {
     "home": "Start",
@@ -172,7 +172,7 @@
   "contact": {
     "title": "Kontakt",
     "subtitle": "Wir hören Ihnen zu",
-    "heroEyebrow": "Bodrum · Ägäis",
+    "heroEyebrow": "Bodrum · Istanbul · Zypern",
     "addressLine": "Bodrum, Muğla, Türkei",
     "form": {
       "title": "Schreiben Sie uns"
@@ -183,7 +183,7 @@
   },
   "footer": {
     "rights": "Alle Rechte vorbehalten.",
-    "locationLine": "Bodrum · Ägäis",
+    "locationLine": "Bodrum · Istanbul · Zypern",
     "quickLinks": "Schnellzugriff",
     "contact": "Kontakt",
     "follow": "Folgen Sie uns",

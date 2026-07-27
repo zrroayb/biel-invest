@@ -2,7 +2,7 @@
   "brand": {
     "name": "BIEL Invest",
     "tagline": "Ege'nin seçkin mülkleri",
-    "headerMotto": "Bodrum · Ege"
+    "headerMotto": "Bodrum · İstanbul · Kıbrıs"
   },
   "nav": {
     "home": "Ana Sayfa",
@@ -172,7 +172,7 @@
   "contact": {
     "title": "İletişim",
     "subtitle": "Sizi dinlemek için buradayız",
-    "heroEyebrow": "Bodrum · Ege",
+    "heroEyebrow": "Bodrum · İstanbul · Kıbrıs",
     "addressLine": "Bodrum, Muğla, Türkiye",
     "form": {
       "title": "Bize yazın"
@@ -183,7 +183,7 @@
   },
   "footer": {
     "rights": "Tüm hakları saklıdır.",
-    "locationLine": "Bodrum · Ege",
+    "locationLine": "Bodrum · İstanbul · Kıbrıs",
     "quickLinks": "Hızlı Linkler",
     "contact": "İletişim",
     "follow": "Bizi takip edin",

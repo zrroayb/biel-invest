@@ -2,7 +2,7 @@
   "brand": {
     "name": "BIEL Invest",
     "tagline": "Избранная недвижимость Эгейского моря",
-    "headerMotto": "Бодрум · Эгей"
+    "headerMotto": "Бодрум · Стамбул · Кипр"
   },
   "nav": {
     "home": "Главная",
@@ -172,7 +172,7 @@
   "contact": {
     "title": "Контакты",
     "subtitle": "Мы рады вас выслушать",
-    "heroEyebrow": "Бодрум · Эгей",
+    "heroEyebrow": "Бодрум · Стамбул · Кипр",
     "addressLine": "Бодрум, Мугла, Турция",
     "form": {
       "title": "Напишите нам"
@@ -183,7 +183,7 @@
   },
   "footer": {
     "rights": "Все права защищены.",
-    "locationLine": "Бодрум · Эгей",
+    "locationLine": "Бодрум · Стамбул · Кипр",
     "quickLinks": "Быстрые ссылки",
     "contact": "Контакты",
     "follow": "Мы в соцсетях",
