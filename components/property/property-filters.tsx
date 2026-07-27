@@ -144,7 +144,7 @@ export function PropertyFilters({
         ) : null}
       </div>
 
-      <div className="flex flex-wrap items-center gap-1.5">
+      <div className="-mx-1 flex flex-nowrap items-center gap-1.5 overflow-x-auto px-1 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mx-0 md:flex-wrap md:overflow-visible md:px-0 md:pb-0">
         <label htmlFor="pf-sort" className="sr-only">
           {tPortfolio("sort.label")}
         </label>
@@ -408,7 +408,7 @@ function FilterMenu({
       ref={ref}
       className={cn(
         "group relative shrink-0",
-        alignEnd && "max-sm:ml-auto",
+        alignEnd && "sm:ml-auto",
       )}
     >
       <summary
