@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { setRequestLocale, getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { buildPublicPageMetadata } from "@/lib/seo/page-meta";
 import { listProperties } from "@/lib/firestore/properties";
 import { PropertyCard } from "@/components/property/property-card";
@@ -133,8 +134,17 @@ export default async function PortfolioPage({
         </div>
 
         {items.length === 0 ? (
-          <div className="flex flex-col items-center justify-center gap-3 py-24 text-center">
-            <div className="font-display text-2xl text-ink">{t("empty")}</div>
+          <div className="flex flex-col items-center justify-center gap-5 py-24 text-center">
+            <div className="max-w-md">
+              <div className="font-display text-2xl text-ink">{t("empty")}</div>
+              <p className="mt-2 text-sm text-ink-muted">{t("subtitle")}</p>
+            </div>
+            <Link
+              href="/portfoy"
+              className="inline-flex items-center gap-2 rounded-xs border border-ink px-6 py-3 text-sm font-medium text-ink transition-colors hover:bg-ink hover:text-ivory"
+            >
+              {t("filters.clear")}
+            </Link>
           </div>
         ) : (
           <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">

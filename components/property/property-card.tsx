@@ -24,6 +24,21 @@ export function PropertyCard({
   const translation =
     property.translations[locale] ?? property.translations.tr;
 
+  // Kartları birbirinden ayırmak için en çekici 3 özelliği göster.
+  const FEATURE_PRIORITY = [
+    "sea_view", "private_pool", "private_plaj", "smart_home_system",
+    "nature_view", "garden", "jacuzzi", "sauna", "spa", "indoor_pool",
+    "shared_pool", "security", "fitness_center", "turkish_bath", "fireplace",
+  ];
+  const topFeatures = [...property.features]
+    .filter((f) => t.has(`feature.${f}`))
+    .sort((a, b) => {
+      const ia = FEATURE_PRIORITY.indexOf(a);
+      const ib = FEATURE_PRIORITY.indexOf(b);
+      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+    })
+    .slice(0, 3);
+
   const imgAspect =
     size === "large"
       ? "aspect-[4/5]"
@@ -108,6 +123,19 @@ export function PropertyCard({
           className="font-display text-lg text-ink"
         />
       </div>
+
+      {topFeatures.length > 0 && (
+        <div className="mt-2.5 flex flex-wrap gap-1.5">
+          {topFeatures.map((f) => (
+            <span
+              key={f}
+              className="rounded-xs bg-ivory-200 px-2 py-0.5 text-[10px] uppercase tracking-[0.08em] text-ink-muted"
+            >
+              {t(`feature.${f}`)}
+            </span>
+          ))}
+        </div>
+      )}
     </article>
   );
 }
