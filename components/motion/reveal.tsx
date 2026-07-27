@@ -33,28 +33,44 @@ export function Reveal({
   const [active, setActive] = useState(false);
 
   useEffect(() => {
-    if (
+    const reduce =
       typeof window !== "undefined" &&
-      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
-    ) {
+      window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    const el = ref.current;
+    if (reduce || !el) {
       setActive(true);
       return;
     }
 
-    const el = ref.current;
-    if (!el) return;
+    // Yükleme anında zaten görünür alandaysa hemen göster (gözlemci hızlı
+    // scroll'da atlayabilir; içerik gizli kalmasın).
+    if (el.getBoundingClientRect().top < window.innerHeight + 100) {
+      setActive(true);
+      return;
+    }
 
     const io = new IntersectionObserver(
       (entries) => {
         if (entries[0]?.isIntersecting) {
           setActive(true);
           io.disconnect();
+          clearTimeout(safety);
         }
       },
       { rootMargin: "100px 0px -6% 0px", threshold: 0 },
     );
     io.observe(el);
-    return () => io.disconnect();
+
+    // Güvenlik ağı: gözlemci hiç tetiklenmezse içerik en geç 1.5sn sonra görünür.
+    const safety = setTimeout(() => {
+      setActive(true);
+      io.disconnect();
+    }, 1500);
+
+    return () => {
+      io.disconnect();
+      clearTimeout(safety);
+    };
   }, []);
 
   return createElement(
