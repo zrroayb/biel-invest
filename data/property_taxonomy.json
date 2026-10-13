@@ -387,6 +387,15 @@
         "de": "Bitez",
         "ru": "Bitez"
       }
+    },
+    {
+      "id": "kazikli",
+      "labels": {
+        "tr": "Kazıklı",
+        "en": "Kazıklı",
+        "de": "Kazıklı",
+        "ru": "Казыклы"
+      }
     }
   ],
   "features": [
@@ -766,6 +775,42 @@
         "en": "Cinema",
         "de": "Kino",
         "ru": "Кинозал"
+      }
+    },
+    {
+      "id": "pier",
+      "labels": {
+        "tr": "İskele",
+        "en": "Private pier",
+        "de": "Privater Steg",
+        "ru": "Причал"
+      }
+    },
+    {
+      "id": "annex",
+      "labels": {
+        "tr": "Ek bina (annex)",
+        "en": "Annex",
+        "de": "Nebengebäude",
+        "ru": "Флигель"
+      }
+    },
+    {
+      "id": "winter_garden",
+      "labels": {
+        "tr": "Kış bahçesi",
+        "en": "Winter garden",
+        "de": "Wintergarten",
+        "ru": "Зимний сад"
+      }
+    },
+    {
+      "id": "guest_house",
+      "labels": {
+        "tr": "Misafir evi",
+        "en": "Guest house",
+        "de": "Gästehaus",
+        "ru": "Гостевой дом"
       }
     }
   ]

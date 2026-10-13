@@ -132,7 +132,8 @@
       "furnished": "Furnished",
       "elevator": "Elevator",
       "air_conditioning": "Air Conditioning"
-    }
+    },
+    "priceOnRequest": "Price on request"
   },
   "inquiry": {
     "title": "Request information",

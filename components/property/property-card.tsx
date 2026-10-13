@@ -26,7 +26,7 @@ export function PropertyCard({
 
   // Kartları birbirinden ayırmak için en çekici 3 özelliği göster.
   const FEATURE_PRIORITY = [
-    "sea_view", "private_pool", "private_plaj", "smart_home_system",
+    "sea_view", "private_plaj", "pier", "private_pool", "smart_home_system",
     "nature_view", "garden", "jacuzzi", "sauna", "spa", "indoor_pool",
     "shared_pool", "security", "fitness_center", "turkish_bath", "fireplace",
   ];

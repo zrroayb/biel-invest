@@ -24,12 +24,14 @@ export function PropertyDetailPrice({
         currency={currency}
         className="font-display text-3xl text-ink"
       />
-      <div className="mt-3 flex flex-col items-end gap-1">
-        <PriceCurrencySwitcher size="md" />
-        <p className="max-w-[220px] text-[10px] leading-snug text-ink-muted">
-          {t("priceCurrency.hint")}
-        </p>
-      </div>
+      {amount > 0 && (
+        <div className="mt-3 flex flex-col items-end gap-1">
+          <PriceCurrencySwitcher size="md" />
+          <p className="max-w-[220px] text-[10px] leading-snug text-ink-muted">
+            {t("priceCurrency.hint")}
+          </p>
+        </div>
+      )}
     </div>
   );
 }

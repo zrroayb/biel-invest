@@ -132,7 +132,8 @@
       "furnished": "Mobilyalı",
       "elevator": "Asansör",
       "air_conditioning": "Klima"
-    }
+    },
+    "priceOnRequest": "Fiyat için iletişime geçin"
   },
   "inquiry": {
     "title": "Bu mülk hakkında bilgi alın",

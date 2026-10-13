@@ -9376,5 +9376,219 @@
     "featured": false,
     "createdAt": "2024-12-20T13:28:00Z",
     "updatedAt": "2024-12-20T13:28:00Z"
+  },
+  {
+    "id": "126",
+    "slug": "gol-one-villa-private-beach-golkoy",
+    "type": "villa",
+    "status": "satilik",
+    "region": "golkoy",
+    "price": 0,
+    "currency": "EUR",
+    "specs": {
+      "areaGross": 500,
+      "bedrooms": 4,
+      "livingRooms": 1,
+      "plotSize": 900
+    },
+    "features": [
+      "private_plaj",
+      "pier",
+      "sea_view",
+      "private_pool",
+      "garden",
+      "annex",
+      "indoor_parking",
+      "open_parking"
+    ],
+    "translations": {
+      "tr": {
+        "title": "Göl / One — Gölköy'de Özel Kumsallı ve İskeleli Villa",
+        "description": "Gölköy, Bodrum'un en korunaklı koylarından biri; sakin turkuaz suyu ve çam ağaçlı kıyısıyla Ege'nin en huzurlu köşelerinden. Göl / One bu koya bakıyor: 4+1 villa, 3 odalı bir annex, özel bahçe, havuz ve güneş terası. Özel kumsalı ve iskelesi denizi gündelik hayatın parçası yapıyor.\n\nDeniz manzaralı yaşam ve yemek alanları, adalı ayrı mutfak; her pencere koyu çerçeveliyor. Natürel taş cepheli annex, toplam altı kişilik personel için ayrılmış üç odadan oluşuyor. 2 kapalı, 1 açık otopark.\n\nProje alanı 17.760 m², arsa payı 900 m², kapalı alan 500 m². Tapu: kat mülkiyeti (apart tipi).",
+        "highlights": [
+          "Özel kumsal ve iskele",
+          "Özel bahçe ve havuz",
+          "Güneş terası",
+          "Deniz ve koy manzarası",
+          "3 odalı annex (personel)",
+          "2 kapalı + 1 açık otopark"
+        ]
+      },
+      "en": {
+        "title": "Göl / One — Villa with Private Sandy Beach & Pier in Gölköy",
+        "description": "Gölköy is one of Bodrum's most sheltered bays; with its calm, turquoise water and pine-lined shore, it is among the quietest corners of the Aegean. Göl / One looks down on this bay: a 4+1 villa, a 3-room annex, a private garden, pool and sun terrace. Its private sandy beach and pier make the sea part of everyday life.\n\nSea-view living and dining areas with a separate island kitchen; every window frames the bay. The natural-stone annex has three rooms set aside for household staff, for six staff in total. 2 covered and 1 open parking space.\n\nProject area 17,760 m², land share 900 m², indoor area 500 m². Title deed: condominium ownership (apart type).",
+        "highlights": [
+          "Private sandy beach and pier",
+          "Private garden and pool",
+          "Sun terrace",
+          "Sea and bay views",
+          "3-room staff annex",
+          "2 covered + 1 open parking"
+        ]
+      },
+      "de": {
+        "title": "Göl / One — Villa mit privatem Sandstrand und Steg in Gölköy",
+        "description": "Gölköy ist eine der geschütztesten Buchten Bodrums; mit ruhigem, türkisfarbenem Wasser und pinienbestandenem Ufer gehört sie zu den stillsten Ecken der Ägäis. Göl / One blickt auf diese Bucht: eine 4+1-Villa, ein Nebengebäude mit 3 Zimmern, privater Garten, Pool und Sonnenterrasse. Privater Sandstrand und Steg machen das Meer zum Teil des Alltags.\n\nWohn- und Essbereiche mit Meerblick, separate Küche mit Kochinsel; jedes Fenster rahmt die Bucht. Das Nebengebäude mit Natursteinfassade bietet drei Zimmer für Hauspersonal (insgesamt sechs Personen). 2 überdachte und 1 offener Stellplatz.\n\nProjektfläche 17.760 m², Grundstücksanteil 900 m², Wohnfläche 500 m². Grundbuch: Wohnungseigentum (Apart-Typ).",
+        "highlights": [
+          "Privater Sandstrand und Steg",
+          "Privater Garten und Pool",
+          "Sonnenterrasse",
+          "Meer- und Buchtblick",
+          "Personalhaus mit 3 Zimmern",
+          "2 überdachte + 1 offener Stellplatz"
+        ]
+      },
+      "ru": {
+        "title": "Göl / One — вилла с частным песчаным пляжем и причалом в Гёлькёе",
+        "description": "Гёлькёй — одна из самых защищённых бухт Бодрума; спокойная бирюзовая вода и берег в соснах делают её одним из самых тихих уголков Эгейского моря. Göl / One смотрит на эту бухту: вилла 4+1, флигель из 3 комнат, частный сад, бассейн и терраса для загара. Частный песчаный пляж и причал делают море частью повседневной жизни.\n\nГостиная и столовая с видом на море, отдельная кухня с островом; каждое окно обрамляет бухту. Флигель с фасадом из натурального камня — три комнаты для персонала (всего на шесть человек). 2 крытых и 1 открытое парковочное место.\n\nПлощадь проекта 17 760 м², доля земли 900 м², закрытая площадь 500 м². Право собственности: кондоминиум (тип апарт).",
+        "highlights": [
+          "Частный песчаный пляж и причал",
+          "Частный сад и бассейн",
+          "Терраса для загара",
+          "Вид на море и бухту",
+          "Флигель для персонала (3 комнаты)",
+          "2 крытых + 1 открытая парковка"
+        ]
+      }
+    },
+    "media": {
+      "cover": "/properties/gol-one-villa-private-beach-golkoy/01.jpg",
+      "gallery": [
+        "/properties/gol-one-villa-private-beach-golkoy/01.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/02.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/03.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/04.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/05.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/06.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/07.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/08.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/09.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/10.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/11.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/12.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/13.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/14.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/15.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/16.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/17.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/18.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/19.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/20.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/21.jpg",
+        "/properties/gol-one-villa-private-beach-golkoy/22.jpg"
+      ],
+      "videoUrl": null,
+      "virtualTourUrl": null
+    },
+    "coordinates": null,
+    "featured": true,
+    "createdAt": "2026-10-13T12:00:00Z",
+    "updatedAt": "2026-10-13T12:00:00Z"
+  },
+  {
+    "id": "127",
+    "slug": "kazikli-private-bay-estate",
+    "type": "villa",
+    "status": "satilik",
+    "region": "kazikli",
+    "price": 13000000,
+    "currency": "USD",
+    "specs": {
+      "areaGross": 270,
+      "plotSize": 2500
+    },
+    "features": [
+      "pier",
+      "sea_view",
+      "private_pool",
+      "winter_garden",
+      "jacuzzi",
+      "turkish_bath",
+      "sauna",
+      "cinema",
+      "smart_home_system",
+      "guest_house"
+    ],
+    "translations": {
+      "tr": {
+        "title": "Kazıklı Koyu'nda Yat İskeleli Özel Koy Malikanesi",
+        "description": "Malikane, Bodrum yakınlarında ıssız, doğal bir koyda yer alıyor. Ev doğrudan denize açılıyor ve iskelesi büyük bir yatı ağırlayabiliyor. Yalıkavak'a tekneyle yaklaşık 20 dakika. Mahremiyete ve denize doğrudan erişime değer veren alıcılar için.\n\nProje, 1930'larda inşa edilmiş tarihi bir evin yeniden inşasını kapsıyor; bu statü, doğrudan deniz kenarındaki eşsiz konumun korunmasını mümkün kılıyor. Temsilciye göre gerekli izinler mevcut; inşaat belgeleri ve ruhsatlar alıcıların incelemesine açık. Anahtar teslim haziran ayında planlanıyor, kesin tarih sözleşmede belirlenecek.\n\n2.500 m² özel arazi, 270 m² ana konut ve iki ayrı 1+1 misafir evi. Havuz, kış bahçesi ve jakuzi; hamam ve sauna; sinema odası ve büyük akvaryum; akıllı ev sistemi. Görseller proje görselleştirmesidir.",
+        "highlights": [
+          "Büyük yat için özel iskele",
+          "Yalıkavak'a tekneyle ~20 dk",
+          "İki ayrı 1+1 misafir evi",
+          "Havuz, kış bahçesi ve jakuzi",
+          "Hamam ve sauna",
+          "Sinema odası ve akvaryum"
+        ]
+      },
+      "en": {
+        "title": "Private Bay Estate with Yacht Pier in Kazıklı Bay",
+        "description": "The estate sits in a secluded natural bay near Bodrum. The home opens directly onto the water, and the pier accommodates a large yacht. About 20 minutes by boat to Yalıkavak. The property suits buyers who value privacy and direct access to the sea.\n\nThe project includes the reconstruction of a house built in the 1930s; this status makes it possible to preserve its unique position directly by the sea. According to the representative, the property has the required permits, and construction documents and licenses are available for review. Turnkey delivery is planned for June; the exact date will be set in the contract.\n\n2,500 m² of private land, a 270 m² main residence and two separate 1+1 guest houses. Pool, winter garden and jacuzzi; hammam and sauna; cinema room and large aquarium; smart home system. Images are project visualizations.",
+        "highlights": [
+          "Private pier for a large yacht",
+          "~20 min by boat to Yalıkavak",
+          "Two separate 1+1 guest houses",
+          "Pool, winter garden and jacuzzi",
+          "Hammam and sauna",
+          "Cinema room and aquarium"
+        ]
+      },
+      "de": {
+        "title": "Privates Buchtanwesen mit Yachtsteg in der Kazıklı-Bucht",
+        "description": "Das Anwesen liegt in einer abgeschiedenen, naturbelassenen Bucht nahe Bodrum. Das Haus öffnet sich direkt zum Wasser, der Steg bietet Platz für eine große Yacht. Mit dem Boot etwa 20 Minuten nach Yalıkavak. Ideal für Käufer, die Privatsphäre und direkten Meerzugang schätzen.\n\nDas Projekt umfasst den Wiederaufbau eines in den 1930er-Jahren errichteten Hauses; dieser Status ermöglicht den Erhalt der einzigartigen Lage direkt am Meer. Laut Vertreter liegen die erforderlichen Genehmigungen vor; Baudokumente und Lizenzen können eingesehen werden. Die schlüsselfertige Übergabe ist für Juni geplant, das genaue Datum wird im Vertrag festgelegt.\n\n2.500 m² Privatgrundstück, 270 m² Hauptresidenz und zwei separate 1+1-Gästehäuser. Pool, Wintergarten und Whirlpool; Hamam und Sauna; Kinoraum und großes Aquarium; Smart-Home-System. Die Bilder sind Projektvisualisierungen.",
+        "highlights": [
+          "Privater Steg für eine große Yacht",
+          "~20 Min. per Boot nach Yalıkavak",
+          "Zwei separate 1+1-Gästehäuser",
+          "Pool, Wintergarten und Whirlpool",
+          "Hamam und Sauna",
+          "Kinoraum und Aquarium"
+        ]
+      },
+      "ru": {
+        "title": "Частное поместье с причалом для яхты в бухте Казыклы",
+        "description": "Поместье расположено в уединённой природной бухте недалеко от Бодрума. Дом выходит прямо к воде, причал вмещает большую яхту. Около 20 минут на лодке до Ялыкавака. Подходит покупателям, ценящим приватность и прямой выход к морю.\n\nПроект включает реконструкцию дома, построенного в 1930-х годах; этот статус позволяет сохранить его уникальное расположение прямо у моря. По словам представителя, все необходимые разрешения имеются, строительная документация и лицензии доступны для ознакомления. Сдача «под ключ» запланирована на июнь, точная дата будет указана в договоре.\n\n2 500 м² частной земли, основная резиденция 270 м² и два отдельных гостевых дома 1+1. Бассейн, зимний сад и джакузи; хаммам и сауна; кинозал и большой аквариум; система «умный дом». Изображения являются визуализациями проекта.",
+        "highlights": [
+          "Частный причал для большой яхты",
+          "~20 мин на лодке до Ялыкавака",
+          "Два отдельных гостевых дома 1+1",
+          "Бассейн, зимний сад и джакузи",
+          "Хаммам и сауна",
+          "Кинозал и аквариум"
+        ]
+      }
+    },
+    "media": {
+      "cover": "/properties/kazikli-private-bay-estate/01.jpg",
+      "gallery": [
+        "/properties/kazikli-private-bay-estate/01.jpg",
+        "/properties/kazikli-private-bay-estate/02.jpg",
+        "/properties/kazikli-private-bay-estate/03.jpg",
+        "/properties/kazikli-private-bay-estate/04.jpg",
+        "/properties/kazikli-private-bay-estate/05.jpg",
+        "/properties/kazikli-private-bay-estate/06.jpg",
+        "/properties/kazikli-private-bay-estate/07.jpg",
+        "/properties/kazikli-private-bay-estate/08.jpg",
+        "/properties/kazikli-private-bay-estate/09.jpg",
+        "/properties/kazikli-private-bay-estate/10.jpg",
+        "/properties/kazikli-private-bay-estate/11.jpg",
+        "/properties/kazikli-private-bay-estate/12.jpg",
+        "/properties/kazikli-private-bay-estate/13.jpg",
+        "/properties/kazikli-private-bay-estate/14.jpg",
+        "/properties/kazikli-private-bay-estate/15.jpg",
+        "/properties/kazikli-private-bay-estate/16.jpg",
+        "/properties/kazikli-private-bay-estate/17.jpg",
+        "/properties/kazikli-private-bay-estate/18.jpg",
+        "/properties/kazikli-private-bay-estate/19.jpg",
+        "/properties/kazikli-private-bay-estate/20.jpg"
+      ],
+      "videoUrl": null,
+      "virtualTourUrl": null
+    },
+    "coordinates": null,
+    "featured": true,
+    "createdAt": "2026-10-13T12:00:00Z",
+    "updatedAt": "2026-10-13T12:00:00Z"
   }
 ]

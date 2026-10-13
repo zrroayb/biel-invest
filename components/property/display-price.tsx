@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import type { Property, LocaleKey } from "@/types/property";
 import { convertToDisplayCurrency } from "@/lib/money/convert-display";
 import { formatPrice, cn } from "@/lib/utils";
@@ -16,7 +16,14 @@ export function DisplayPrice({
   className?: string;
 }) {
   const locale = useLocale() as LocaleKey;
+  const t = useTranslations("property");
   const { displayCurrency, rates } = usePriceCurrency();
+
+  // Fiyatı girilmemiş ilanlar (0) "€0" yerine "Fiyat için iletişime geçin" gösterir.
+  if (!amount || amount <= 0) {
+    return <span className={className}>{t("priceOnRequest")}</span>;
+  }
+
   const converted = convertToDisplayCurrency(amount, currency, displayCurrency, rates);
 
   return (

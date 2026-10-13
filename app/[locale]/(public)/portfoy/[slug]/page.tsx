@@ -115,12 +115,15 @@ export default async function PropertyDetailPage({
         description: tr.description,
         url: listingUrl,
         image: imageUrls.length ? imageUrls : undefined,
-        offers: {
-          "@type": "Offer",
-          url: listingUrl,
-          price: property.price,
-          priceCurrency: property.currency,
-        },
+        offers:
+          property.price > 0
+            ? {
+                "@type": "Offer",
+                url: listingUrl,
+                price: property.price,
+                priceCurrency: property.currency,
+              }
+            : undefined,
         address: {
           "@type": "PostalAddress",
           addressRegion: tRegions(property.region),

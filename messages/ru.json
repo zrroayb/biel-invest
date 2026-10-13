@@ -132,7 +132,8 @@
       "furnished": "С мебелью",
       "elevator": "Лифт",
       "air_conditioning": "Кондиционер"
-    }
+    },
+    "priceOnRequest": "Цена по запросу"
   },
   "inquiry": {
     "title": "Запросить информацию",

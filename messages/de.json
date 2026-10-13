@@ -132,7 +132,8 @@
       "furnished": "Möbliert",
       "elevator": "Aufzug",
       "air_conditioning": "Klimaanlage"
-    }
+    },
+    "priceOnRequest": "Preis auf Anfrage"
   },
   "inquiry": {
     "title": "Informationen anfragen",
