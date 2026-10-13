@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { appendSiteAnalyticsEvent } from "@/lib/firestore/site-analytics";
 import { getRequestClientMeta } from "@/lib/http/client-meta";
+import { isFirebaseAdminConfigured } from "@/lib/firebase/admin-env";
 
 const uuid = z.string().uuid();
 
@@ -40,6 +41,11 @@ export async function POST(request: NextRequest) {
   const parsed = bodySchema.safeParse(json);
   if (!parsed.success) {
     return NextResponse.json({ error: "Bad request" }, { status: 400 });
+  }
+
+  // Firebase yoksa (repo modu) kayıt yeri yok: her sayfa görüntülemede hata loglamak yerine sessizce geç.
+  if (!isFirebaseAdminConfigured()) {
+    return NextResponse.json({ ok: true, stored: false });
   }
 
   const { ip, userAgent, country, region, city } =

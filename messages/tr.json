@@ -209,7 +209,9 @@
       "email": "E-posta",
       "password": "Şifre",
       "submit": "Giriş Yap",
-      "error": "Giriş başarısız"
+      "error": "Giriş başarısız",
+      "unavailableTitle": "Yönetim paneli şu an kullanılamıyor",
+      "unavailableBody": "Panel, veritabanı bağlantısı yapılandırıldığında yeniden açılacak."
     },
     "nav": {
       "dashboard": "Davranış",

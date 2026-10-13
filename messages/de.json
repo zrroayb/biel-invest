@@ -209,7 +209,9 @@
       "email": "E-Mail",
       "password": "Passwort",
       "submit": "Anmelden",
-      "error": "Anmeldung fehlgeschlagen"
+      "error": "Anmeldung fehlgeschlagen",
+      "unavailableTitle": "Das Admin-Panel ist derzeit nicht verfügbar",
+      "unavailableBody": "Das Panel ist wieder verfügbar, sobald die Datenbankverbindung eingerichtet ist."
     },
     "nav": {
       "dashboard": "Verhalten",

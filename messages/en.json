@@ -209,7 +209,9 @@
       "email": "Email",
       "password": "Password",
       "submit": "Sign In",
-      "error": "Sign in failed"
+      "error": "Sign in failed",
+      "unavailableTitle": "The admin panel is currently unavailable",
+      "unavailableBody": "The panel will be available again once the database connection is configured."
     },
     "nav": {
       "dashboard": "Behavior",
