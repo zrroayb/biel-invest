@@ -7,7 +7,7 @@
         "tr": "Yalıkavak",
         "en": "Yalıkavak",
         "de": "Yalıkavak",
-        "ru": "Yalıkavak"
+        "ru": "Ялыкавак"
       }
     },
     {
@@ -16,7 +16,7 @@
         "tr": "Türkbükü",
         "en": "Türkbükü",
         "de": "Türkbükü",
-        "ru": "Türkbükü"
+        "ru": "Тюркбюкю"
       }
     },
     {
@@ -25,7 +25,7 @@
         "tr": "Gümüşlük",
         "en": "Gümüşlük",
         "de": "Gümüşlük",
-        "ru": "Gümüşlük"
+        "ru": "Гюмюшлюк"
       }
     },
     {
@@ -34,7 +34,7 @@
         "tr": "Göltürkbükü",
         "en": "Göltürkbükü",
         "de": "Göltürkbükü",
-        "ru": "Göltürkbükü"
+        "ru": "Гёльтюркбюкю"
       }
     },
     {
@@ -43,16 +43,16 @@
         "tr": "Yalı",
         "en": "Yalı",
         "de": "Yalı",
-        "ru": "Yalı"
+        "ru": "Ялы"
       }
     },
     {
       "id": "bodrum_merkez",
       "labels": {
         "tr": "Bodrum Merkez",
-        "en": "Bodrum Merkez",
-        "de": "Bodrum Merkez",
-        "ru": "Bodrum Merkez"
+        "en": "Bodrum Center",
+        "de": "Bodrum Zentrum",
+        "ru": "Центр Бодрума"
       }
     },
     {
@@ -61,7 +61,7 @@
         "tr": "Gündoğan",
         "en": "Gündoğan",
         "de": "Gündoğan",
-        "ru": "Gündoğan"
+        "ru": "Гюндоган"
       }
     },
     {
@@ -70,7 +70,7 @@
         "tr": "Torba",
         "en": "Torba",
         "de": "Torba",
-        "ru": "Torba"
+        "ru": "Торба"
       }
     },
     {
@@ -79,7 +79,7 @@
         "tr": "Kemikler",
         "en": "Kemikler",
         "de": "Kemikler",
-        "ru": "Kemikler"
+        "ru": "Кемиклер"
       }
     },
     {
@@ -88,7 +88,7 @@
         "tr": "Turgutreis",
         "en": "Turgutreis",
         "de": "Turgutreis",
-        "ru": "Turgutreis"
+        "ru": "Тургутрейс"
       }
     },
     {
@@ -97,7 +97,7 @@
         "tr": "Güllük",
         "en": "Güllük",
         "de": "Güllük",
-        "ru": "Güllük"
+        "ru": "Гюллюк"
       }
     },
     {
@@ -106,7 +106,7 @@
         "tr": "Boğaziçi",
         "en": "Boğaziçi",
         "de": "Boğaziçi",
-        "ru": "Boğaziçi"
+        "ru": "Богазичи"
       }
     },
     {
@@ -115,7 +115,7 @@
         "tr": "Konacık",
         "en": "Konacık",
         "de": "Konacık",
-        "ru": "Konacık"
+        "ru": "Конаджык"
       }
     },
     {
@@ -124,7 +124,7 @@
         "tr": "Gümbet",
         "en": "Gümbet",
         "de": "Gümbet",
-        "ru": "Gümbet"
+        "ru": "Гюмбет"
       }
     },
     {
@@ -133,7 +133,7 @@
         "tr": "Güvercinlik",
         "en": "Güvercinlik",
         "de": "Güvercinlik",
-        "ru": "Güvercinlik"
+        "ru": "Гюверджинлик"
       }
     },
     {
@@ -142,7 +142,7 @@
         "tr": "Mumcular",
         "en": "Mumcular",
         "de": "Mumcular",
-        "ru": "Mumcular"
+        "ru": "Мумджулар"
       }
     },
     {
@@ -151,7 +151,7 @@
         "tr": "Dörttepe",
         "en": "Dörttepe",
         "de": "Dörttepe",
-        "ru": "Dörttepe"
+        "ru": "Дёрттепе"
       }
     },
     {
@@ -160,7 +160,7 @@
         "tr": "Göktürk",
         "en": "Göktürk",
         "de": "Göktürk",
-        "ru": "Göktürk"
+        "ru": "Гёктюрк"
       }
     },
     {
@@ -169,7 +169,7 @@
         "tr": "Kadıköy",
         "en": "Kadıköy",
         "de": "Kadıköy",
-        "ru": "Kadıköy"
+        "ru": "Кадыкёй"
       }
     },
     {
@@ -178,7 +178,7 @@
         "tr": "Üsküdar",
         "en": "Üsküdar",
         "de": "Üsküdar",
-        "ru": "Üsküdar"
+        "ru": "Ускюдар"
       }
     },
     {
@@ -187,7 +187,7 @@
         "tr": "Esenyurt",
         "en": "Esenyurt",
         "de": "Esenyurt",
-        "ru": "Esenyurt"
+        "ru": "Эсеньюрт"
       }
     },
     {
@@ -196,7 +196,7 @@
         "tr": "Kartal",
         "en": "Kartal",
         "de": "Kartal",
-        "ru": "Kartal"
+        "ru": "Картал"
       }
     },
     {
@@ -205,7 +205,7 @@
         "tr": "Bahçeşehir",
         "en": "Bahçeşehir",
         "de": "Bahçeşehir",
-        "ru": "Bahçeşehir"
+        "ru": "Бахчешехир"
       }
     },
     {
@@ -214,7 +214,7 @@
         "tr": "Beylikdüzü",
         "en": "Beylikdüzü",
         "de": "Beylikdüzü",
-        "ru": "Beylikdüzü"
+        "ru": "Бейликдюзю"
       }
     },
     {
@@ -223,7 +223,7 @@
         "tr": "Zeytinburnu",
         "en": "Zeytinburnu",
         "de": "Zeytinburnu",
-        "ru": "Zeytinburnu"
+        "ru": "Зейтинбурну"
       }
     },
     {
@@ -232,7 +232,7 @@
         "tr": "Pendik",
         "en": "Pendik",
         "de": "Pendik",
-        "ru": "Pendik"
+        "ru": "Пендик"
       }
     },
     {
@@ -241,7 +241,7 @@
         "tr": "Ataşehir",
         "en": "Ataşehir",
         "de": "Ataşehir",
-        "ru": "Ataşehir"
+        "ru": "Аташехир"
       }
     },
     {
@@ -250,7 +250,7 @@
         "tr": "Karpaz",
         "en": "Karpaz",
         "de": "Karpaz",
-        "ru": "Karpaz"
+        "ru": "Карпаз"
       }
     },
     {
@@ -259,7 +259,7 @@
         "tr": "Lefke",
         "en": "Lefke",
         "de": "Lefke",
-        "ru": "Lefke"
+        "ru": "Лефке"
       }
     },
     {
@@ -268,16 +268,16 @@
         "tr": "Beşiktaş",
         "en": "Beşiktaş",
         "de": "Beşiktaş",
-        "ru": "Beşiktaş"
+        "ru": "Бешикташ"
       }
     },
     {
       "id": "k_cekmece",
       "labels": {
-        "tr": "K.Çekmece",
-        "en": "K.Çekmece",
-        "de": "K.Çekmece",
-        "ru": "K.Çekmece"
+        "tr": "Küçükçekmece",
+        "en": "Küçükçekmece",
+        "de": "Küçükçekmece",
+        "ru": "Кючюкчекмедже"
       }
     },
     {
@@ -286,7 +286,7 @@
         "tr": "Başakşehir",
         "en": "Başakşehir",
         "de": "Başakşehir",
-        "ru": "Başakşehir"
+        "ru": "Башакшехир"
       }
     },
     {
@@ -295,7 +295,7 @@
         "tr": "Esentepe",
         "en": "Esentepe",
         "de": "Esentepe",
-        "ru": "Esentepe"
+        "ru": "Эсентепе"
       }
     },
     {
@@ -304,7 +304,7 @@
         "tr": "Avcılar",
         "en": "Avcılar",
         "de": "Avcılar",
-        "ru": "Avcılar"
+        "ru": "Авджылар"
       }
     },
     {
@@ -313,16 +313,16 @@
         "tr": "Bahçeli",
         "en": "Bahçeli",
         "de": "Bahçeli",
-        "ru": "Bahçeli"
+        "ru": "Бахчели"
       }
     },
     {
       "id": "b_cekmece",
       "labels": {
-        "tr": "B.Çekmece",
-        "en": "B.Çekmece",
-        "de": "B.Çekmece",
-        "ru": "B.Çekmece"
+        "tr": "Büyükçekmece",
+        "en": "Büyükçekmece",
+        "de": "Büyükçekmece",
+        "ru": "Бююкчекмедже"
       }
     },
     {
@@ -331,7 +331,7 @@
         "tr": "Şişli",
         "en": "Şişli",
         "de": "Şişli",
-        "ru": "Şişli"
+        "ru": "Шишли"
       }
     },
     {
@@ -340,7 +340,7 @@
         "tr": "Bakırköy",
         "en": "Bakırköy",
         "de": "Bakırköy",
-        "ru": "Bakırköy"
+        "ru": "Бакыркёй"
       }
     },
     {
@@ -349,7 +349,7 @@
         "tr": "Kağıthane",
         "en": "Kağıthane",
         "de": "Kağıthane",
-        "ru": "Kağıthane"
+        "ru": "Кягытхане"
       }
     },
     {
@@ -358,7 +358,7 @@
         "tr": "Bahçelievler",
         "en": "Bahçelievler",
         "de": "Bahçelievler",
-        "ru": "Bahçelievler"
+        "ru": "Бахчелиэвлер"
       }
     },
     {
@@ -367,7 +367,7 @@
         "tr": "Gölköy",
         "en": "Gölköy",
         "de": "Gölköy",
-        "ru": "Gölköy"
+        "ru": "Гёлькёй"
       }
     },
     {
@@ -376,7 +376,7 @@
         "tr": "Kızılağaç",
         "en": "Kızılağaç",
         "de": "Kızılağaç",
-        "ru": "Kızılağaç"
+        "ru": "Кызылагач"
       }
     },
     {
@@ -385,7 +385,7 @@
         "tr": "Bitez",
         "en": "Bitez",
         "de": "Bitez",
-        "ru": "Bitez"
+        "ru": "Битез"
       }
     },
     {
